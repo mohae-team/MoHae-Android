@@ -30,7 +30,7 @@
 
 ## Resource Rule
 
-* 작년과 동일하게 color와 string은 전부 colors.xml, string.xml에서 관리한다. 
+* color와 string은 전부 colors.xml, string.xml에서 관리한다. 
 
 * 네이밍은 다음과 같이 작성한다.
   * drawable은 what_description_where 
