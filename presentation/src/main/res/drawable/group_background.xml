@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="352dp"
+    android:viewportWidth="360"
+    android:viewportHeight="352">
+  <group>
+    <path
+            android:name="group_background"
+        android:pathData="@string/path_group_background"
+        android:strokeAlpha="0.3"
+        android:fillColor="@color/colorGroup"
+        android:fillAlpha="0.3"/>
+    <path
+            android:name="group_deep_background"
+        android:pathData="@string/path_deep_group_background"
+        android:strokeAlpha="0.7"
+        android:fillColor="@color/colorGroup"
+        android:fillAlpha="0.7"/>
+  </group>
+</vector>

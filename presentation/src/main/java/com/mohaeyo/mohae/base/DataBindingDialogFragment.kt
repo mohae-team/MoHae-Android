@@ -9,7 +9,7 @@ import androidx.databinding.ViewDataBinding
 import dagger.android.support.DaggerDialogFragment
 import dagger.android.support.HasSupportFragmentInjector
 
-abstract class DataBindingDialogFragment<T : ViewDataBinding> : DaggerDialogFragment(), HasSupportFragmentInjector {
+abstract class DataBindingDialogFragment<T : ViewDataBinding> : DaggerDialogFragment() {
 
     lateinit var rootView: View
     lateinit var binding: T

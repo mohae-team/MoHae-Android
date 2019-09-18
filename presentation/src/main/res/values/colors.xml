@@ -7,4 +7,10 @@
     <color name="primary">#1976D2</color>
     <color name="secondary">#F57C00</color>
     <color name="error">#E53935</color>
+
+    <color name="colorGroup">#ffab15</color>
+    <color name="colorMypage">#ff5621</color>
+    <color name="colorFeedback">#3e64ff</color>
+    <color name="colorPlace">#42e37b</color>
+    <color name="colorQa">#45daff</color>
 </resources>

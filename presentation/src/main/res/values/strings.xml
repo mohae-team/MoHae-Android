@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MoHae</string>
+
+    <string name="navigation_feedback">검토</string>
+    <string name="navigation_qa">질문</string>
+    <string name="navigation_group">모임</string>
+    <string name="navigation_place">시설</string>
+    <string name="navigation_mypage">계정</string>
 </resources>

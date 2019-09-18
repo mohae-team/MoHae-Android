@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:drawable="@drawable/mypage_background">
+
+    <target
+            android:animation="@anim/anim_mypage_to_qa"
+            android:name="mypage_background"/>
+
+    <target
+            android:animation="@anim/anim_deep_mypage_to_qa"
+            android:name="mypage_deep_background"/>
+
+</animated-vector>

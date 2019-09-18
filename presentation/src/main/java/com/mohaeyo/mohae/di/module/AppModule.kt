@@ -16,4 +16,6 @@ class AppModule {
     @Provides
     @Singleton
     fun provideApplication(app: BaseApp): Application = app
+
+
 }

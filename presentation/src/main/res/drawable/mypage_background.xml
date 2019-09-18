@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="284dp"
+    android:viewportWidth="360"
+    android:viewportHeight="284">
+  <group>
+    <path
+            android:name="mypage_background"
+        android:pathData="@string/path_mypage_background"
+        android:strokeAlpha="0.3"
+        android:fillColor="@color/colorMypage"
+        android:fillAlpha="0.3"/>
+    <path
+            android:name="mypage_deep_background"
+        android:pathData="@string/path_deep_mypage_background"
+        android:strokeAlpha="0.7"
+        android:fillColor="@color/colorMypage"
+        android:fillAlpha="0.7"/>
+  </group>
+</vector>

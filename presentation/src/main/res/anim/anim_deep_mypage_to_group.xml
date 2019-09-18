@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+            android:propertyName="pathData"
+            android:valueType="pathType"
+            android:valueFrom="@string/path_deep_mypage_background"
+            android:valueTo="@string/path_deep_group_background"/>
+
+    <objectAnimator
+            android:propertyName="fillColor"
+            android:valueFrom="@color/colorMypage"
+            android:valueTo="@color/colorGroup"/>
+</set>

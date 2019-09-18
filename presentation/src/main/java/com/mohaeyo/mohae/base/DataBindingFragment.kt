@@ -6,11 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import dagger.android.support.DaggerFragment
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
-abstract class DataBindingFragment<T : ViewDataBinding> : DaggerFragment(), HasSupportFragmentInjector {
+abstract class DataBindingFragment<T : ViewDataBinding> : Fragment(), HasSupportFragmentInjector {
+
+    @Inject
+    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
     lateinit var rootView: View
     lateinit var binding: T
@@ -62,5 +68,8 @@ abstract class DataBindingFragment<T : ViewDataBinding> : DaggerFragment(), HasS
     private fun notifyEvent(event : Lifecycle.Event) {
         lifecycleOwner.notifyEvent(event)
     }
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment>
+            = fragmentInjector
 
 }

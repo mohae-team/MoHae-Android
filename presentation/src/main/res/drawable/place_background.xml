@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="306dp"
+    android:viewportWidth="360"
+    android:viewportHeight="306">
+  <group>
+    <path
+            android:name="place_background"
+        android:pathData="@string/path_place_background"
+        android:strokeAlpha="0.3"
+        android:fillColor="@color/colorPlace"
+        android:fillAlpha="0.3"/>
+    <path
+            android:name="place_deep_background"
+        android:pathData="@string/path_deep_place_background"
+        android:strokeAlpha="0.7"
+        android:fillColor="@color/colorPlace"
+        android:fillAlpha="0.7"/>
+  </group>
+</vector>

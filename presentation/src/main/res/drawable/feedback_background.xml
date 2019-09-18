@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="307dp"
+    android:viewportWidth="360"
+    android:viewportHeight="307">
+  <group>
+    <path
+            android:name="feedback_background"
+        android:pathData="@string/path_feedback_background"
+        android:strokeAlpha="0.3"
+        android:fillColor="@color/colorFeedback"
+        android:fillAlpha="0.3"/>
+
+    <path
+            android:name="feedback_deep_background"
+        android:pathData="@string/path_deep_feedback_background"
+        android:strokeAlpha="0.7"
+        android:fillColor="@color/colorFeedback"
+        android:fillAlpha="0.7"/>
+  </group>
+</vector>
