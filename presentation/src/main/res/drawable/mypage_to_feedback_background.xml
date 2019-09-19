@@ -4,11 +4,11 @@
         android:drawable="@drawable/mypage_background">
 
     <target
-            android:animation="@anim/anim_mypage_to_feedback"
+            android:animation="@animator/animator_mypage_to_feedback"
             android:name="mypage_background"/>
 
     <target
-            android:animation="@anim/anim_deep_mypage_to_feedback"
+            android:animation="@animator/animator_deep_mypage_to_feedback"
             android:name="mypage_deep_background"/>
 
 </animated-vector>

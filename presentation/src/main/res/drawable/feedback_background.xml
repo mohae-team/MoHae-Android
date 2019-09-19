@@ -1,8 +1,8 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="360dp"
-    android:height="307dp"
+    android:height="640dp"
     android:viewportWidth="360"
-    android:viewportHeight="307">
+    android:viewportHeight="640">
   <group>
     <path
             android:name="feedback_background"

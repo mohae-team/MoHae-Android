@@ -15,6 +15,7 @@ import com.mohaeyo.mohae.R
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.wrapContent
 
 
 class MainFragment: DaggerFragment() {
@@ -102,6 +103,7 @@ class MainFragment: DaggerFragment() {
             val avd = AnimatedVectorDrawableCompat.create(context!!, resId)
             main_background.setImageDrawable(avd)
             (main_background.drawable as Animatable).start()
+
         }
     }
 }

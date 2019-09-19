@@ -4,11 +4,11 @@
         android:drawable="@drawable/group_background">
 
     <target
-            android:animation="@anim/anim_group_to_mypage"
+            android:animation="@animator/animator_group_to_mypage"
             android:name="group_background"/>
 
     <target
-            android:animation="@anim/anim_deep_group_to_mypage"
+            android:animation="@animator/animator_deep_group_to_mypage"
             android:name="group_deep_background"/>
 
 </animated-vector>

@@ -6,14 +6,14 @@
         android:layout_height="match_parent">
 
     <ImageView
-            android:paddingBottom="-50dp"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/main_navigation"
             app:srcCompat="@drawable/group_background"
             android:id="@+id/main_background"
             android:layout_width="0dp"
-            android:layout_height="400dp"/>
+            android:layout_height="wrap_content"/>
 
 
     <FrameLayout

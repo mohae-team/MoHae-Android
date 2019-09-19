@@ -4,11 +4,11 @@
         android:drawable="@drawable/place_background">
 
     <target
-            android:animation="@anim/anim_place_to_feedback"
+            android:animation="@animator/animator_place_to_feedback"
             android:name="place_background"/>
 
     <target
-            android:animation="@anim/anim_deep_place_to_feedback"
+            android:animation="@animator/animator_deep_place_to_feedback"
             android:name="place_deep_background"/>
 
 </animated-vector>

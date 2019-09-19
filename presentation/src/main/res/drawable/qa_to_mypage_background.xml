@@ -4,11 +4,11 @@
         android:drawable="@drawable/qa_background">
 
     <target
-            android:animation="@anim/anim_qa_to_mypage"
+            android:animation="@animator/animator_qa_to_mypage"
             android:name="qa_background"/>
 
     <target
-            android:animation="@anim/anim_deep_qa_to_mypage"
+            android:animation="@animator/animator_deep_qa_to_mypage"
             android:name="qa_deep_background"/>
 
 </animated-vector>
