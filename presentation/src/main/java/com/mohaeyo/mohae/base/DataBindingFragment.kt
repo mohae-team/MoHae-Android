@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
@@ -26,6 +27,7 @@ abstract class DataBindingFragment<T : ViewDataBinding> : Fragment(), HasSupport
     private val lifecycleOwner = LifecycleOwner()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        AndroidSupportInjection.inject(this)
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         rootView = binding.root
         binding.lifecycleOwner = this
@@ -71,5 +73,4 @@ abstract class DataBindingFragment<T : ViewDataBinding> : Fragment(), HasSupport
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment>
             = fragmentInjector
-
 }
