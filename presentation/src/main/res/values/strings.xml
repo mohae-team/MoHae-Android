@@ -6,4 +6,9 @@
     <string name="navigation_group">모임</string>
     <string name="navigation_place">시설</string>
     <string name="navigation_mypage">계정</string>
+    <string name="login_title_tv">로그인</string>
+    <string name="login_email_edit">이메일</string>
+    <string name="login_password_edit">비밀번호</string>
+    <string name="login_signup_question_tv">아직 계정이 없으신가요?</string>
+    <string name="login_signup_tv">회원가입</string>
 </resources>

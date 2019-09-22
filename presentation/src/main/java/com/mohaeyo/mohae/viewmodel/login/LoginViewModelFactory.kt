@@ -1,9 +1,11 @@
-package com.mohaeyo.mohae.viewmodel.facotry
+package com.mohaeyo.mohae.viewmodel.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class MyPageViewModelFactory: ViewModelProvider.Factory {
+class LoginViewModelFactory: ViewModelProvider.Factory {
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T
             = modelClass.getConstructor().newInstance()
+
 }

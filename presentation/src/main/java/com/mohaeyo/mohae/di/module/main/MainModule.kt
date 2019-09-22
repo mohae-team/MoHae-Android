@@ -6,7 +6,11 @@ import com.mohaeyo.mohae.di.module.main.mypage.MyPageModule
 import com.mohaeyo.mohae.di.module.main.place.PlaceModule
 import com.mohaeyo.mohae.di.module.main.qa.QAModule
 import com.mohaeyo.mohae.di.scope.MainFragmentScope
-import com.mohaeyo.mohae.ui.fragment.*
+import com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackFragment
+import com.mohaeyo.mohae.ui.fragment.main.group.GroupFragment
+import com.mohaeyo.mohae.ui.fragment.main.mypage.MyPageFragment
+import com.mohaeyo.mohae.ui.fragment.main.place.PlaceFragment
+import com.mohaeyo.mohae.ui.fragment.main.qa.QAFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

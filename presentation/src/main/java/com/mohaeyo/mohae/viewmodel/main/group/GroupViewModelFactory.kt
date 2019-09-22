@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.viewmodel.facotry
+package com.mohaeyo.mohae.viewmodel.main.group
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

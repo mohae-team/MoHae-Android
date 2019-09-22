@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+  <group>
+    <path
+        android:pathData="@string/path_login_background"
+        android:strokeAlpha="0.3"
+        android:fillColor="@color/colorGroup"
+        android:fillAlpha="0.3"/>
+    <path
+        android:pathData="@string/path_deep_login_background"
+        android:strokeAlpha="0.7"
+        android:fillColor="@color/colorGroup"
+        android:fillAlpha="0.7"/>
+  </group>
+</vector>
