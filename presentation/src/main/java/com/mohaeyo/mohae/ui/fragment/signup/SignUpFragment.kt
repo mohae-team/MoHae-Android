@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.ui.fragment
+package com.mohaeyo.mohae.ui.fragment.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -4,8 +4,8 @@ import com.mohaeyo.mohae.di.module.login.LoginModule
 import com.mohaeyo.mohae.di.module.main.MainModule
 import com.mohaeyo.mohae.di.module.main.MainStaticModule
 import com.mohaeyo.mohae.di.scope.FragmentScope
-import com.mohaeyo.mohae.ui.fragment.LoginFragment
-import com.mohaeyo.mohae.ui.fragment.MainFragment
+import com.mohaeyo.mohae.ui.fragment.login.LoginFragment
+import com.mohaeyo.mohae.ui.fragment.main.MainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

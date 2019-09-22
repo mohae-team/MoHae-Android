@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable name="vm" type="com.mohaeyo.mohae.viewmodel.MainViewModel"/>
+        <variable name="vm" type="com.mohaeyo.mohae.viewmodel.main.MainViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

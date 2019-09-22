@@ -1,10 +1,10 @@
-package com.mohaeyo.mohae.viewmodel
+package com.mohaeyo.mohae.viewmodel.main.mypage
 
 import androidx.lifecycle.Lifecycle
 import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.LifecycleCallback
 
-class FeedbackViewModel(): LifecycleCallback, BaseViewModel() {
+class MyPageViewModel(): LifecycleCallback, BaseViewModel() {
     override fun apply(event: Lifecycle.Event) {
 
     }

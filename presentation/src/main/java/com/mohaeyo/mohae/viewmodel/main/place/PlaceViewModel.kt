@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.viewmodel
+package com.mohaeyo.mohae.viewmodel.main.place
 
 import androidx.lifecycle.Lifecycle
 import com.mohaeyo.mohae.base.BaseViewModel

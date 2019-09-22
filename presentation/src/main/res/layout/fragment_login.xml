@@ -3,7 +3,7 @@
     <data>
         <variable
                 name="vm"
-                type="com.mohaeyo.mohae.viewmodel.LoginViewModel"/>
+                type="com.mohaeyo.mohae.viewmodel.login.LoginViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

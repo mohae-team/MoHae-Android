@@ -1,23 +1,18 @@
-package com.mohaeyo.mohae.ui.fragment
+package com.mohaeyo.mohae.ui.fragment.main
 
 import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentMainBinding
-import com.mohaeyo.mohae.viewmodel.MainViewModel
-import com.mohaeyo.mohae.viewmodel.facotry.MainViewModelFactory
+import com.mohaeyo.mohae.viewmodel.main.MainViewModel
+import com.mohaeyo.mohae.viewmodel.main.MainViewModelFactory
 import kotlinx.android.synthetic.main.fragment_main.*
-import org.jetbrains.anko.support.v4.find
 import javax.inject.Inject
 
 

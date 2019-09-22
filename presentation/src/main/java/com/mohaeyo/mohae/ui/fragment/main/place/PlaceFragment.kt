@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.ui.fragment
+package com.mohaeyo.mohae.ui.fragment.main.place
 
 import android.os.Bundle
 import android.view.View

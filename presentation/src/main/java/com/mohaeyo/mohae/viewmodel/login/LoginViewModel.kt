@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.viewmodel
+package com.mohaeyo.mohae.viewmodel.login
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData

@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="vm"
-                type="com.mohaeyo.mohae.viewmodel.MyPageViewModel"/>
+                type="com.mohaeyo.mohae.viewmodel.main.mypage.MyPageViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

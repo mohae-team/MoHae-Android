@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.ui.fragment
+package com.mohaeyo.mohae.ui.fragment.login
 
 import android.os.Bundle
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.navigation.Navigation.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentLoginBinding
-import com.mohaeyo.mohae.viewmodel.LoginViewModel
-import com.mohaeyo.mohae.viewmodel.facotry.LoginViewModelFactory
+import com.mohaeyo.mohae.viewmodel.login.LoginViewModel
+import com.mohaeyo.mohae.viewmodel.login.LoginViewModelFactory
 import javax.inject.Inject
 
 class LoginFragment: DataBindingFragment<FragmentLoginBinding>() {

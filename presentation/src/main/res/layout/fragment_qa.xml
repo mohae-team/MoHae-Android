@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="vm"
-                type="com.mohaeyo.mohae.viewmodel.QAViewModel"/>
+                type="com.mohaeyo.mohae.viewmodel.main.qa.QAViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
