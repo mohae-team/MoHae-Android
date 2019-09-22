@@ -1,12 +1,10 @@
 package com.mohaeyo.mohae.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentLoginBinding
@@ -29,8 +27,16 @@ class LoginFragment: DataBindingFragment<FragmentLoginBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
 
+        observeViewModelEvent()
+    }
+
+    private fun observeViewModelEvent() {
         viewModel.startMainEvent.observe(this, Observer {
-            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_main_fragment2)
+            findNavController(view!!).navigate(R.id.action_loginFragment_to_main_fragment)
+        })
+
+        viewModel.startSignUpEvent.observe(this, Observer {
+            findNavController(view!!).navigate(R.id.action_loginFragment_to_signUpFragment)
         })
     }
 }

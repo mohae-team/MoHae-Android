@@ -17,6 +17,9 @@ class LoginViewModel: BaseViewModel() {
     }
 
     val startMainEvent = SingleLiveEvent<Unit>()
+    val startSignUpEvent = SingleLiveEvent<Unit>()
 
     fun clickLogin() { startMainEvent.call() }
+
+    fun clickSignUp() { startSignUpEvent.call() }
 }
