@@ -1,4 +1,4 @@
-# MoHae-Android
+# MoHae-Android [![CircleCI](https://circleci.com/gh/mohae-team/MoHae-Android.svg?style=svg)](https://circleci.com/gh/mohae-team/MoHae-Android)
 
 ## People
 
