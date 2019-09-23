@@ -1,7 +1,7 @@
 package com.mohaeyo.mohae.ui.fragment.signup
 
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
@@ -15,6 +15,8 @@ import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
 import javax.inject.Inject
 
+
+
 class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
 
     override val layoutId: Int
@@ -25,12 +27,15 @@ class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
 
     private val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignUpViewModel::class.java) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
-            findNavController(view!!).navigate(R.id.action_signUpFragment_to_loginFragment)
-        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this, object: OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController(view!!).navigate(R.id.action_signUpFragment_to_loginFragment)
+                }
+            })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

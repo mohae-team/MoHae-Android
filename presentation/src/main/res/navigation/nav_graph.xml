@@ -27,10 +27,12 @@
               android:label="LoginFragment">
         <action
                 android:id="@+id/action_loginFragment_to_main_fragment"
+                app:popUpTo="@id/loginFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/mainFragment"/>
         <action android:id="@+id/action_loginFragment_to_signUpFragment"
+                app:popUpTo="@id/loginFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/signUpFragment"/>
@@ -39,6 +41,7 @@
     <fragment android:id="@+id/signUpFragment" android:name="com.mohaeyo.mohae.ui.fragment.signup.SignUpFragment"
               android:label="SignUpFragment">
         <action android:id="@+id/action_signUpFragment_to_loginFragment"
+                app:popUpTo="@id/loginFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/loginFragment"/>
