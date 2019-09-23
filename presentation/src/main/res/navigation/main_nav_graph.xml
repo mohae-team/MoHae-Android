@@ -6,37 +6,137 @@
 
     <fragment android:id="@+id/groupFragment" android:name="com.mohaeyo.mohae.ui.fragment.main.group.GroupFragment"
               android:label="GroupFragment">
-        <action android:id="@+id/action_groupFragment_to_myPageFragment" app:destination="@id/myPageFragment"/>
-        <action android:id="@+id/action_groupFragment_to_feedbackFragment" app:destination="@id/feedbackFragment"/>
-        <action android:id="@+id/action_groupFragment_to_placeFragment" app:destination="@id/placeFragment"/>
-        <action android:id="@+id/action_groupFragment_to_QAFragment" app:destination="@id/QAFragment"/>
+
+        <action android:id="@+id/action_groupFragment_to_myPageFragment"
+                app:popUpTo="@id/groupFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/myPageFragment"/>
+
+        <action android:id="@+id/action_groupFragment_to_feedbackFragment"
+                app:popUpTo="@id/groupFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackFragment"/>
+
+        <action android:id="@+id/action_groupFragment_to_placeFragment"
+                app:popUpTo="@id/groupFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/placeFragment"/>
+
+        <action android:id="@+id/action_groupFragment_to_QAFragment"
+                app:popUpTo="@id/groupFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/QAFragment"/>
     </fragment>
     <fragment android:id="@+id/feedbackFragment" android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackFragment"
               android:label="FeedbackFragment">
-        <action android:id="@+id/action_feedbackFragment_to_QAFragment" app:destination="@id/QAFragment"/>
-        <action android:id="@+id/action_feedbackFragment_to_placeFragment" app:destination="@id/placeFragment"/>
-        <action android:id="@+id/action_feedbackFragment_to_myPageFragment" app:destination="@id/myPageFragment"/>
-        <action android:id="@+id/action_feedbackFragment_to_groupFragment" app:destination="@id/groupFragment"/>
+
+        <action android:id="@+id/action_feedbackFragment_to_QAFragment"
+                app:popUpTo="@id/feedbackFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/QAFragment"/>
+
+        <action android:id="@+id/action_feedbackFragment_to_placeFragment"
+                app:popUpTo="@id/feedbackFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/placeFragment"/>
+
+        <action android:id="@+id/action_feedbackFragment_to_myPageFragment"
+                app:popUpTo="@id/feedbackFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/myPageFragment"/>
+
+        <action android:id="@+id/action_feedbackFragment_to_groupFragment"
+                app:popUpTo="@id/feedbackFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/groupFragment"/>
     </fragment>
     <fragment android:id="@+id/myPageFragment" android:name="com.mohaeyo.mohae.ui.fragment.main.mypage.MyPageFragment"
               android:label="MyPageFragment">
-        <action android:id="@+id/action_myPageFragment_to_groupFragment" app:destination="@id/groupFragment"/>
-        <action android:id="@+id/action_myPageFragment_to_placeFragment" app:destination="@id/placeFragment"/>
-        <action android:id="@+id/action_myPageFragment_to_feedbackFragment" app:destination="@id/feedbackFragment"/>
-        <action android:id="@+id/action_myPageFragment_to_QAFragment" app:destination="@id/QAFragment"/>
+
+        <action android:id="@+id/action_myPageFragment_to_groupFragment"
+                app:popUpTo="@id/myPageFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/groupFragment"/>
+
+        <action android:id="@+id/action_myPageFragment_to_placeFragment"
+                app:popUpTo="@id/myPageFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/placeFragment"/>
+
+        <action android:id="@+id/action_myPageFragment_to_feedbackFragment"
+                app:popUpTo="@id/myPageFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackFragment"/>
+
+        <action android:id="@+id/action_myPageFragment_to_QAFragment"
+                app:popUpTo="@id/myPageFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/QAFragment"/>
     </fragment>
     <fragment android:id="@+id/QAFragment" android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAFragment"
               android:label="QAFragment">
-        <action android:id="@+id/action_QAFragment_to_feedbackFragment" app:destination="@id/feedbackFragment"/>
-        <action android:id="@+id/action_QAFragment_to_placeFragment" app:destination="@id/placeFragment"/>
-        <action android:id="@+id/action_QAFragment_to_groupFragment" app:destination="@id/groupFragment"/>
-        <action android:id="@+id/action_QAFragment_to_myPageFragment" app:destination="@id/myPageFragment"/>
+
+        <action android:id="@+id/action_QAFragment_to_feedbackFragment"
+                app:popUpTo="@id/QAFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackFragment"/>
+
+        <action android:id="@+id/action_QAFragment_to_placeFragment"
+                app:popUpTo="@id/QAFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/placeFragment"/>
+
+        <action android:id="@+id/action_QAFragment_to_groupFragment"
+                app:popUpTo="@id/QAFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/groupFragment"/>
+
+        <action android:id="@+id/action_QAFragment_to_myPageFragment"
+                app:popUpTo="@id/QAFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/myPageFragment"/>
     </fragment>
     <fragment android:id="@+id/placeFragment" android:name="com.mohaeyo.mohae.ui.fragment.main.place.PlaceFragment"
               android:label="PlaceFragment">
-        <action android:id="@+id/action_placeFragment_to_groupFragment" app:destination="@id/groupFragment"/>
-        <action android:id="@+id/action_placeFragment_to_myPageFragment" app:destination="@id/myPageFragment"/>
-        <action android:id="@+id/action_placeFragment_to_feedbackFragment" app:destination="@id/feedbackFragment"/>
-        <action android:id="@+id/action_placeFragment_to_QAFragment" app:destination="@id/QAFragment"/>
+
+        <action android:id="@+id/action_placeFragment_to_groupFragment"
+                app:popUpTo="@id/placeFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/groupFragment"/>
+
+        <action android:id="@+id/action_placeFragment_to_myPageFragment"
+                app:popUpTo="@id/placeFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/myPageFragment"/>
+
+        <action android:id="@+id/action_placeFragment_to_feedbackFragment"
+                app:popUpTo="@id/placeFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackFragment"/>
+
+        <action android:id="@+id/action_placeFragment_to_QAFragment"
+                app:popUpTo="@id/placeFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/QAFragment"/>
     </fragment>
 </navigation>

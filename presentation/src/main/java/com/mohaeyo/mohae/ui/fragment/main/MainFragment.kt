@@ -162,6 +162,11 @@ class MainFragment: DataBindingFragment<FragmentMainBinding>() {
             })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        backButtonSubjectDisposable.dispose()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
@@ -171,11 +176,6 @@ class MainFragment: DataBindingFragment<FragmentMainBinding>() {
         main_navigation.selectedItemId = R.id.navigation_group
         main_navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        backButtonSubjectDisposable.dispose()
     }
 
     private fun replaceFragment(action: Int)
