@@ -2,7 +2,7 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <objectAnimator
-            android:duration="700"
+            android:duration="1000"
             android:propertyName="pathData"
             android:valueType="pathType"
             android:valueFrom="@string/path_logo_background_point"
