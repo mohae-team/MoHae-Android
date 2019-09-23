@@ -2,7 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/nav_graph"
-            app:startDestination="@id/loginFragment">
+            app:startDestination="@id/splashFragment">
+
+    <fragment android:id="@+id/splashFragment" android:name="com.mohaeyo.mohae.ui.fragment.splash.SplashFragment"
+              android:label="SplashFragment">
+        <action android:id="@+id/action_splashFragment_to_loginFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/loginFragment"/>
+        <action android:id="@+id/action_splashFragment_to_mainFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/mainFragment"/>
+    </fragment>
 
     <fragment
             android:id="@+id/mainFragment"
@@ -21,6 +33,7 @@
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/signUpFragment"/>
     </fragment>
+
     <fragment android:id="@+id/signUpFragment" android:name="com.mohaeyo.mohae.ui.fragment.signup.SignUpFragment"
               android:label="SignUpFragment"/>
 
