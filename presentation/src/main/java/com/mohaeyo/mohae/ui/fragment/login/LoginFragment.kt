@@ -6,13 +6,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import com.mohaeyo.mohae.R
-import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentLoginBinding
+import com.mohaeyo.mohae.base.EndPointFragment
 import com.mohaeyo.mohae.viewmodel.login.LoginViewModel
 import com.mohaeyo.mohae.viewmodel.login.LoginViewModelFactory
 import javax.inject.Inject
 
-class LoginFragment: DataBindingFragment<FragmentLoginBinding>() {
+class LoginFragment: EndPointFragment<FragmentLoginBinding>() {
 
     @Inject
     lateinit var factory: LoginViewModelFactory
@@ -21,7 +21,6 @@ class LoginFragment: DataBindingFragment<FragmentLoginBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_login
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

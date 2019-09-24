@@ -11,4 +11,8 @@
     <string name="login_password_edit">비밀번호</string>
     <string name="login_signup_question_tv">아직 계정이 없으신가요?</string>
     <string name="login_signup_tv">회원가입</string>
+    <string name="signup_title_tv">회원가입</string>
+    <string name="signup_username_edit">사용자 이름</string>
+    <string name="signup_email_edit">이메일</string>
+    <string name="signup_password_edit">비밀번호</string>
 </resources>
