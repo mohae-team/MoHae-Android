@@ -22,6 +22,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/group_add_floating_btn"
+                android:onClick="@{() -> vm.clickFloatingBtn()}"
                 android:layout_margin="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
