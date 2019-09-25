@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="groupItem" type="com.mohaeyo.mohae.model.GroupModel"/>
+        <variable name="vm"
+                  type="com.mohaeyo.mohae.viewmodel.main.group.GroupViewModel"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+            app:cardCornerRadius="14dp"
+            app:cardElevation="14dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/group_title"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:fontFamily="@font/nanum_square_otf_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:text="@{groupItem.title}"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/group_term"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/group_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/nanum_square_otf_regular"
+                    android:lineSpacingExtra="2sp"
+                    android:textSize="10sp"
+                    android:text="@{groupItem.term}"
+                    android:textColor="@color/colorGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/group_description"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/group_term"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/nanum_square_otf_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:text="@{groupItem.description}"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@{groupItem.count}"
+                    android:id="@+id/group_count"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintTop_toBottomOf="@id/group_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:fontFamily="@font/nanum_square_otf_regular"
+                    android:lineSpacingExtra="2sp"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

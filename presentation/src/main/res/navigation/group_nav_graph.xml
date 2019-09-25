@@ -10,6 +10,11 @@
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/groupDetailFragment"/>
+        <action android:id="@+id/action_groupListFragment_to_groupDocFragment"
+                app:popUpTo="@id/groupListFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/groupDocFragment"/>
     </fragment>
     <fragment android:id="@+id/groupDetailFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.group.GroupDetailFragment"

@@ -15,4 +15,11 @@
     <string name="signup_username_edit">사용자 이름</string>
     <string name="signup_email_edit">이메일</string>
     <string name="signup_password_edit">비밀번호</string>
+    <string name="group_doc_title_tv">모임 게시물 작성</string>
+    <string name="group_doc_title_edit">제목을 입력하세요</string>
+    <string name="group_doc_address_edit">주소를 입력하세요</string>
+    <string name="group_doc_date_edit">날짜를 입력하세요</string>
+    <string name="group_doc_summary_edit">요약을 입력하세요</string>
+    <string name="group_doc_image_tv">이미지를 첨부하세요</string>
+    <string name="group_doc_description_edit">설명을 입력하세요</string>
 </resources>

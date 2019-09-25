@@ -12,5 +12,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+                app:groupItems="@{vm.groupList}"
+                android:id="@+id/group_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
