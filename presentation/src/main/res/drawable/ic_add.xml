@@ -1,0 +1,9 @@
+<vector android:height="36dp" android:tint="@color/colorWhite"
+    android:viewportHeight="24.0" android:viewportWidth="24.0"
+    android:width="36dp" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <path
+            android:name="icon"
+            android:fillColor="@color/colorWhite"
+          android:pathData="@string/path_ic_add"/>
+</vector>
