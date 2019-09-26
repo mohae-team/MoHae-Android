@@ -8,6 +8,8 @@
     </data>
 
     <androidx.cardview.widget.CardView
+            android:onClick="@{() -> vm.clickGroupItem(groupItem)}"
+            android:id="@+id/group_card"
             app:cardCornerRadius="14dp"
             app:cardElevation="14dp"
             android:layout_marginHorizontal="24dp"

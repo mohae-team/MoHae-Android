@@ -12,5 +12,125 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <ScrollView
+                android:id="@+id/group_detail_srv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/group_detail_title_tv"
+                        android:layout_marginTop="36dp"
+                        android:fontFamily="@font/nanum_square_otf_bold"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{vm.selectedGroupItem.title}"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:textColor="@color/colorGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/group_detail_address_tv"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/nanum_square_otf_bold"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{vm.selectedGroupItem.address}"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:textColor="@color/colorGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/group_detail_term_tv"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nanum_square_otf_bold"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{vm.selectedGroupItem.term}"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorGroup"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/group_detail_image_imv"
+                        android:layout_marginTop="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/group_detail_count_tv"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/nanum_square_otf_bold"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{vm.selectedGroupItem.count}"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorGroup"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.cardview.widget.CardView
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/group_detail_description_card"
+                        android:layout_marginVertical="24dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="14dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:padding="24dp"
+                            android:id="@+id/group_detail_description_card_tv"
+                            android:fontFamily="@font/nanum_square_otf_bold"
+                            android:lineSpacingExtra="2sp"
+                            android:text="@{vm.selectedGroupItem.description}"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorBlack"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/group_detail_back_fab"
+                android:onClick="@{() -> vm.clickDetailToList()}"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:backgroundTint="@color/colorGroup"
+                app:borderWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                app:tint="@null"
+                app:srcCompat="@drawable/ic_arrow_back"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/group_detail_join_fab"
+                android:onClick="@{() -> vm.clickJoinGroup()}"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:backgroundTint="@color/colorGroup"
+                app:borderWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                app:tint="@null"
+                app:srcCompat="@drawable/ic_swap_horiz"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

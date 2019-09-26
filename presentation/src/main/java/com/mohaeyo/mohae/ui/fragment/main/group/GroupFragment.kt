@@ -24,15 +24,6 @@ class GroupFragment: EndPointFragment<FragmentGroupBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
-
         binding.vm = viewModel
-    }
-
-    private fun observeEvent() {
-        viewModel.startGroupDocEvent.observe(this, Observer {
-            childFragmentManager.primaryNavigationFragment!!.findNavController().navigate(R.id.action_groupListFragment_to_groupDocFragment)
-        })
     }
 }

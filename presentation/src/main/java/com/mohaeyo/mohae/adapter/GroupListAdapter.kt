@@ -35,7 +35,6 @@ class GroupListAdapter(private val viewModel: GroupViewModel): RecyclerView.Adap
 
         fun bind(group: GroupModel) {
             binding.setVariable(BR.groupItem, group)
-            binding.root.setOnClickListener { binding.vm?.groupItemClick(group) }
         }
 
     }

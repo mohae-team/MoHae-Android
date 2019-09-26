@@ -20,19 +20,5 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/group_nav_graph"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/group_add_floating_btn"
-                android:onClick="@{() -> vm.clickFloatingBtn()}"
-                android:layout_margin="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:backgroundTint="@color/colorGroup"
-                app:borderWidth="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fabSize="normal"
-                app:tint="@null"
-                android:src="@drawable/ic_button_add"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
