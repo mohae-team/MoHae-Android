@@ -15,6 +15,9 @@ import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.adapter.GroupListAdapter
 import com.mohaeyo.mohae.base.EndPointFragment
 import com.mohaeyo.mohae.databinding.FragmentGroupListBinding
+import com.mohaeyo.mohae.doBackAnimation
+import com.mohaeyo.mohae.doCommonAnimation
+import com.mohaeyo.mohae.model.GroupModel
 import com.mohaeyo.mohae.viewmodel.main.group.GroupViewModel
 import com.mohaeyo.mohae.viewmodel.main.group.GroupViewModelFactory
 import kotlinx.android.synthetic.main.fragment_group_list.*
@@ -46,33 +49,30 @@ class GroupListFragment: EndPointFragment<FragmentGroupListBinding>() {
 
     private fun observeEvent() {
         viewModel.startListToDocEvent.observe(this, Observer {
-            doFabAnimation(R.drawable.add_to_check)
+            group_list_add_fab.doCommonAnimation(R.drawable.add_to_check)
+            group_list_back_fab.doBackAnimation(true)
             findNavController().navigate(R.id.action_groupListFragment_to_groupDocFragment)
         })
 
         viewModel.startListToDetailEvent.observe(this, Observer {
-            doFabAnimation(R.drawable.add_to_swap_horiz)
-
-            val bundle = Bundle()
-
-            bundle.putString("title", it.title)
-            bundle.putString("address", it.address)
-            bundle.putString("term", it.term)
-            bundle.putString("imageUrl", it.imageUrl)
-            bundle.putString("count", it.count)
-            bundle.putString("description", it.description)
-
-            findNavController().navigate(R.id.action_groupListFragment_to_groupDetailFragment, bundle)
+            group_list_add_fab.doCommonAnimation(R.drawable.add_to_swap_horiz)
+            group_list_back_fab.doBackAnimation(true)
+            findNavController().navigate(R.id.action_groupListFragment_to_groupDetailFragment, getGroupItemBundle(it))
         })
     }
 
-    private fun doFabAnimation(resId: Int) {
-        val avd = AnimatedVectorDrawableCompat.create(context!!, resId)
-        group_list_add_fab.setImageDrawable(avd)
-        (group_list_add_fab.drawable as Animatable).start()
+    private fun getGroupItemBundle(groupModel: GroupModel): Bundle {
+        val bundle = Bundle()
 
-        val anim = TranslateAnimation(0f, -1000f, 0f, 0f)
-        anim.duration = 400
-        group_list_back_fab.startAnimation(anim)
+        with(groupModel) {
+            bundle.putString("title", title)
+            bundle.putString("address", address)
+            bundle.putString("term", term)
+            bundle.putString("imageUrl", imageUrl)
+            bundle.putString("count", count)
+            bundle.putString("description", description)
+        }
+
+        return bundle
     }
 }

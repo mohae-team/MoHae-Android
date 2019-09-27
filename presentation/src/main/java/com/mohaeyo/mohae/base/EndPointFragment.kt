@@ -3,12 +3,17 @@ package com.mohaeyo.mohae.base
 import android.content.Context
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.ViewDataBinding
-import com.mohaeyo.mohae.backButtonSubject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.Subject
 import org.jetbrains.anko.support.v4.toast
 
 abstract class EndPointFragment<V: ViewDataBinding>: DataBindingFragment<V>() {
+
+    val backButtonSubject: Subject<Long> =
+        BehaviorSubject.createDefault(0L)
+            .toSerialized()
 
     private val backButtonSubjectDisposable: Disposable = backButtonSubject
         .buffer(2, 1)
