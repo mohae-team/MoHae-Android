@@ -12,5 +12,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <fragment
+                android:id="@+id/group_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/group_nav_graph"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
