@@ -23,6 +23,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:onClick="@{() -> vm.clickJoin()}"
                         android:paddingHorizontal="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/group_detail_dialog_leave_lay"
                         android:id="@+id/group_detail_dialog_join_lay"
@@ -31,8 +33,9 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                             app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginTop="33dp"
-                            android:layout_marginHorizontal="50dp"
                             android:src="@drawable/ic_add_circle"
                             android:id="@+id/group_detail_dialog_join_imv"
                             android:layout_width="wrap_content"
@@ -66,9 +69,11 @@
                       android:layout_height="0dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:onClick="@{() -> vm.clickLeave()}"
                         android:paddingHorizontal="50dp"
+                        android:onClick="@{() -> vm.clickLeave()}"
                         android:id="@+id/group_detail_dialog_leave_lay"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/group_detail_dialog_join_lay"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="wrap_content"
@@ -76,6 +81,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                             app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginTop="33dp"
                             android:src="@drawable/ic_do_not_disturb_on"
                             android:id="@+id/group_detail_dialog_leave_imv"
