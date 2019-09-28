@@ -1,29 +1,24 @@
 package com.mohaeyo.mohae.ui.fragment.main.group
 
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
+import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.EndPointFragment
-import com.mohaeyo.mohae.databinding.FragmentGroupBinding
-import com.mohaeyo.mohae.viewmodel.main.group.GroupViewModel
-import com.mohaeyo.mohae.viewmodel.main.group.GroupViewModelFactory
-import javax.inject.Inject
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.Subject
+import org.jetbrains.anko.support.v4.toast
 
-class GroupFragment: EndPointFragment<FragmentGroupBinding>() {
+class GroupFragment: EndPointFragment() {
 
-    @Inject
-    lateinit var factory: GroupViewModelFactory
-
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupViewModel::class.java) }
-
-    override val layoutId: Int
-        get() = R.layout.fragment_group
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.vm = viewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_group, container, false)
     }
+
 }

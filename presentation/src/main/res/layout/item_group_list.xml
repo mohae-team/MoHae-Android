@@ -4,7 +4,7 @@
     <data>
         <variable name="groupItem" type="com.mohaeyo.mohae.model.GroupModel"/>
         <variable name="vm"
-                  type="com.mohaeyo.mohae.viewmodel.main.group.GroupViewModel"/>
+                  type="com.mohaeyo.mohae.viewmodel.main.group.list.GroupListViewModel"/>
     </data>
 
     <androidx.cardview.widget.CardView

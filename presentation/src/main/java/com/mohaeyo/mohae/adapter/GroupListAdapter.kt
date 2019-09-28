@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mohaeyo.mohae.BR
 import com.mohaeyo.mohae.databinding.ItemGroupListBinding
 import com.mohaeyo.mohae.model.GroupModel
-import com.mohaeyo.mohae.viewmodel.main.group.GroupViewModel
+import com.mohaeyo.mohae.viewmodel.main.group.list.GroupListViewModel
 
-class GroupListAdapter(private val viewModel: GroupViewModel): RecyclerView.Adapter<GroupListAdapter.GroupListViewHolder>() {
+class GroupListAdapter(private val viewModel: GroupListViewModel): RecyclerView.Adapter<GroupListAdapter.GroupListViewHolder>() {
 
     private var groupItems = ArrayList<GroupModel>()
 

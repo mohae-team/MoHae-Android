@@ -3,10 +3,10 @@ package com.mohaeyo.mohae.ui.fragment.main.place
 import android.os.Bundle
 import android.view.View
 import com.mohaeyo.mohae.R
-import com.mohaeyo.mohae.base.EndPointFragment
+import com.mohaeyo.mohae.base.EndPointDataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentPlaceBinding
 
-class PlaceFragment: EndPointFragment<FragmentPlaceBinding>() {
+class PlaceFragment: EndPointDataBindingFragment<FragmentPlaceBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_place

@@ -1,6 +1,7 @@
 package com.mohaeyo.mohae.di.module.main.group
 
 import com.mohaeyo.mohae.di.scope.GroupFragmentScope
+import com.mohaeyo.mohae.ui.dialog.GroupDetailDialogFragment
 import com.mohaeyo.mohae.ui.fragment.main.group.GroupDetailFragment
 import com.mohaeyo.mohae.ui.fragment.main.group.GroupDocFragment
 import com.mohaeyo.mohae.ui.fragment.main.group.GroupListFragment
@@ -21,4 +22,8 @@ abstract class GroupModule {
     @GroupFragmentScope
     @ContributesAndroidInjector(modules = [GroupDetailModule::class])
     abstract fun groupDetailFragment(): GroupDetailFragment
+
+    @GroupFragmentScope
+    @ContributesAndroidInjector(modules = [GroupDetailModule::class])
+    abstract fun groupDetailDialogFragment(): GroupDetailDialogFragment
 }
