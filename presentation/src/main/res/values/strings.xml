@@ -22,4 +22,6 @@
     <string name="group_doc_summary_edit">요약을 입력하세요</string>
     <string name="group_doc_image_tv">이미지를 첨부하세요</string>
     <string name="group_doc_description_edit">설명을 입력하세요</string>
+    <string name="group_detail_dialog_join_tv">참가</string>
+    <string name="group_detail_dialog_leave_tv">탈퇴</string>
 </resources>
