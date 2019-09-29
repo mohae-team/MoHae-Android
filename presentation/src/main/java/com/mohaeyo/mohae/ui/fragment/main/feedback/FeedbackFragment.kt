@@ -1,21 +1,17 @@
 package com.mohaeyo.mohae.ui.fragment.main.feedback
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.mohaeyo.mohae.R
-import com.mohaeyo.mohae.base.EndPointDataBindingFragment
-import com.mohaeyo.mohae.databinding.FragmentFeedbackBinding
+import com.mohaeyo.mohae.base.EndPointFragment
 
 
-class FeedbackFragment: EndPointDataBindingFragment<FragmentFeedbackBinding>() {
+class FeedbackFragment: EndPointFragment() {
 
-    override val layoutId: Int
-        get() = R.layout.fragment_feedback
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_feedback, container, false)
     }
+
 }
