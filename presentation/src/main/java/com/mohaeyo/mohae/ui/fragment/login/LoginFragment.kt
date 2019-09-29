@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.databinding.FragmentLoginBinding
-import com.mohaeyo.mohae.base.EndPointFragment
+import com.mohaeyo.mohae.base.EndPointDataBindingFragment
 import com.mohaeyo.mohae.viewmodel.login.LoginViewModel
 import com.mohaeyo.mohae.viewmodel.login.LoginViewModelFactory
 import javax.inject.Inject
 
-class LoginFragment: EndPointFragment<FragmentLoginBinding>() {
+class LoginFragment: EndPointDataBindingFragment<FragmentLoginBinding>() {
 
     @Inject
     lateinit var factory: LoginViewModelFactory

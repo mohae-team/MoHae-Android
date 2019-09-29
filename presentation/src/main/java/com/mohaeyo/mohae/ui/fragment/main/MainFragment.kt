@@ -8,8 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mohaeyo.mohae.R
-import com.mohaeyo.mohae.base.DataBindingFragment
-import com.mohaeyo.mohae.base.EndPointFragment
+import com.mohaeyo.mohae.base.EndPointDataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentMainBinding
 import com.mohaeyo.mohae.viewmodel.main.MainViewModel
 import com.mohaeyo.mohae.viewmodel.main.MainViewModelFactory
@@ -17,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 
-class MainFragment: EndPointFragment<FragmentMainBinding>() {
+class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
 
     @Inject
     lateinit var factory: MainViewModelFactory

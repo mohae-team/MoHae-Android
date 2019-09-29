@@ -2,14 +2,14 @@ package com.mohaeyo.mohae.base
 
 import android.content.Context
 import androidx.activity.OnBackPressedCallback
-import dagger.android.support.DaggerFragment
+import androidx.databinding.ViewDataBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.Subject
 import org.jetbrains.anko.support.v4.toast
 
-abstract class EndPointFragment: DaggerFragment() {
+abstract class EndPointDataBindingFragment<V: ViewDataBinding>: DataBindingFragment<V>() {
 
     val backButtonSubject: Subject<Long> =
         BehaviorSubject.createDefault(0L)

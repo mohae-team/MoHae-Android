@@ -3,11 +3,11 @@ package com.mohaeyo.mohae.ui.fragment.main.feedback
 import android.os.Bundle
 import android.view.View
 import com.mohaeyo.mohae.R
-import com.mohaeyo.mohae.base.EndPointFragment
+import com.mohaeyo.mohae.base.EndPointDataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentFeedbackBinding
 
 
-class FeedbackFragment: EndPointFragment<FragmentFeedbackBinding>() {
+class FeedbackFragment: EndPointDataBindingFragment<FragmentFeedbackBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_feedback

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="vm"
+                type="com.mohaeyo.mohae.viewmodel.main.group.detail.GroupDetailViewModel"/>
+    </data>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/group_detail_dialog_card"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:onClick="@{() -> vm.clickJoin()}"
+                        android:paddingHorizontal="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/group_detail_dialog_leave_lay"
+                        android:id="@+id/group_detail_dialog_join_lay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="33dp"
+                            android:src="@drawable/ic_add_circle"
+                            android:id="@+id/group_detail_dialog_join_imv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/group_detail_dialog_join_tv"
+                            app:layout_constraintTop_toBottomOf="@id/group_detail_dialog_join_imv"
+                            app:layout_constraintStart_toStartOf="@id/group_detail_dialog_join_imv"
+                            app:layout_constraintEnd_toEndOf="@id/group_detail_dialog_join_imv"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:fontFamily="@font/nanum_square_otf_bold"
+                            android:text="@string/group_detail_dialog_join_tv"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="31dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                        android:id="@+id/group_detail_dialog_center_v"
+                        android:background="@color/colorGray"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="1dp"
+                      android:layout_height="0dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:paddingHorizontal="50dp"
+                        android:onClick="@{() -> vm.clickLeave()}"
+                        android:id="@+id/group_detail_dialog_leave_lay"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/group_detail_dialog_join_lay"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="33dp"
+                            android:src="@drawable/ic_do_not_disturb_on"
+                            android:id="@+id/group_detail_dialog_leave_imv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/group_detail_dialog_leave_tv"
+                            app:layout_constraintTop_toBottomOf="@id/group_detail_dialog_leave_imv"
+                            app:layout_constraintStart_toStartOf="@id/group_detail_dialog_leave_imv"
+                            app:layout_constraintEnd_toEndOf="@id/group_detail_dialog_leave_imv"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:fontFamily="@font/nanum_square_otf_bold"
+                            android:text="@string/group_detail_dialog_leave_tv"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="31dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+</layout>
