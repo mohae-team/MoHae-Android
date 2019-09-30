@@ -60,6 +60,7 @@ class GroupListFragment: EndPointDataBindingFragment<FragmentGroupListBinding>()
             bundle.putString("address", address)
             bundle.putString("term", term)
             bundle.putString("imageUrl", imageUrl)
+            bundle.putString("summary", summary)
             bundle.putString("count", count)
             bundle.putString("description", description)
         }

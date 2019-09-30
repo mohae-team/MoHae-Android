@@ -18,7 +18,8 @@ class GroupListViewModel: BaseViewModel(), LifecycleCallback {
                 "네트워크 상태를 확인해주세요.",
                 "네트워크 상태를 확인해주세요.",
                 "네트워크 상태를 확인해주세요.",
-                "네트워크 상태를 확인해주세요."
+                "네트워크 상태를 확인해주세요.",
+                "데이터를 불러올 수 없습니다."
             )
         )
         value = array

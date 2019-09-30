@@ -57,7 +57,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:fontFamily="@font/nanum_square_otf_bold"
                     android:lineSpacingExtra="2sp"
-                    android:text="@{groupItem.description}"
+                    android:text="@{groupItem.summary}"
                     android:textSize="10sp"
                     android:textColor="@color/colorNightBlack"
                     android:layout_width="0dp"
