@@ -3,9 +3,7 @@ package com.mohaeyo.mohae.ui.fragment.main.group
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mohaeyo.mohae.R
@@ -32,10 +30,6 @@ class GroupListFragment: EndPointDataBindingFragment<FragmentGroupListBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val viewModelProvider = ViewModelProvider(
-            NavHostFragment.findNavController(this).getViewModelStoreOwner(R.id.group_nav_graph))
-        viewModelProvider.get(viewModel::class.java)
 
         observeEvent()
         binding.vm = viewModel
