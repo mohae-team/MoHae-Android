@@ -14,5 +14,7 @@
     <color name="colorPlace">#42e37b</color>
     <color name="colorQa">#45daff</color>
 
-    <color name="colorLogin">#F5F5F5</color>
+    <color name="colorNightWhite">#FFFFFF</color>
+    <color name="colorNightGray">#F5F5F5</color>
+    <color name="colorNightBlack">#000000</color>
 </resources>

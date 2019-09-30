@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorLogin">#050505</color>
+    <color name="colorNightWhite">#000000</color>
+    <color name="colorNightGray">#050505</color>
+    <color name="colorNightBlack">#F0F0F0</color>
 </resources>

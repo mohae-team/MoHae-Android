@@ -59,7 +59,7 @@
                     android:lineSpacingExtra="2sp"
                     android:text="@{groupItem.description}"
                     android:textSize="10sp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorNightBlack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
 

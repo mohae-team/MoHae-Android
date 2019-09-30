@@ -79,6 +79,7 @@
                         android:lineSpacingExtra="2sp"
                         android:text="@{vm.selectedFeedbackItem.like}"
                         android:textSize="12sp"
+                        android:textColor="@color/colorNightBlack"
                         android:layout_marginEnd="48dp"
                         app:layout_constraintTop_toTopOf="@id/feedback_detail_like_imv"
                         app:layout_constraintBottom_toBottomOf="@id/feedback_detail_like_imv"
@@ -101,6 +102,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/feedback_detail_hate_tv"
                         android:fontFamily="@font/nanum_square_otf_bold"
+                        android:textColor="@color/colorNightBlack"
                         android:lineSpacingExtra="2sp"
                         android:text="@{vm.selectedFeedbackItem.hate}"
                         android:textSize="12sp"
@@ -132,7 +134,7 @@
                             android:lineSpacingExtra="2sp"
                             android:text="@{vm.selectedFeedbackItem.description}"
                             android:textSize="14sp"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/colorNightBlack"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
