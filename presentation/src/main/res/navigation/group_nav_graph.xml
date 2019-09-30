@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/group_nav_graph" app:startDestination="@id/groupListFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/group_nav_graph"
+        app:startDestination="@id/groupListFragment">
     <fragment android:id="@+id/groupListFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.group.GroupListFragment"
-              android:label="GroupListFragment">
+              android:label="GroupListFragment"
+            tools:layout="@layout/fragment_group_list">
         <action android:id="@+id/action_groupListFragment_to_groupDetailFragment"
                 app:popUpTo="@id/groupListFragment"
                 app:enterAnim="@anim/fadein"
@@ -18,7 +21,8 @@
     </fragment>
     <fragment android:id="@+id/groupDetailFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.group.GroupDetailFragment"
-              android:label="GroupDetailFragment">
+              android:label="GroupDetailFragment"
+            tools:layout="@layout/fragment_group_detail">
         <action android:id="@+id/action_groupDetailFragment_to_groupListFragment"
                 app:popUpTo="@id/groupDetailFragment"
                 app:enterAnim="@anim/fadein"
@@ -27,7 +31,8 @@
     </fragment>
     <fragment android:id="@+id/groupDocFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.group.GroupDocFragment"
-              android:label="GroupDocFragment">
+              android:label="GroupDocFragment"
+            tools:layout="@layout/fragment_group_doc">
         <action android:id="@+id/action_groupDocFragment_to_groupListFragment"
                 app:popUpTo="@id/groupDocFragment"
                 app:enterAnim="@anim/fadein"
