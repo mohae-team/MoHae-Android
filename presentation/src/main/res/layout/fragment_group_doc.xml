@@ -30,7 +30,7 @@
                         android:lineSpacingExtra="2sp"
                         android:text="@string/group_doc_title_tv"
                         android:textSize="20sp"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorNightBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -55,7 +55,7 @@
                             android:lineSpacingExtra="2sp"
                             android:hint="@string/group_doc_title_edit"
                             android:textSize="14sp"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/colorNightBlack"
                             android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -83,7 +83,7 @@
                             android:lineSpacingExtra="2sp"
                             android:hint="@string/group_doc_address_edit"
                             android:textSize="14sp"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/colorNightBlack"
                             android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -111,7 +111,7 @@
                             android:lineSpacingExtra="2sp"
                             android:hint="@string/group_doc_date_edit"
                             android:textSize="14sp"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/colorNightBlack"
                             android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -139,7 +139,7 @@
                             android:lineSpacingExtra="2sp"
                             android:hint="@string/group_doc_summary_edit"
                             android:textSize="14sp"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/colorNightBlack"
                             android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -192,6 +192,7 @@
                         android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
+                            android:textColor="@color/colorNightBlack"
                             android:id="@+id/group_doc_description_edit"
                             android:paddingVertical="52dp"
                             android:paddingHorizontal="14dp"

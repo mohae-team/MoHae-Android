@@ -95,7 +95,7 @@
                             android:lineSpacingExtra="2sp"
                             android:text="@{vm.selectedGroupItem.description}"
                             android:textSize="14sp"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/colorNightBlack"
                             android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

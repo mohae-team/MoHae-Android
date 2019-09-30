@@ -4,6 +4,7 @@ data class GroupModel(
     val title: String,
     val address: String,
     val term: String,
+    val summary: String,
     val imageUrl: String,
     val description: String,
     val count: String
