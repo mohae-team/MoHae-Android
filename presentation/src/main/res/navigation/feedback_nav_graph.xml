@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/feedback_nav_graph" app:startDestination="@id/feedbackListFragment">
+
+    <fragment android:id="@+id/feedbackListFragment"
+              android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackListFragment"
+              android:label="FeedbackListFragment">
+        <action
+                android:id="@+id/action_feedbackListFragment_to_feedbackDetailFragment"
+                app:popUpTo="@id/feedbackListFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackDetailFragment"/>
+        <action
+                android:id="@+id/action_feedbackListFragment_to_feedbackDocFragment"
+                app:popUpTo="@id/feedbackListFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackDocFragment"/>
+    </fragment>
+    <fragment android:id="@+id/feedbackDocFragment"
+              android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackDocFragment"
+              android:label="FeedbackDocFragment">
+        <action
+                android:id="@+id/action_feedbackDocFragment_to_feedbackListFragment"
+                app:popUpTo="@id/feedbackDocFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/feedbackDetailFragment"
+              android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackDetailFragment"
+              android:label="FeedbackDetailFragment">
+        <action
+                android:id="@+id/action_feedbackDetailFragment_to_feedbackListFragment"
+                app:popUpTo="@id/feedbackDetailFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/feedbackListFragment"/>
+    </fragment>
+</navigation>
