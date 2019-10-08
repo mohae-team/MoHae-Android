@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:drawable="@drawable/ic_add">
     <target
-            android:animation="@animator/animator_add_to_like_or_hate"
+            android:animation="@animator/animator_add_to_answers"
             android:name="icon"/>
 
 </animated-vector>

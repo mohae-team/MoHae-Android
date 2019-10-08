@@ -32,4 +32,11 @@
     <string name="feedback_doc_description_edit">설명을 입력하세요</string>
     <string name="feedback_detail_dialog_like_tv">좋아요</string>
     <string name="feedback_detail_dialog_hate_tv">싫어요</string>
+    <string name="qa_question_doc_title_tv">질문 게시물 작성</string>
+    <string name="qa_question_doc_title_edit">제목을 입력하세요</string>
+    <string name="qa_question_doc_summary_edit">요약을 입력하세요</string>
+    <string name="qa_question_doc_image_tv">이미지를 첨부하세요</string>
+    <string name="qa_question_doc_description_edit">설명을 입력하세요</string>
+    <string name="qa_answer_doc_title_tv">답변 작성</string>
+    <string name="qa_answer_doc_answer_edit">답변을 입력하세요</string>
 </resources>
