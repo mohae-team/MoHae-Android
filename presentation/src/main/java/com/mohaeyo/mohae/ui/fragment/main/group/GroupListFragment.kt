@@ -55,15 +55,7 @@ class GroupListFragment: EndPointDataBindingFragment<FragmentGroupListBinding>()
     private fun getGroupItemBundle(groupModel: GroupModel): Bundle {
         val bundle = Bundle()
 
-        with(groupModel) {
-            bundle.putString("title", title)
-            bundle.putString("address", address)
-            bundle.putString("term", term)
-            bundle.putString("imageUrl", imageUrl)
-            bundle.putString("summary", summary)
-            bundle.putString("count", count)
-            bundle.putString("description", description)
-        }
+        with(groupModel) { bundle.putInt("id", id) }
 
         return bundle
     }

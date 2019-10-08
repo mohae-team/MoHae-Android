@@ -33,9 +33,7 @@ class FeedbackDocFragment: DataBindingFragment<FragmentFeedbackDocBinding>() {
 
         requireActivity().onBackPressedDispatcher.addCallback(
             this, object: OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    findNavController().navigate(R.id.action_feedbackDocFragment_to_feedbackListFragment)
-                }
+                override fun handleOnBackPressed() = backToList()
             })
     }
 
@@ -47,10 +45,12 @@ class FeedbackDocFragment: DataBindingFragment<FragmentFeedbackDocBinding>() {
     }
 
     private fun observeEvent() {
-        viewModel.startDocToListEvent.observe(this, Observer {
-            feedback_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
-            feedback_doc_back_fab.doBackAnimation(false)
-            findNavController().navigate(R.id.action_feedbackDocFragment_to_feedbackListFragment)
-        })
+        viewModel.startDocToListEvent.observe(this, Observer { backToList() })
+    }
+
+    private fun backToList() {
+        feedback_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
+        feedback_doc_back_fab.doBackAnimation(false)
+        findNavController().navigate(R.id.action_feedbackDocFragment_to_feedbackListFragment)
     }
 }

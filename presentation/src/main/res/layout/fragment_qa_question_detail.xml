@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="vm"
+                type="com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAQuestionDetailViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ScrollView
+                android:id="@+id/qa_question_detail_srv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/qa_question_detail_title_tv"
+                        android:layout_marginTop="36dp"
+                        android:fontFamily="@font/nanum_square_otf_bold"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{vm.selectedQuestionItem.title}"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorQa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:gravity="center"
+                        app:layout_constraintTop_toBottomOf="@id/qa_question_detail_title_tv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/qa_question_detail_writer_tv"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/nanum_square_otf_bold"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{vm.selectedQuestionItem.writer}"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorQa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:gravity="center"
+                        app:layout_constraintTop_toBottomOf="@id/qa_question_detail_writer_tv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/qa_question_detail_summary_tv"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/nanum_square_otf_bold"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{vm.selectedQuestionItem.summary}"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorNightBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        app:layout_constraintTop_toBottomOf="@id/qa_question_detail_summary_tv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/qa_question_detail_image_imv"
+                        android:layout_marginTop="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.cardview.widget.CardView
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/qa_question_detail_image_imv"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginHorizontal="24dp"
+                        android:id="@+id/qa_question_detail_description_card"
+                        android:layout_marginVertical="36dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="14dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:padding="24dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/qa_question_detail_description_card_tv"
+                            android:fontFamily="@font/nanum_square_otf_bold"
+                            android:lineSpacingExtra="2sp"
+                            android:text="@{vm.selectedQuestionItem.description}"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorNightBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/qa_question_detail_back_fab"
+                android:onClick="@{() -> vm.clickDetailToList()}"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:backgroundTint="@color/colorQa"
+                app:borderWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                app:tint="@null"
+                app:srcCompat="@drawable/ic_arrow_back"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/qa_question_detail_answers_fab"
+                android:onClick="@{() -> vm.clickAnswers()}"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:backgroundTint="@color/colorQa"
+                app:borderWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                app:tint="@null"
+                app:srcCompat="@drawable/ic_answers"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

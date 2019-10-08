@@ -1,7 +1,9 @@
 package com.mohaeyo.mohae.ui.fragment.main.group
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -36,26 +38,30 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
         binding.vm = viewModel
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this, object: OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() = backToList()
+            })
+    }
+
     private fun observeEvent() {
-        viewModel.startDetailToListEvent.observe(this, Observer {
-            group_detail_join_fab.doCommonAnimation(R.drawable.swap_horiz_to_add)
-            group_detail_back_fab.doBackAnimation(false)
-            findNavController().navigate(R.id.action_groupDetailFragment_to_groupListFragment)
-        })
+        viewModel.startDetailToListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToDialogEvent.observe(this, Observer {
             GroupDetailDialogFragment().show(fragmentManager!!, "detail")
         })
     }
 
+    private fun backToList() {
+        group_detail_join_fab.doCommonAnimation(R.drawable.swap_horiz_to_add)
+        group_detail_back_fab.doBackAnimation(false)
+        findNavController().navigate(R.id.action_groupDetailFragment_to_groupListFragment)
+    }
+
     private fun getArgGroupItem() {
-        viewModel.selectedGroupItem.value = GroupModel(
-            title = arguments!!.getString("title")!!,
-            address = arguments!!.getString("address")!!,
-            term = arguments!!.getString("term")!!,
-            summary = arguments!!.getString("")!!,
-            imageUrl = arguments!!.getString("imageUrl")!!,
-            description = arguments!!.getString("description")!!,
-            count = arguments!!.getString("count")!!)
+        viewModel.selectedGroupId.value = arguments!!.getInt("id")
     }
 }

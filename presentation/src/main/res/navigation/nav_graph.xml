@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph"
-            app:startDestination="@id/splashFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/splashFragment">
 
     <fragment android:id="@+id/splashFragment" android:name="com.mohaeyo.mohae.ui.fragment.splash.SplashFragment"
-              android:label="SplashFragment">
+              android:label="SplashFragment"
+            tools:layout="@layout/fragment_splash">
         <action android:id="@+id/action_splashFragment_to_loginFragment"
                 app:popUpTo="@id/splashFragment"
                 app:enterAnim="@anim/fadein"
@@ -21,10 +23,12 @@
     <fragment
             android:id="@+id/mainFragment"
             android:name="com.mohaeyo.mohae.ui.fragment.main.MainFragment"
-            android:label="MainFragment" >
+            android:label="MainFragment"
+            tools:layout="@layout/fragment_main">
     </fragment>
     <fragment android:id="@+id/loginFragment" android:name="com.mohaeyo.mohae.ui.fragment.login.LoginFragment"
-              android:label="LoginFragment">
+              android:label="LoginFragment"
+            tools:layout="@layout/fragment_login">
         <action
                 android:id="@+id/action_loginFragment_to_main_fragment"
                 app:popUpTo="@id/loginFragment"
@@ -39,7 +43,8 @@
     </fragment>
 
     <fragment android:id="@+id/signUpFragment" android:name="com.mohaeyo.mohae.ui.fragment.signup.SignUpFragment"
-              android:label="SignUpFragment">
+              android:label="SignUpFragment"
+            tools:layout="@layout/fragment_signup">
         <action android:id="@+id/action_signUpFragment_to_loginFragment"
                 app:popUpTo="@id/signUpFragment"
                 app:enterAnim="@anim/fadein"

@@ -5,5 +5,5 @@
     <path
             android:name="icon"
             android:fillColor="@color/colorWhite"
-          android:pathData="@string/path_ic_add"/>
+          android:pathData="@string/path_ic_add_group"/>
 </vector>

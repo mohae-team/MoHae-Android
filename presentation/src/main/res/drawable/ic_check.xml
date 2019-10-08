@@ -9,5 +9,5 @@
     <path
             android:name="icon"
             android:fillColor="@color/colorWhite"
-          android:pathData="@string/path_ic_check"/>
+          android:pathData="@string/path_ic_check_group"/>
 </vector>

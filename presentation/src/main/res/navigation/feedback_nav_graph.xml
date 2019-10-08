@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/feedback_nav_graph" app:startDestination="@id/feedbackListFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/feedback_nav_graph"
+        app:startDestination="@id/feedbackListFragment">
 
     <fragment android:id="@+id/feedbackListFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackListFragment"
-              android:label="FeedbackListFragment">
+              android:label="FeedbackListFragment"
+            tools:layout="@layout/fragment_feedback_list">
         <action
                 android:id="@+id/action_feedbackListFragment_to_feedbackDetailFragment"
                 app:popUpTo="@id/feedbackListFragment"
@@ -21,7 +24,8 @@
     </fragment>
     <fragment android:id="@+id/feedbackDocFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackDocFragment"
-              android:label="FeedbackDocFragment">
+              android:label="FeedbackDocFragment"
+            tools:layout="@layout/fragment_feedback_doc">
         <action
                 android:id="@+id/action_feedbackDocFragment_to_feedbackListFragment"
                 app:popUpTo="@id/feedbackDocFragment"
@@ -31,7 +35,8 @@
     </fragment>
     <fragment android:id="@+id/feedbackDetailFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackDetailFragment"
-              android:label="FeedbackDetailFragment">
+              android:label="FeedbackDetailFragment"
+            tools:layout="@layout/fragment_feedback_detail">
         <action
                 android:id="@+id/action_feedbackDetailFragment_to_feedbackListFragment"
                 app:popUpTo="@id/feedbackDetailFragment"

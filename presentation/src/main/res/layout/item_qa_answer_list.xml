@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="answerItem" type="com.mohaeyo.mohae.model.QuestionModel.AnswerModel"/>
+        <variable name="vm"
+                  type="com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerListViewModel"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/group_card"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="14dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/qa_answer_writer"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:fontFamily="@font/nanum_square_otf_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:text="@{answerItem.writer}"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorQa"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/qa_answer_answer"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/qa_answer_writer"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/nanum_square_otf_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:text="@{answerItem.answer}"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorNightBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
