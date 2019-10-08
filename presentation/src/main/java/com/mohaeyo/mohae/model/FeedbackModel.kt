@@ -1,6 +1,7 @@
 package com.mohaeyo.mohae.model
 
 data class FeedbackModel(
+    val id: Int,
     val title: String,
     val address: String,
     val summary: String,

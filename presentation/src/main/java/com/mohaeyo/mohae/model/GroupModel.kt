@@ -1,6 +1,7 @@
 package com.mohaeyo.mohae.model
 
 data class GroupModel(
+    val id: Int,
     val title: String,
     val address: String,
     val term: String,
