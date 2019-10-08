@@ -53,7 +53,7 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
             title = arguments!!.getString("title")!!,
             address = arguments!!.getString("address")!!,
             term = arguments!!.getString("term")!!,
-            summary = arguments!!.getString("")!!,
+            summary = arguments!!.getString("summary")!!,
             imageUrl = arguments!!.getString("imageUrl")!!,
             description = arguments!!.getString("description")!!,
             count = arguments!!.getString("count")!!)
