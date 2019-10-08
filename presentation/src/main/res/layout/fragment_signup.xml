@@ -22,11 +22,11 @@
                 android:layout_height="0dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="160dp"
                     android:id="@+id/signup_title_tv"
                     android:textColor="@color/colorGroup"
@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_marginHorizontal="24dp"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:id="@+id/signup_username_edit"
                     android:fontFamily="@font/nanum_square_otf_regular"
@@ -58,6 +59,7 @@
                     android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_marginHorizontal="24dp"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:id="@+id/signup_email_edit"
                     android:fontFamily="@font/nanum_square_otf_regular"
@@ -78,6 +80,7 @@
                     android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_marginHorizontal="24dp"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:id="@+id/signup_password_edit"
                     android:fontFamily="@font/nanum_square_otf_regular"
@@ -98,6 +101,7 @@
                     android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginHorizontal="24dp"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:layout_marginTop="16dp"
                     android:paddingVertical="12dp"
