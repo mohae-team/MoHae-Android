@@ -33,9 +33,7 @@ class GroupDocFragment: DataBindingFragment<FragmentGroupDocBinding>() {
 
         requireActivity().onBackPressedDispatcher.addCallback(
             this, object: OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    findNavController().navigate(R.id.action_groupDocFragment_to_groupListFragment)
-                }
+                override fun handleOnBackPressed() = backToList()
             })
     }
 
@@ -46,11 +44,13 @@ class GroupDocFragment: DataBindingFragment<FragmentGroupDocBinding>() {
         binding.vm = viewModel
     }
 
+    private fun backToList() {
+        group_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
+        group_doc_back_fab.doBackAnimation(false)
+        findNavController().navigate(R.id.action_groupDocFragment_to_groupListFragment)
+    }
+
     private fun observeEvent() {
-        viewModel.startDocToListEvent.observe(this, Observer {
-            group_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
-            group_doc_back_fab.doBackAnimation(false)
-            findNavController().navigate(R.id.action_groupDocFragment_to_groupListFragment)
-        })
+        viewModel.startDocToListEvent.observe(this, Observer { backToList() })
     }
 }

@@ -1,7 +1,9 @@
 package com.mohaeyo.mohae.ui.fragment.main.feedback
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -36,16 +38,27 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
         binding.vm = viewModel
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this, object: OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() = backToList()
+            })
+    }
+
     private fun observeEvent() {
-        viewModel.startDetailToListEvent.observe(this, Observer {
-            feedback_detail_like_or_hate_fab.doCommonAnimation(R.drawable.like_or_hate_to_add)
-            feedback_detail_back_fab.doBackAnimation(false)
-            findNavController().navigate(R.id.action_feedbackDetailFragment_to_feedbackListFragment)
-        })
+        viewModel.startDetailToListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToDialogEvent.observe(this, Observer {
             FeedbackDetailDialogFragment().show(fragmentManager!!, "detail")
         })
+    }
+
+    private fun backToList() {
+        feedback_detail_like_or_hate_fab.doCommonAnimation(R.drawable.like_or_hate_to_add)
+        feedback_detail_back_fab.doBackAnimation(false)
+        findNavController().navigate(R.id.action_feedbackDetailFragment_to_feedbackListFragment)
     }
 
     private fun getArgFeedbackItem() {
