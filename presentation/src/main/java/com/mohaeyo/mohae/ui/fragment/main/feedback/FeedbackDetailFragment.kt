@@ -62,13 +62,6 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
     }
 
     private fun getArgFeedbackItem() {
-        viewModel.selectedFeedbackItem.value = FeedbackModel(
-            title = arguments!!.getString("title")!!,
-            address = arguments!!.getString("address")!!,
-            summary = arguments!!.getString("summary")!!,
-            imageUrl = arguments!!.getString("imageUrl")!!,
-            description = arguments!!.getString("description")!!,
-            like = arguments!!.getString("like")!!,
-            hate = arguments!!.getString("hate")!!)
+        viewModel.selectedFeedbackId.value = arguments!!.getInt("id")
     }
 }

@@ -56,15 +56,7 @@ class FeedbackListFragment: EndPointDataBindingFragment<FragmentFeedbackListBind
     private fun getFeedbackItemBundle(feedbackModel: FeedbackModel): Bundle {
         val bundle = Bundle()
 
-        with(feedbackModel) {
-            bundle.putString("title", title)
-            bundle.putString("address", address)
-            bundle.putString("summary", summary)
-            bundle.putString("imageUrl", imageUrl)
-            bundle.putString("description", description)
-            bundle.putString("like", like)
-            bundle.putString("hate", hate)
-        }
+        with(feedbackModel) { bundle.putInt("id", id) }
 
         return bundle
     }

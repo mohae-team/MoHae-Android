@@ -9,8 +9,11 @@ import com.mohaeyo.mohae.model.GroupModel
 
 class GroupDetailViewModel: LifecycleCallback, BaseViewModel() {
 
+    val selectedGroupId = MutableLiveData<Int>()
+
     val selectedGroupItem = MutableLiveData<GroupModel>().apply {
         value = GroupModel(
+            0,
             "데이터를 불러올 수 없습니다.",
             "데이터를 불러올 수 없습니다.",
             "데이터를 불러올 수 없습니다.",

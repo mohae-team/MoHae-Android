@@ -62,13 +62,6 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
     }
 
     private fun getArgGroupItem() {
-        viewModel.selectedGroupItem.value = GroupModel(
-            title = arguments!!.getString("title")!!,
-            address = arguments!!.getString("address")!!,
-            term = arguments!!.getString("term")!!,
-            summary = arguments!!.getString("summary")!!,
-            imageUrl = arguments!!.getString("imageUrl")!!,
-            description = arguments!!.getString("description")!!,
-            count = arguments!!.getString("count")!!)
+        viewModel.selectedGroupId.value = arguments!!.getInt("id")
     }
 }

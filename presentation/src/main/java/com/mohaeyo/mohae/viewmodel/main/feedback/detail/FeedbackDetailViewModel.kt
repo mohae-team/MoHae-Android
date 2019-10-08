@@ -8,8 +8,12 @@ import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.model.FeedbackModel
 
 class FeedbackDetailViewModel(): LifecycleCallback, BaseViewModel() {
+
+    val selectedFeedbackId = MutableLiveData<Int>()
+
     val selectedFeedbackItem = MutableLiveData<FeedbackModel>().apply {
         value = FeedbackModel(
+            0,
             "데이터를 불러올 수 없습니다.",
             "데이터를 불러올 수 없습니다.",
             "데이터를 불러올 수 없습니다.",

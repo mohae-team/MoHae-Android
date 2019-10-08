@@ -12,6 +12,7 @@ class FeedbackListViewModel(): LifecycleCallback, BaseViewModel() {
         val array = ArrayList<FeedbackModel>()
         array.add(
             FeedbackModel(
+                0,
                 "리스트를 불러올 수 없습니다.",
                 "네트워크 상태를 확인해주세요.",
                 "네트워크 상태를 확인해주세요.",
