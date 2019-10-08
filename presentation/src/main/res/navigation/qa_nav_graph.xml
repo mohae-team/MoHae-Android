@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/qa_nav_graph"
+        app:startDestination="@id/QAQuestionListFragment">
+
+    <fragment
+            tools:layout="@layout/fragment_qa_question_list"
+            android:id="@+id/QAQuestionListFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAQuestionListFragment"
+            android:label="QAQuestionListFragment" >
+        <action
+                app:popUpTo="@id/QAQuestionListFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAQuestionListFragment_to_QAQuestionDetailFragment"
+                app:destination="@id/QAQuestionDetailFragment" />
+        <action
+                app:popUpTo="@id/QAQuestionListFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAQuestionListFragment_to_QAQuestionDocFragment"
+                app:destination="@id/QAQuestionDocFragment" />
+    </fragment>
+    <fragment
+            tools:layout="@layout/fragment_qa_question_detail"
+            android:id="@+id/QAQuestionDetailFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAQuestionDetailFragment"
+            android:label="QAQuestionDetailFragment" >
+        <action
+                app:popUpTo="@id/QAQuestionDetailFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAQuestionDetailFragment_to_QAQuestionListFragment"
+                app:destination="@id/QAQuestionListFragment" />
+        <action
+                app:popUpTo="@id/QAQuestionDetailFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAQuestionDetailFragment_to_QAAnswerListFragment"
+                app:destination="@id/QAAnswerListFragment" />
+    </fragment>
+    <fragment
+            tools:layout="@layout/fragment_qa_answer_list"
+            android:id="@+id/QAAnswerListFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAAnswerListFragment"
+            android:label="QAAnswerListFragment" >
+        <action
+                app:popUpTo="@id/QAAnswerListFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAAnswerListFragment_to_QAQuestionDetailFragment"
+                app:destination="@id/QAQuestionDetailFragment" />
+        <action
+                app:popUpTo="@id/QAAnswerListFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAAnswerListFragment_to_QAAnswerDocFragment"
+                app:destination="@id/QAAnswerDocFragment" />
+    </fragment>
+    <fragment
+            tools:layout="@layout/fragment_qa_question_doc"
+            android:id="@+id/QAQuestionDocFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAQuestionDocFragment"
+            android:label="QAQuestionDocFragment" >
+        <action
+                app:popUpTo="@id/QAQuestionDocFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAQuestionDocFragment_to_QAQuestionListFragment"
+                app:destination="@id/QAQuestionListFragment" />
+    </fragment>
+    <fragment
+            tools:layout="@layout/fragment_qa_answer_doc"
+            android:id="@+id/QAAnswerDocFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAAnswerDocFragment"
+            android:label="QAAnswerDocFragment" >
+        <action
+                app:popUpTo="@id/QAAnswerDocFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_QAAnswerDocFragment_to_QAAnswerListFragment"
+                app:destination="@id/QAAnswerListFragment" />
+    </fragment>
+</navigation>
