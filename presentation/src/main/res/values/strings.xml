@@ -39,4 +39,8 @@
     <string name="qa_question_doc_description_edit">설명을 입력하세요</string>
     <string name="qa_answer_doc_title_tv">답변 작성</string>
     <string name="qa_answer_doc_answer_edit">답변을 입력하세요</string>
+    <string name="mypage_profile_logout_tv">로그아웃</string>
+    <string name="mypage_profile_edit_tv">수정</string>
+    <string name="mypage_profile_edit_complete_tv">완료</string>
+    <string name="mypage_profile_edit_image_tv">편집</string>
 </resources>
