@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="vm"
+                type="com.mohaeyo.mohae.viewmodel.main.mypage.MyPageProfileViewModel" />
+        <variable
+                name="profileModel"
+                type="com.mohaeyo.mohae.model.ProfileModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:onClick="@{() -> vm.clickLogout()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="16dp"
+                android:id="@+id/mypage_profile_logout_tv"
+                android:text="@string/mypage_profile_logout_tv"
+                android:textSize="14sp"
+                android:textColor="@color/colorNightBlack"
+                android:fontFamily="@font/nanum_square_otf_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:onClick="@{() -> vm.clickEdit()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="16dp"
+                android:id="@+id/mypage_profile_edit_tv"
+                android:text="@string/mypage_profile_edit_tv"
+                android:textSize="14sp"
+                android:textColor="@color/colorNightBlack"
+                android:fontFamily="@font/nanum_square_otf_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mypage_profile_imv"
+                android:background="@drawable/radius_profile_edit_circle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="60dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                app:layout_constraintTop_toBottomOf="@id/mypage_profile_imv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="24dp"
+                android:id="@+id/mypage_profile_name_tv"
+                android:textSize="20sp"
+                android:text="@{profileModel.name}"
+                android:textColor="@color/colorNightBlack"
+                android:fontFamily="@font/nanum_square_otf_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="16dp"
+                android:id="@+id/mypage_profile_address_tv"
+                android:textSize="14sp"
+                android:text="@{profileModel.address}"
+                android:textColor="@color/colorMypage"
+                android:fontFamily="@font/nanum_square_otf_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                app:layout_constraintTop_toBottomOf="@id/mypage_profile_address_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="16dp"
+                android:id="@+id/mypage_profile_email_tv"
+                android:textSize="14sp"
+                android:text="@{profileModel.email}"
+                android:textColor="@color/colorNightBlack"
+                android:fontFamily="@font/nanum_square_otf_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <androidx.cardview.widget.CardView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="24dp"
+                android:id="@+id/mypage_profile_description_card"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:padding="49dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/mypage_profile_description_card_edit"
+                    android:fontFamily="@font/nanum_square_otf_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:textSize="12sp"
+                    android:text="@{profileModel.description}"
+                    android:textColor="@color/colorNightBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

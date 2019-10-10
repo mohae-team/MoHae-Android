@@ -1,21 +1,16 @@
 package com.mohaeyo.mohae.ui.fragment.main.mypage
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.mohaeyo.mohae.R
-import com.mohaeyo.mohae.base.EndPointDataBindingFragment
-import com.mohaeyo.mohae.databinding.FragmentMypageBinding
+import com.mohaeyo.mohae.base.EndPointFragment
 
-class MyPageFragment: EndPointDataBindingFragment<FragmentMypageBinding>() {
+class MyPageFragment: EndPointFragment() {
 
-    override val layoutId: Int
-        get() = R.layout.fragment_mypage
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_mypage, container, false)
     }
-
 }
