@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mypage_nav_graph"
+        app:startDestination="@id/myPageProfileFragment">
+
+    <fragment
+            android:id="@+id/myPageProfileFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.mypage.MyPageProfileFragment"
+            android:label="MyPageProfileFragment"
+            tools:layout="@layout/fragment_mypage_profile">
+        <action
+                app:popUpTo="@id/myPageProfileFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_myPageProfileFragment_to_myPageProfileEditFragment"
+                app:destination="@id/myPageProfileEditFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/myPageProfileEditFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.mypage.MyPageProfileEditFragment"
+            android:label="MyPageProfileEditFragment"
+            tools:layout="@layout/fragment_mypage_profile_edit">
+        <action
+                app:popUpTo="@id/myPageProfileEditFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_myPageProfileEditFragment_to_myPageProfileFragment"
+                app:destination="@id/myPageProfileFragment" />
+    </fragment>
+</navigation>
