@@ -1,9 +1,8 @@
 package com.mohaeyo.mohae.model
 
 data class PlaceModel(
-    val name: String,
+    var name: String,
     var likeCount: Int,
-    val description: String,
-    val location: String,
+    var description: String,
     var isLike: Boolean
 )
