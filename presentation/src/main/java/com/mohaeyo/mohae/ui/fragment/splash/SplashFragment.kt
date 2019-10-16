@@ -25,6 +25,26 @@ class SplashFragment: Fragment() {
         Handler().postDelayed({
             context?.let {
                 findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            if (ActivityCompat.checkSelfPermission(context!!,
+                    Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 500)
+            } else {
+            }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            500 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    startApp()
+                else {
+                    activity!!.finish()
+                    toast("위치정보사용을 허락 하지않아 앱을 중지합니다.")
+                }
+            }
+            else -> {
+                toast("위치정보사용을 허락 하지않아 앱을 중지합니다.")
             }
         }, 1500)
     }
