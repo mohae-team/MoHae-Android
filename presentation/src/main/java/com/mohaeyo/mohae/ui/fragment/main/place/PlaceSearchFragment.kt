@@ -119,8 +119,7 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
     }
 
     private fun initLocation() {
-        try { setMapFragment(childFragmentManager.findFragmentById(R.id.place_search_map) as SupportMapFragment) }
-        catch (exception: SecurityException) { checkPermission() }
+        setMapFragment(childFragmentManager.findFragmentById(R.id.place_search_map) as SupportMapFragment)
         viewModel.initGoogleMapLocation(settingsClient, locationRequest)
     }
 
@@ -128,7 +127,8 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
         fragment.getMapAsync {
             map = it
             map.uiSettings.isZoomControlsEnabled = true
-            map.isMyLocationEnabled = true
+            try { map.isMyLocationEnabled = true }
+            catch (exception: SecurityException) { checkPermission() }
 
             map.setOnMapClickListener { location ->
                 map.clear()
