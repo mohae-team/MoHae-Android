@@ -2,13 +2,14 @@ package com.mohaeyo.mohae.ui.fragment.main.place
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Looper
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
-import com.mohaeyo.mohae.base.DataBindingFragment
+import com.mohaeyo.mohae.base.BaseLocationFragment
 import com.mohaeyo.mohae.databinding.FragmentPlaceDocBinding
 import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
@@ -17,13 +18,13 @@ import com.mohaeyo.mohae.viewmodel.main.place.PlaceDocViewModelFactory
 import kotlinx.android.synthetic.main.fragment_place_doc.*
 import javax.inject.Inject
 
-class PlaceDocFragment: DataBindingFragment<FragmentPlaceDocBinding>() {
+class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
 
 
     @Inject
     lateinit var factory: PlaceDocViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(PlaceDocViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(PlaceDocViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_place_doc
@@ -52,5 +53,14 @@ class PlaceDocFragment: DataBindingFragment<FragmentPlaceDocBinding>() {
 
     private fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
+
+        viewModel.drawMarkerEvent.observe(this, Observer {
+            drawMarker(title = it.title, snippet = it.snippet, location = it.location)
+        })
+
+        viewModel.locationUpdateEvent.observe(this, Observer {
+            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
+            catch (exception: SecurityException) { checkPermission() }
+        })
     }
 }

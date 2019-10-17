@@ -20,7 +20,7 @@ class PlaceSearchViewModel(): BaseLocationViewModel() {
         if (isSuccess) {
             drawMarkerEvent.value =
                 MapMakerModel(location = location, title = addressTitle, snippet = addressSnippet)
-            placeName.value = addressSnippet
+            placeName.value = "아직 정보가 없습니다."
             placeLikeCount.value = 0
             placeDescription.value = "아직 정보가 없습니다."
             placeIsLike.value = false
