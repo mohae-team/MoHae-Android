@@ -66,4 +66,4 @@ fastlane/readme.md
 
 .idea
 
-.presentation/src/main/res/values/google_maps_api.xml
+presentation/src/main/res/values/google_maps_api.xml
