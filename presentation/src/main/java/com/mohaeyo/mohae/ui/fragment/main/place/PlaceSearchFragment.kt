@@ -1,5 +1,7 @@
 package com.mohaeyo.mohae.ui.fragment.main.place
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.CameraUpdateFactory
 import android.location.Geocoder
 import android.os.Looper
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import org.jetbrains.anko.support.v4.toast
@@ -45,6 +48,7 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
         location.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
         return@lazy location
     }
+
     private val fusedLocationClient by lazy { LocationServices.getFusedLocationProviderClient(requireActivity()) }
     private val settingsClient by lazy { LocationServices.getSettingsClient(requireActivity()) }
 
@@ -53,16 +57,34 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
 
         observeEvent()
         binding.vm = viewModel
+
     }
 
     override fun onResume() {
         super.onResume()
-        initLocation()
+        checkPermission()
     }
 
     override fun onStop() {
         super.onStop()
         fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            500 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    initLocation()
+                else {
+                    parentFragment!!.findNavController().navigate(R.id.action_placeFragment_to_groupFragment)
+                    toast("위치정보사용을 허락하지 않아 시설을 중지합니다.")
+                }
+            }
+            else -> {
+                parentFragment!!.findNavController().navigate(R.id.action_placeFragment_to_groupFragment)
+                toast("위치정보사용을 허락하지 않아 시설을 중지합니다.")
+            }
+        }
     }
 
     private fun observeEvent() {
@@ -89,6 +111,16 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
         })
 
         viewModel.createToastEvent.observe(this, Observer { toast(it) })
+    }
+
+    private fun checkPermission() {
+        if (ActivityCompat.checkSelfPermission(context!!,
+                Manifest.permission.ACCESS_FINE_LOCATION) !=
+            PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 500)
+        } else {
+            initLocation()
+        }
     }
 
     private fun initLocation() {
