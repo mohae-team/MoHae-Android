@@ -101,7 +101,8 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
         })
 
         viewModel.locationUpdateEvent.observe(this, Observer {
-            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
+            catch (exception: SecurityException) { checkPermission() }
         })
 
         viewModel.createToastEvent.observe(this, Observer { toast(it) })
@@ -118,7 +119,8 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
     }
 
     private fun initLocation() {
-        setMapFragment(childFragmentManager.findFragmentById(R.id.place_search_map) as SupportMapFragment)
+        try { setMapFragment(childFragmentManager.findFragmentById(R.id.place_search_map) as SupportMapFragment) }
+        catch (exception: SecurityException) { checkPermission() }
         viewModel.initGoogleMapLocation(settingsClient, locationRequest)
     }
 
