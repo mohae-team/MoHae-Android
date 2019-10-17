@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/place_nav_graph"
+        app:startDestination="@id/placeSearchFragment">
+
+    <fragment
+            android:id="@+id/placeSearchFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.place.PlaceSearchFragment"
+            android:label="PlaceSearchFragment"
+            tools:layout="@layout/fragment_place_search">
+        <action
+                app:popUpTo="@id/placeSearchFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_placeSearchFragment_to_placeDocFragment"
+                app:destination="@id/placeDocFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/placeDocFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.main.place.PlaceDocFragment"
+            android:label="PlaceDocFragment"
+            tools:layout="@layout/fragment_place_doc">
+        <action
+                app:popUpTo="@id/placeDocFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_placeDocFragment_to_placeSearchFragment"
+                app:destination="@id/placeSearchFragment" />
+    </fragment>
+</navigation>
