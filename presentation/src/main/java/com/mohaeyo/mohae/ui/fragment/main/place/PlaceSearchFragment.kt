@@ -74,16 +74,10 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
         when (requestCode) {
             500 -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    initLocation()
-                else {
-                    parentFragment!!.findNavController().navigate(R.id.action_placeFragment_to_groupFragment)
-                    toast("위치정보사용을 허락하지 않아 시설을 중지합니다.")
-                }
+                    checkPermission()
+                else actNotAllow()
             }
-            else -> {
-                parentFragment!!.findNavController().navigate(R.id.action_placeFragment_to_groupFragment)
-                toast("위치정보사용을 허락하지 않아 시설을 중지합니다.")
-            }
+            else -> actNotAllow()
         }
     }
 
@@ -147,6 +141,12 @@ class PlaceSearchFragment: EndPointDataBindingFragment<FragmentPlaceSearchBindin
             val location = result!!.locations[0]
             viewModel.findLocation(Geocoder(context, Locale.KOREA), LatLng(location.latitude, location.longitude))
         }
+    }
+
+    private fun actNotAllow() {
+        requireActivity().supportFragmentManager.primaryNavigationFragment!!
+            .findNavController().navigate(R.id.action_mainFragment_self)
+        toast("위치정보사용을 허락하지 않아 시설을 중지합니다.")
     }
 
     private fun drawMarker(location: LatLng, title: String?, snippet: String?) {

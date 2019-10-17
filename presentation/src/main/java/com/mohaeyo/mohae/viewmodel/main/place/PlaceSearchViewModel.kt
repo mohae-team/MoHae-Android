@@ -9,8 +9,8 @@ import com.google.android.gms.tasks.Task
 import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.model.MapMakerModel
-import com.mohaeyo.mohae.model.PlaceModel
 import java.io.IOException
+import kotlin.IllegalStateException
 
 class PlaceSearchViewModel(): BaseViewModel() {
     val placeName = MutableLiveData<String>().apply { value = "지역을 선택해주세요." }
@@ -40,10 +40,15 @@ class PlaceSearchViewModel(): BaseViewModel() {
                 updateAddressData(location = location, addressTitle = addresses[0].locality,
                     addressSnippet = addresses[0].getAddressLine(0), likeCount = 0,
                     description = "아직 정보가 없습니다.", isLike = false)
-            } catch (exception: IllegalStateException) {
-                updateAddressData(location = location, addressTitle = "다른 지역을 선택해주세요.",
-                    addressSnippet = "다른 지역을 선택해주세요.", likeCount = 0,
-                    description = "다른 지역을 선택해주세요.", isLike = false)
+            } catch (exception: Exception) {
+                when(exception) {
+                    is IllegalStateException, is IndexOutOfBoundsException -> {
+                        updateAddressData(location = location, addressTitle = "다른 지역을 선택해주세요.",
+                            addressSnippet = "다른 지역을 선택해주세요.", likeCount = 0,
+                            description = "다른 지역을 선택해주세요.", isLike = false)
+                    }
+                    else -> throw exception
+                }
             }
         } catch (exception: IOException) {
             createToastEvent.value = "네트워크 연결을 확인해주세요."
