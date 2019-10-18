@@ -31,6 +31,12 @@
                 app:exitAnim="@anim/fadeout"
                 android:id="@+id/action_mainFragment_to_loginFragment"
                 app:destination="@id/loginFragment" />
+        <action
+                app:popUpTo="@id/mainFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                android:id="@+id/action_mainFragment_self"
+                app:destination="@id/mainFragment" />
     </fragment>
     <fragment android:id="@+id/loginFragment" android:name="com.mohaeyo.mohae.ui.fragment.login.LoginFragment"
               android:label="LoginFragment"
