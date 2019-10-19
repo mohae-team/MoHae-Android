@@ -8,12 +8,12 @@ import com.mohaeyo.mohae.isValueBlank
 
 class LoginViewModel: BaseViewModel() {
 
-    val emailText = MutableLiveData<String>()
+    val idText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
 
     val btnClickable = MediatorLiveData<Boolean>().apply {
-        addSource(emailText) { value = !emailText.isValueBlank() && !passwordText.isValueBlank() }
-        addSource(passwordText) { value = !emailText.isValueBlank() && !passwordText.isValueBlank() }
+        addSource(idText) { value = !idText.isValueBlank() && !passwordText.isValueBlank()  }
+        addSource(passwordText) { value = !idText.isValueBlank() && !passwordText.isValueBlank() }
     }
 
     val startMainEvent = SingleLiveEvent<Unit>()
