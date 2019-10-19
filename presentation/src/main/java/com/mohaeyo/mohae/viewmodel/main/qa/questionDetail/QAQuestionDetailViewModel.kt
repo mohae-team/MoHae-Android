@@ -1,13 +1,11 @@
 package com.mohaeyo.mohae.viewmodel.main.qa.questionDetail
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.mohae.base.BaseViewModel
-import com.mohaeyo.mohae.base.LifecycleCallback
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.model.QuestionModel
 
-class QAQuestionDetailViewModel(): LifecycleCallback, BaseViewModel() {
+class QAQuestionDetailViewModel(): BaseViewModel() {
 
     val selectedQuestionId = MutableLiveData<Int>()
 
@@ -24,10 +22,6 @@ class QAQuestionDetailViewModel(): LifecycleCallback, BaseViewModel() {
     }
     val startDetailToQuestionListEvent = SingleLiveEvent<Unit>()
     val startDetailToAnswerListEvent = SingleLiveEvent<Unit>()
-
-    override fun apply(event: Lifecycle.Event) {
-
-    }
 
     fun clickDetailToList() {
         startDetailToQuestionListEvent.call()

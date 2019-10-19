@@ -4,7 +4,7 @@
     <data>
         <variable name="answerItem" type="com.mohaeyo.mohae.model.QuestionModel.AnswerModel"/>
         <variable name="vm"
-                  type="com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerListViewModel"/>
+                  type="com.mohaeyo.mohae.viewmodel.main.qa.answerList.QAAnswerListViewModel"/>
     </data>
 
     <androidx.cardview.widget.CardView

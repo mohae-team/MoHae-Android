@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="vm"
-                type="com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerDocViewModel"/>
+                type="com.mohaeyo.mohae.viewmodel.main.qa.answerDoc.QAAnswerDocViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

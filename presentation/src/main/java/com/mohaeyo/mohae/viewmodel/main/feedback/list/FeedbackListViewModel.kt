@@ -1,13 +1,11 @@
 package com.mohaeyo.mohae.viewmodel.main.feedback.list
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.mohae.base.BaseViewModel
-import com.mohaeyo.mohae.base.LifecycleCallback
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.model.FeedbackModel
 
-class FeedbackListViewModel(): LifecycleCallback, BaseViewModel() {
+class FeedbackListViewModel(): BaseViewModel() {
     val feedbackList = MutableLiveData<ArrayList<FeedbackModel>>().apply {
         val array = ArrayList<FeedbackModel>()
         array.add(
@@ -27,10 +25,6 @@ class FeedbackListViewModel(): LifecycleCallback, BaseViewModel() {
 
     val startListToDetailEvent = SingleLiveEvent<FeedbackModel>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
-
-    override fun apply(event: Lifecycle.Event) {
-
-    }
 
     fun clickListToDoc() {
         startListToDocEvent.call()
