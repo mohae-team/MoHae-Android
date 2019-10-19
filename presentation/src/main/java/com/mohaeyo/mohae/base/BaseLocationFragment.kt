@@ -24,6 +24,8 @@ abstract class BaseLocationFragment<V: ViewDataBinding>: DataBindingFragment<V>(
 
     abstract val viewModel: BaseLocationViewModel
 
+    abstract val mapId: Int
+
     lateinit var map: GoogleMap
 
     val locationRequest by lazy {
@@ -70,7 +72,7 @@ abstract class BaseLocationFragment<V: ViewDataBinding>: DataBindingFragment<V>(
     }
 
     fun initLocation() {
-        setMapFragment(childFragmentManager.findFragmentById(R.id.place_search_map) as SupportMapFragment)
+        setMapFragment(childFragmentManager.findFragmentById(mapId) as SupportMapFragment)
         viewModel.initGoogleMapLocation(settingsClient, locationRequest)
     }
 

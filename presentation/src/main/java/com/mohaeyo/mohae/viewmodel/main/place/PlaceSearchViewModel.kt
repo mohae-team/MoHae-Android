@@ -12,7 +12,7 @@ class PlaceSearchViewModel(): BaseLocationViewModel() {
     val placeDescription = MutableLiveData<String>().apply { value = "지역을 선택해주세요." }
     val placeIsLike = MutableLiveData<Boolean>().apply { value = false }
 
-    val startListToDocEvent = SingleLiveEvent<Unit>()
+    val startSearchToDocEvent = SingleLiveEvent<Unit>()
     val likeEvent = SingleLiveEvent<Unit>()
     val dislikeEvent = SingleLiveEvent<Unit>()
 
@@ -43,8 +43,8 @@ class PlaceSearchViewModel(): BaseLocationViewModel() {
         dislikeEvent.call()
     }
 
-    fun clickListToDoc() {
-        startListToDocEvent.call()
+    fun clickSearchToDoc() {
+        startSearchToDocEvent.call()
     }
 
     fun clickLike() {
