@@ -2,6 +2,8 @@ package com.mohaeyo.mohae.ui.fragment.main.place
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import android.os.Looper
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -28,6 +30,9 @@ class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_place_doc
+
+    override val mapId: Int
+        get() = R.id.place_search_map
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,7 +64,7 @@ class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
         })
 
         viewModel.locationUpdateEvent.observe(this, Observer {
-            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
+            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Handler().looper) }
             catch (exception: SecurityException) { checkPermission() }
         })
     }

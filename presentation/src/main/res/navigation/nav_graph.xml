@@ -62,6 +62,30 @@
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/loginFragment"/>
+        <action
+                android:id="@+id/action_signUpFragment_to_signUpAddressFragment"
+                app:popUpTo="@id/signUpFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/signUpAddressFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/signUpAddressFragment"
+            android:name="com.mohaeyo.mohae.ui.fragment.signup.SignUpAddressFragment"
+            android:label="SignUpAddressFragment"
+            tools:layout="@layout/fragment_signup_address">
+        <action
+                android:id="@+id/action_signUpAddressFragment_to_signUpFragment"
+                app:popUpTo="@id/signUpAddressFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/signUpFragment" />
+        <action
+                android:id="@+id/action_signUpAddressFragment_to_loginFragment"
+                app:popUpTo="@id/signUpAddressFragment"
+                app:enterAnim="@anim/fadein"
+                app:exitAnim="@anim/fadeout"
+                app:destination="@id/loginFragment" />
     </fragment>
 
 

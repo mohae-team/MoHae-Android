@@ -27,6 +27,9 @@ class PlaceSearchFragment: EndPointLocationFragment<FragmentPlaceSearchBinding>(
     override val layoutId: Int
         get() = R.layout.fragment_place_search
 
+    override val mapId: Int
+        get() = R.id.place_search_map
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,7 +39,7 @@ class PlaceSearchFragment: EndPointLocationFragment<FragmentPlaceSearchBinding>(
     }
 
     private fun observeEvent() {
-        viewModel.startListToDocEvent.observe(this, Observer {
+        viewModel.startSearchToDocEvent.observe(this, Observer {
             place_search_add_fab.doCommonAnimation(R.drawable.add_to_check)
             place_search_back_fab.doBackAnimation(true)
             findNavController().navigate(R.id.action_placeSearchFragment_to_placeDocFragment)

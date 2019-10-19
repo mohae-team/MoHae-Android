@@ -142,7 +142,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/place_search_add_fab"
-                android:onClick="@{() -> vm.clickListToDoc()}"
+                android:onClick="@{() -> vm.clickSearchToDoc()}"
                 android:layout_margin="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
