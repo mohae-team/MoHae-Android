@@ -28,111 +28,11 @@ class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
 
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_feedback -> {
-                when (main_navigation.selectedItemId) {
-                    R.id.navigation_group -> {
-                        doBackgroundAnimation(R.drawable.group_to_feedback_background)
-                        replaceFragment(R.id.action_groupFragment_to_feedbackFragment)
-                    }
-                    R.id.navigation_mypage -> {
-                        doBackgroundAnimation(R.drawable.mypage_to_feedback_background)
-                        replaceFragment(R.id.action_myPageFragment_to_feedbackFragment)
-                    }
-                    R.id.navigation_qa -> {
-                        doBackgroundAnimation(R.drawable.qa_to_feedback_background)
-                        replaceFragment(R.id.action_QAFragment_to_feedbackFragment)
-                    }
-                    R.id.navigation_place -> {
-                        doBackgroundAnimation(R.drawable.place_to_feedback_background)
-                        replaceFragment(R.id.action_placeFragment_to_feedbackFragment)
-                    }
-                }
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_qa -> {
-                when (main_navigation.selectedItemId) {
-                    R.id.navigation_group -> {
-                        doBackgroundAnimation(R.drawable.group_to_qa_background)
-                        replaceFragment(R.id.action_groupFragment_to_QAFragment)
-                    }
-                    R.id.navigation_mypage -> {
-                        doBackgroundAnimation(R.drawable.mypage_to_qa_background)
-                        replaceFragment(R.id.action_myPageFragment_to_QAFragment)
-                    }
-                    R.id.navigation_feedback -> {
-                        doBackgroundAnimation(R.drawable.feedback_to_qa_background)
-                        replaceFragment(R.id.action_feedbackFragment_to_QAFragment)
-                    }
-                    R.id.navigation_place -> {
-                        doBackgroundAnimation(R.drawable.place_to_qa_background)
-                        replaceFragment(R.id.action_placeFragment_to_QAFragment)
-                    }
-                }
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_group -> {
-                when (main_navigation.selectedItemId) {
-                    R.id.navigation_feedback -> {
-                        doBackgroundAnimation(R.drawable.feedback_to_group_background)
-                        replaceFragment(R.id.action_feedbackFragment_to_groupFragment)
-                    }
-                    R.id.navigation_mypage -> {
-                        doBackgroundAnimation(R.drawable.mypage_to_group_background)
-                        replaceFragment(R.id.action_myPageFragment_to_groupFragment)
-                    }
-                    R.id.navigation_qa -> {
-                        doBackgroundAnimation(R.drawable.qa_to_group_background)
-                        replaceFragment(R.id.action_QAFragment_to_groupFragment)
-                    }
-                    R.id.navigation_place -> {
-                        doBackgroundAnimation(R.drawable.place_to_group_background)
-                        replaceFragment(R.id.action_placeFragment_to_groupFragment)
-                    }
-                }
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_place -> {
-                when (main_navigation.selectedItemId) {
-                    R.id.navigation_group -> {
-                        doBackgroundAnimation(R.drawable.group_to_place_background)
-                        replaceFragment(R.id.action_groupFragment_to_placeFragment)
-                    }
-                    R.id.navigation_mypage -> {
-                        doBackgroundAnimation(R.drawable.mypage_to_place_background)
-                        replaceFragment(R.id.action_myPageFragment_to_placeFragment)
-                    }
-                    R.id.navigation_qa -> {
-                        doBackgroundAnimation(R.drawable.qa_to_place_background)
-                        replaceFragment(R.id.action_QAFragment_to_placeFragment)
-                    }
-                    R.id.navigation_feedback -> {
-                        doBackgroundAnimation(R.drawable.feedback_to_place_background)
-                        replaceFragment(R.id.action_feedbackFragment_to_placeFragment)
-                    }
-                }
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_mypage -> {
-                when (main_navigation.selectedItemId) {
-                    R.id.navigation_group -> {
-                        doBackgroundAnimation(R.drawable.group_to_mypage_background)
-                        replaceFragment(R.id.action_groupFragment_to_myPageFragment)
-                    }
-                    R.id.navigation_feedback -> {
-                        doBackgroundAnimation(R.drawable.feedback_to_mypage_background)
-                        replaceFragment(R.id.action_feedbackFragment_to_myPageFragment)
-                    }
-                    R.id.navigation_qa -> {
-                        doBackgroundAnimation(R.drawable.qa_to_mypage_background)
-                        replaceFragment(R.id.action_QAFragment_to_myPageFragment)
-                    }
-                    R.id.navigation_place -> {
-                        doBackgroundAnimation(R.drawable.place_to_mypage_background)
-                        replaceFragment(R.id.action_placeFragment_to_myPageFragment)
-                    }
-                }
-                return@OnNavigationItemSelectedListener true
-            }
+            R.id.navigation_feedback -> return@OnNavigationItemSelectedListener selectFeedback()
+            R.id.navigation_qa -> return@OnNavigationItemSelectedListener selectQA()
+            R.id.navigation_group -> return@OnNavigationItemSelectedListener selectGroup()
+            R.id.navigation_place -> return@OnNavigationItemSelectedListener selectPlace()
+            R.id.navigation_mypage -> return@OnNavigationItemSelectedListener selectMyPage()
         }
         false
     }
@@ -148,8 +48,10 @@ class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
 
     }
 
-    private fun replaceFragment(action: Int)
-            = childFragmentManager.primaryNavigationFragment!!.findNavController().navigate(action)
+    private fun replaceFragment(animationResId: Int?, action: Int) {
+        doBackgroundAnimation(animationResId)
+        childFragmentManager.primaryNavigationFragment!!.findNavController().navigate(action)
+    }
 
     private fun doBackgroundAnimation(resId: Int?) {
         resId?.let {
@@ -157,5 +59,75 @@ class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
             main_background.setImageDrawable(avd)
             (main_background.drawable as Animatable).start()
         }
+    }
+
+    private fun selectFeedback(): Boolean {
+        when (main_navigation.selectedItemId) {
+            R.id.navigation_group ->
+                replaceFragment(R.drawable.group_to_feedback_background, R.id.action_groupFragment_to_feedbackFragment)
+            R.id.navigation_mypage ->
+                replaceFragment(R.drawable.mypage_to_feedback_background, R.id.action_myPageFragment_to_feedbackFragment)
+            R.id.navigation_qa ->
+                replaceFragment(R.drawable.qa_to_feedback_background, R.id.action_QAFragment_to_feedbackFragment)
+            R.id.navigation_place ->
+                replaceFragment(R.drawable.place_to_feedback_background, R.id.action_placeFragment_to_feedbackFragment)
+        }
+        return true
+    }
+
+    private fun selectPlace(): Boolean {
+        when (main_navigation.selectedItemId) {
+            R.id.navigation_group ->
+                replaceFragment(R.drawable.group_to_place_background, R.id.action_groupFragment_to_placeFragment)
+            R.id.navigation_mypage ->
+                replaceFragment(R.drawable.mypage_to_place_background, R.id.action_myPageFragment_to_placeFragment)
+            R.id.navigation_qa ->
+                replaceFragment(R.drawable.qa_to_place_background, R.id.action_QAFragment_to_placeFragment)
+            R.id.navigation_feedback ->
+                replaceFragment(R.drawable.feedback_to_place_background, R.id.action_feedbackFragment_to_placeFragment)
+        }
+        return true
+    }
+
+    private fun selectQA(): Boolean {
+        when (main_navigation.selectedItemId) {
+            R.id.navigation_group ->
+                replaceFragment(R.drawable.group_to_qa_background, R.id.action_groupFragment_to_QAFragment)
+            R.id.navigation_mypage ->
+                replaceFragment(R.drawable.mypage_to_qa_background, R.id.action_myPageFragment_to_QAFragment)
+            R.id.navigation_feedback ->
+                replaceFragment(R.drawable.feedback_to_qa_background, R.id.action_feedbackFragment_to_QAFragment)
+            R.id.navigation_place ->
+                replaceFragment(R.drawable.place_to_qa_background, R.id.action_placeFragment_to_QAFragment)
+        }
+        return true
+    }
+
+    private fun selectGroup(): Boolean {
+        when (main_navigation.selectedItemId) {
+            R.id.navigation_feedback ->
+                replaceFragment(R.drawable.feedback_to_group_background, R.id.action_feedbackFragment_to_groupFragment)
+            R.id.navigation_mypage ->
+                replaceFragment(R.drawable.mypage_to_group_background,  R.id.action_myPageFragment_to_groupFragment)
+            R.id.navigation_qa ->
+                replaceFragment(R.drawable.qa_to_group_background, R.id.action_QAFragment_to_groupFragment)
+            R.id.navigation_place ->
+                replaceFragment(R.drawable.place_to_group_background, R.id.action_placeFragment_to_groupFragment)
+        }
+        return true
+    }
+
+    private fun selectMyPage(): Boolean {
+        when (main_navigation.selectedItemId) {
+            R.id.navigation_group ->
+                replaceFragment(R.drawable.group_to_mypage_background, R.id.action_groupFragment_to_myPageFragment)
+            R.id.navigation_feedback ->
+                replaceFragment(R.drawable.feedback_to_mypage_background, R.id.action_feedbackFragment_to_myPageFragment)
+            R.id.navigation_qa ->
+                replaceFragment(R.drawable.qa_to_mypage_background, R.id.action_QAFragment_to_myPageFragment)
+            R.id.navigation_place ->
+                replaceFragment(R.drawable.place_to_mypage_background,  R.id.action_placeFragment_to_myPageFragment)
+        }
+        return true
     }
 }
