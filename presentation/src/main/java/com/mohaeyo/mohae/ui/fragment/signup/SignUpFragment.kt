@@ -4,17 +4,15 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentSignupBinding
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
 import javax.inject.Inject
-
 
 
 class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
@@ -33,7 +31,7 @@ class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
         requireActivity().onBackPressedDispatcher.addCallback(
             this, object: OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    findNavController(view!!).navigate(R.id.action_signUpFragment_to_loginFragment)
+                    findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
                 }
             })
     }
@@ -46,8 +44,16 @@ class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
     }
 
     private fun observeViewModelEvent() {
+        viewModel.startSignUpAddressEvent.observe(this, Observer {
+            val bundle = Bundle()
+            bundle.putString("username", viewModel.usernameText.value)
+            bundle.putString("id", viewModel.idText.value)
+            bundle.putString("password", viewModel.passwordText.value)
+            findNavController().navigate(R.id.action_signUpFragment_to_signUpAddressFragment, bundle)
+        })
+
         viewModel.startSignInEvent.observe(this, Observer {
-            findNavController(view!!).navigate(R.id.action_signUpFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         })
     }
 }
