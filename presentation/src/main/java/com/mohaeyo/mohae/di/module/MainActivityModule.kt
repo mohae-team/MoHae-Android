@@ -7,6 +7,7 @@ import com.mohaeyo.mohae.di.module.signup.SignUpModule
 import com.mohaeyo.mohae.di.scope.FragmentScope
 import com.mohaeyo.mohae.ui.fragment.login.LoginFragment
 import com.mohaeyo.mohae.ui.fragment.main.MainFragment
+import com.mohaeyo.mohae.ui.fragment.signup.SignUpAddressFragment
 import com.mohaeyo.mohae.ui.fragment.signup.SignUpFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -24,4 +25,8 @@ abstract class MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [SignUpModule::class])
     abstract fun signupFragment(): SignUpFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules =  [SignUpModule::class])
+    abstract fun signupAddressFragment(): SignUpAddressFragment
 }
