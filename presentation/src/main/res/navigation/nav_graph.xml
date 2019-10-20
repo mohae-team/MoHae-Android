@@ -38,9 +38,9 @@
                 android:id="@+id/action_mainFragment_self"
                 app:destination="@id/mainFragment" />
     </fragment>
-    <fragment android:id="@+id/loginFragment" android:name="com.mohaeyo.mohae.ui.fragment.login.LoginFragment"
+    <fragment android:id="@+id/loginFragment" android:name="com.mohaeyo.mohae.ui.fragment.signin.SignInFragment"
               android:label="LoginFragment"
-            tools:layout="@layout/fragment_login">
+            tools:layout="@layout/fragment_signin">
         <action
                 android:id="@+id/action_loginFragment_to_main_fragment"
                 app:popUpTo="@id/loginFragment"

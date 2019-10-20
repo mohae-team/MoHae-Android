@@ -1,9 +1,9 @@
-package com.mohaeyo.mohae.viewmodel.login
+package com.mohaeyo.mohae.viewmodel.signin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class LoginViewModelFactory: ViewModelProvider.Factory {
+class SignInViewModelFactory: ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T
             = modelClass.getConstructor().newInstance()

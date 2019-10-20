@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.viewmodel.login
+package com.mohaeyo.mohae.viewmodel.signin
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.isValueBlank
 
-class LoginViewModel: BaseViewModel() {
+class SignInViewModel: BaseViewModel() {
 
     val idText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
@@ -18,6 +18,8 @@ class LoginViewModel: BaseViewModel() {
 
     val startMainEvent = SingleLiveEvent<Unit>()
     val startSignUpEvent = SingleLiveEvent<Unit>()
+    val idErrorEvent = SingleLiveEvent<String>()
+    val passwordErrorEvent = SingleLiveEvent<String>()
 
     fun clickLogin() { startMainEvent.call() }
 
