@@ -42,7 +42,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                         app:counterEnabled="true"
-                        app:counterMaxLength="18"
+                        app:counterMaxLength="12"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorGroup"
                         app:boxStrokeColor="@color/colorGroup"
@@ -62,7 +62,7 @@
                             android:fontFamily="@font/nanum_square_otf_regular"
                             android:textColor="@color/colorNightBlack"
                             android:text="@={vm.idText}"
-                            android:maxLength="18"
+                            android:maxLength="12"
                             android:textColorHint="@color/colorDefault"
                             android:hint="@string/login_id_edit"
                             android:textSize="14sp"
