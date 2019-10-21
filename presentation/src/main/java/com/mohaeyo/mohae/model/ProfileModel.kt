@@ -4,6 +4,6 @@ data class ProfileModel(
     val imageUrl: String,
     val name: String,
     val address: String,
-    val email: String,
+    val id: String,
     val description: String
 )

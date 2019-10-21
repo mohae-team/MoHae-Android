@@ -46,6 +46,7 @@
     <string name="mypage_profile_edit_tv">수정</string>
     <string name="mypage_profile_edit_complete_tv">완료</string>
     <string name="mypage_profile_edit_image_tv">편집</string>
+    <string name="mypage_profile_edit_description_edit">소개를 입력하세요</string>
     <string name="place_doc_title_tv">시설 등록</string>
     <string name="place_doc_title_edit">시설 이름을 입력하세요</string>
     <string name="place_doc_description_edit">소개를 입력하세요</string>

@@ -85,7 +85,7 @@
                 android:layout_margin="16dp"
                 android:id="@+id/mypage_profile_email_tv"
                 android:textSize="14sp"
-                android:text="@{profileModel.email}"
+                android:text="@{profileModel.id}"
                 android:textColor="@color/colorNightBlack"
                 android:fontFamily="@font/nanum_square_otf_regular"
                 android:layout_width="wrap_content"
@@ -104,19 +104,18 @@
                 android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:padding="49dp"
-                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
                     android:id="@+id/mypage_profile_description_card_edit"
                     android:fontFamily="@font/nanum_square_otf_bold"
                     android:lineSpacingExtra="2sp"
                     android:textSize="12sp"
                     android:text="@{profileModel.description}"
                     android:textColor="@color/colorNightBlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
 
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
