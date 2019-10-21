@@ -13,11 +13,14 @@
             android:layout_height="match_parent">
 
         <ScrollView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/group_doc_srv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:paddingHorizontal="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -36,6 +39,7 @@
                         android:layout_height="wrap_content"/>
 
                 <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="36dp"
                         app:counterEnabled="true"
                         app:counterMaxLength="12"
@@ -47,8 +51,9 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/group_doc_title_tv"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                     <com.google.android.material.textfield.TextInputEditText
                             android:singleLine="true"
                             android:id="@+id/group_doc_title_edit"
@@ -64,6 +69,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <fragment
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="24dp"
                         android:id="@+id/group_doc_address_map"
                         app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +80,7 @@
                         android:layout_height="320dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="24dp"
                         app:counterEnabled="true"
                         app:counterMaxLength="20"
@@ -85,7 +92,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/group_doc_address_map"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
                             android:singleLine="true"
@@ -103,6 +110,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="24dp"
                         app:counterEnabled="true"
                         app:counterMaxLength="28"
@@ -114,7 +122,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/group_doc_date_edit_lay"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
                             android:singleLine="true"
@@ -132,6 +140,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.cardview.widget.CardView
+                        android:layout_marginHorizontal="24dp"
                         app:cardCornerRadius="14dp"
                         app:cardElevation="14dp"
                         android:layout_marginTop="24dp"
@@ -139,7 +148,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/group_doc_summary_edit_lay"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -149,24 +158,25 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/group_doc_image_edit"
-                            android:padding="14dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:lineSpacingExtra="2sp"
-                            android:hint="@string/group_doc_image_tv"
-                            android:textSize="14sp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/nanum_square_otf_bold"
+                            android:gravity="center"
+                            android:hint="@string/group_doc_image_tv"
+                            android:lineSpacingExtra="2sp"
+                            android:padding="14dp"
+                            android:textSize="14sp" />
 
                 </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="24dp"
-                        android:layout_marginBottom="54dp"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="300"
+                        android:layout_marginBottom="68dp"
                         app:errorEnabled="true"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="200"
                         app:hintTextColor="@color/colorGroup"
                         app:boxStrokeColor="@color/colorGroup"
                         android:id="@+id/group_doc_description_edit_lay"
@@ -175,21 +185,22 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/group_doc_image_card"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                            android:paddingVertical="52dp"
+                            android:inputType="textMultiLine"
                             android:id="@+id/group_doc_description_edit"
                             android:fontFamily="@font/nanum_square_otf_bold"
                             android:lineSpacingExtra="2sp"
                             android:hint="@string/group_doc_description_edit"
                             android:textColor="@color/colorNightBlack"
-                            android:maxLength="300"
+                            android:maxLength="200"
                             android:textColorHint="@color/colorDefault"
+                            android:maxLines="6"
                             android:textSize="14sp"
                             android:text="@={vm.descriptionText}"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="180dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
