@@ -13,6 +13,7 @@
             android:layout_height="match_parent">
 
         <ScrollView
+                android:scrollbars="none"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,35 +39,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.cardview.widget.CardView
                         android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="36dp"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="12"
-                        app:errorEnabled="true"
-                        app:hintTextColor="@color/colorGroup"
-                        app:boxStrokeColor="@color/colorGroup"
-                        android:id="@+id/group_doc_title_edit_lay"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="14dp"
+                        android:id="@+id/group_doc_title_edit_card"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/group_doc_title_tv"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:singleLine="true"
-                            android:id="@+id/group_doc_title_edit"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:hint="@string/group_doc_title_edit"
-                            android:textColor="@color/colorNightBlack"
-                            android:maxLength="12"
-                            android:textColorHint="@color/colorDefault"
-                            android:textSize="14sp"
-                            android:text="@={vm.titleText}"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_margin="10dp"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="12"
+                            app:errorEnabled="true"
+                            app:hintTextColor="@color/colorGroup"
+                            app:boxStrokeColor="@color/colorGroup"
+                            android:id="@+id/group_doc_title_edit_lay"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:singleLine="true"
+                                android:id="@+id/group_doc_title_edit"
+                                android:fontFamily="@font/nanum_square_otf_bold"
+                                android:hint="@string/group_doc_title_edit"
+                                android:textColor="@color/colorNightBlack"
+                                android:maxLength="12"
+                                android:textColorHint="@color/colorDefault"
+                                android:textSize="14sp"
+                                android:text="@={vm.titleText}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <fragment
                         android:layout_marginHorizontal="24dp"
@@ -74,70 +85,87 @@
                         android:id="@+id/group_doc_address_map"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/group_doc_title_edit_lay"
+                        app:layout_constraintTop_toBottomOf="@id/group_doc_title_edit_card"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="320dp"/>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/group_doc_date_edit_card"
                         android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="24dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/group_doc_address_map"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_margin="10dp"
                         app:counterEnabled="true"
                         app:counterMaxLength="20"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorGroup"
                         app:boxStrokeColor="@color/colorGroup"
                         android:id="@+id/group_doc_date_edit_lay"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/group_doc_address_map"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:singleLine="true"
-                            android:id="@+id/group_doc_date_edit"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:lineSpacingExtra="2sp"
-                            android:hint="@string/group_doc_date_edit"
-                            android:textColor="@color/colorNightBlack"
-                            android:maxLength="20"
-                            android:textColorHint="@color/colorDefault"
-                            android:textSize="14sp"
-                            android:text="@={vm.dateText}"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:singleLine="true"
+                                android:id="@+id/group_doc_date_edit"
+                                android:fontFamily="@font/nanum_square_otf_bold"
+                                android:lineSpacingExtra="2sp"
+                                android:hint="@string/group_doc_date_edit"
+                                android:textColor="@color/colorNightBlack"
+                                android:maxLength="20"
+                                android:textColorHint="@color/colorDefault"
+                                android:textSize="14sp"
+                                android:text="@={vm.dateText}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/group_doc_summary_edit_card"
                         android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="24dp"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="28"
-                        app:errorEnabled="true"
-                        app:hintTextColor="@color/colorGroup"
-                        app:boxStrokeColor="@color/colorGroup"
-                        android:id="@+id/group_doc_summary_edit_lay"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="14dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/group_doc_date_edit_lay"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toBottomOf="@id/group_doc_date_edit_card"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:singleLine="true"
-                            android:id="@+id/group_doc_summary_edit"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:lineSpacingExtra="2sp"
-                            android:hint="@string/group_doc_summary_edit"
-                            android:textColor="@color/colorNightBlack"
-                            android:maxLength="28"
-                            android:textColorHint="@color/colorDefault"
-                            android:textSize="14sp"
-                            android:text="@={vm.summaryText}"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_margin="10dp"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="28"
+                            app:errorEnabled="true"
+                            app:hintTextColor="@color/colorGroup"
+                            app:boxStrokeColor="@color/colorGroup"
+                            android:id="@+id/group_doc_summary_edit_lay"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:singleLine="true"
+                                android:id="@+id/group_doc_summary_edit"
+                                android:fontFamily="@font/nanum_square_otf_bold"
+                                android:lineSpacingExtra="2sp"
+                                android:hint="@string/group_doc_summary_edit"
+                                android:textColor="@color/colorNightBlack"
+                                android:maxLength="28"
+                                android:textColorHint="@color/colorDefault"
+                                android:textSize="14sp"
+                                android:text="@={vm.summaryText}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                         android:layout_marginHorizontal="24dp"
@@ -147,7 +175,7 @@
                         android:id="@+id/group_doc_image_card"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/group_doc_summary_edit_lay"
+                        app:layout_constraintTop_toBottomOf="@id/group_doc_summary_edit_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -157,6 +185,7 @@
                             android:layout_height="wrap_content"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_margin="10dp"
                             android:id="@+id/group_doc_image_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -170,38 +199,46 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/group_doc_description_edit_card"
                         android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="68dp"
-                        app:errorEnabled="true"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="200"
-                        app:hintTextColor="@color/colorGroup"
-                        app:boxStrokeColor="@color/colorGroup"
-                        android:id="@+id/group_doc_description_edit_lay"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="14dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/group_doc_image_card"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:inputType="textMultiLine"
-                            android:id="@+id/group_doc_description_edit"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:lineSpacingExtra="2sp"
-                            android:hint="@string/group_doc_description_edit"
-                            android:textColor="@color/colorNightBlack"
-                            android:maxLength="200"
-                            android:textColorHint="@color/colorDefault"
-                            android:maxLines="6"
-                            android:textSize="14sp"
-                            android:text="@={vm.descriptionText}"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_margin="10dp"
+                            app:errorEnabled="true"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="200"
+                            app:hintTextColor="@color/colorGroup"
+                            app:boxStrokeColor="@color/colorGroup"
+                            android:id="@+id/group_doc_description_edit_lay"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="180dp"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:inputType="textMultiLine"
+                                android:id="@+id/group_doc_description_edit"
+                                android:fontFamily="@font/nanum_square_otf_bold"
+                                android:lineSpacingExtra="2sp"
+                                android:hint="@string/group_doc_description_edit"
+                                android:textColor="@color/colorNightBlack"
+                                android:maxLength="200"
+                                android:textColorHint="@color/colorDefault"
+                                android:maxLines="6"
+                                android:textSize="14sp"
+                                android:text="@={vm.descriptionText}"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
