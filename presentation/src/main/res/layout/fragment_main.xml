@@ -35,6 +35,9 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/main_navigation"
+                app:itemIconTint="@color/main_item_foreground"
+                app:itemTextColor="@color/main_item_foreground"
+                app:itemRippleColor="@color/main_item_foreground"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
