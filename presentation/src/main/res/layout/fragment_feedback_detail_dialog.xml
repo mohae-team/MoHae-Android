@@ -36,6 +36,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginTop="33dp"
+                            android:tint="@color/colorFeedback"
                             android:src="@drawable/ic_big_like"
                             android:id="@+id/feedback_detail_dialog_like_imv"
                             android:layout_width="wrap_content"
