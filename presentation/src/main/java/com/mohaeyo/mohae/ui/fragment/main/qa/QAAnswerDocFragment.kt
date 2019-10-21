@@ -46,6 +46,8 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
 
     private fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
+
+        viewModel.answerErrorEvent.observe(this, Observer { qa_answer_doc_answer_edit_lay.error = it })
     }
 
     private fun backToList() {

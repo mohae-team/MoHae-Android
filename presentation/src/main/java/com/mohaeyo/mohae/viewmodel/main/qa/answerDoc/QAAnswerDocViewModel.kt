@@ -7,8 +7,10 @@ import com.mohaeyo.mohae.base.SingleLiveEvent
 class QAAnswerDocViewModel(): BaseViewModel() {
 
     val selectedQuestionId = MutableLiveData<Int>()
+    val answerText = MutableLiveData<String>()
 
     val startDocToListEvent = SingleLiveEvent<Unit>()
+    val answerErrorEvent = SingleLiveEvent<String>()
 
     fun clickPostAnswer() {
         startDocToListEvent.call()
