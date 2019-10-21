@@ -143,7 +143,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                                android:singleLine="true"
+                                android:inputType="textMultiLine"
                                 android:id="@+id/feedback_doc_description_edit"
                                 android:fontFamily="@font/nanum_square_otf_bold"
                                 android:hint="@string/feedback_doc_description_edit"
