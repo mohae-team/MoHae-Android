@@ -12,6 +12,9 @@ class PlaceDocViewModel(): BaseLocationViewModel() {
     val placeDescription = MutableLiveData<String>()
     val placeLocation = MutableLiveData<String>()
 
+    val placeNameErrorEvent = SingleLiveEvent<String>()
+    val placeDescriptionErrorEvent = SingleLiveEvent<String>()
+
     override fun updateAddressData(location: LatLng, addressTitle: String, addressSnippet: String, isSuccess: Boolean) {
         drawMarkerEvent.value =
             MapMakerModel(title = addressTitle, snippet = addressSnippet, location = location)

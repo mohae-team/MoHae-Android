@@ -22,7 +22,6 @@ import javax.inject.Inject
 
 class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
 
-
     @Inject
     lateinit var factory: PlaceDocViewModelFactory
 
@@ -67,5 +66,9 @@ class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
             try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Handler().looper) }
             catch (exception: SecurityException) { checkPermission() }
         })
+
+        viewModel.placeNameErrorEvent.observe(this, Observer { place_doc_title_edit_lay.error = it })
+
+        viewModel.placeDescriptionErrorEvent.observe(this, Observer { place_doc_description_edit_lay.error = it })
     }
 }
