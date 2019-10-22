@@ -56,17 +56,6 @@ class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
     private fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
 
-        viewModel.drawMarkerEvent.observe(this, Observer {
-            drawMarker(title = it.title, snippet = it.snippet, location = it.location)
-        })
-
-        viewModel.locationUpdateEvent.observe(this, Observer {
-            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
-            catch (exception: SecurityException) { checkPermission() }
-        })
-
-        viewModel.createToastEvent.observe(this, Observer { toast(it) })
-
         viewModel.titleErrorEvent.observe(this, Observer { group_doc_title_edit_lay.error = it })
 
         viewModel.dateErrorEvent.observe(this, Observer { group_doc_date_edit_lay.error = it })

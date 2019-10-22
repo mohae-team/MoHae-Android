@@ -3,8 +3,12 @@ package com.mohaeyo.mohae.base
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.os.Bundle
+import android.os.Looper
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -26,7 +30,7 @@ abstract class BaseLocationFragment<V: ViewDataBinding>: DataBindingFragment<V>(
 
     abstract val mapId: Int
 
-    lateinit var map: GoogleMap
+    private lateinit var map: GoogleMap
 
     val locationRequest by lazy {
         val location = LocationRequest()
@@ -39,6 +43,11 @@ abstract class BaseLocationFragment<V: ViewDataBinding>: DataBindingFragment<V>(
 
     val fusedLocationClient by lazy { LocationServices.getFusedLocationProviderClient(requireActivity()) }
     val settingsClient by lazy { LocationServices.getSettingsClient(requireActivity()) }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeLocationEvent()
+    }
 
     override fun onResume() {
         super.onResume()
@@ -71,12 +80,25 @@ abstract class BaseLocationFragment<V: ViewDataBinding>: DataBindingFragment<V>(
         }
     }
 
-    fun initLocation() {
+    private fun observeLocationEvent() {
+        viewModel.drawMarkerEvent.observe(this, Observer {
+            drawMarker(title = it.title, snippet = it.snippet, location = it.location)
+        })
+
+        viewModel.locationUpdateEvent.observe(this, Observer {
+            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
+            catch (exception: SecurityException) { checkPermission() }
+        })
+
+        viewModel.createToastEvent.observe(this, Observer { toast(it) })
+    }
+
+    private fun initLocation() {
         setMapFragment(childFragmentManager.findFragmentById(mapId) as SupportMapFragment)
         viewModel.initGoogleMapLocation(settingsClient, locationRequest)
     }
 
-    fun setMapFragment(fragment: SupportMapFragment) {
+    private fun setMapFragment(fragment: SupportMapFragment) {
         fragment.getMapAsync {
             map = it
             map.uiSettings.isZoomControlsEnabled = true
@@ -98,7 +120,7 @@ abstract class BaseLocationFragment<V: ViewDataBinding>: DataBindingFragment<V>(
         }
     }
 
-    fun actNotAllow() {
+    private fun actNotAllow() {
         requireActivity().supportFragmentManager.primaryNavigationFragment!!
             .findNavController().navigate(R.id.action_mainFragment_self)
         toast("위치정보사용을 허락하지 않아 시설을 중지합니다.")

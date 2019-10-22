@@ -12,7 +12,6 @@ abstract class BaseLocationViewModel : BaseViewModel() {
 
     val drawMarkerEvent = SingleLiveEvent<MapMakerModel>()
     val locationUpdateEvent = SingleLiveEvent<Unit>()
-    val createToastEvent = SingleLiveEvent<String>()
 
     abstract fun updateAddressData(location: LatLng, addressTitle: String, addressSnippet: String, isSuccess: Boolean)
 

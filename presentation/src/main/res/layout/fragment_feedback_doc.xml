@@ -40,9 +40,11 @@
                         android:layout_marginTop="24dp"
                         android:id="@+id/feedback_doc_search_map"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/feedback_doc_title_tv"
                         app:layout_constraintBottom_toTopOf="@id/feedback_doc_summary_card"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="320dp"/>
 
                 <androidx.cardview.widget.CardView

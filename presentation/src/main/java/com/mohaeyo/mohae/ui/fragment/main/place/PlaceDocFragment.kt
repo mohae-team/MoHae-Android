@@ -58,15 +58,6 @@ class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
     private fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
 
-        viewModel.drawMarkerEvent.observe(this, Observer {
-            drawMarker(title = it.title, snippet = it.snippet, location = it.location)
-        })
-
-        viewModel.locationUpdateEvent.observe(this, Observer {
-            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Handler().looper) }
-            catch (exception: SecurityException) { checkPermission() }
-        })
-
         viewModel.placeNameErrorEvent.observe(this, Observer { place_doc_title_edit_lay.error = it })
 
         viewModel.placeDescriptionErrorEvent.observe(this, Observer { place_doc_description_edit_lay.error = it })

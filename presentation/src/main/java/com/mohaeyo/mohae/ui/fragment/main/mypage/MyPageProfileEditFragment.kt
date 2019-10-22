@@ -52,17 +52,6 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
 
         viewModel.imageUrlText.observe(this, Observer { setProfileImage() })
 
-        viewModel.drawMarkerEvent.observe(this, Observer {
-            drawMarker(title = it.title, snippet = it.snippet, location = it.location)
-        })
-
-        viewModel.locationUpdateEvent.observe(this, Observer {
-            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
-            catch (exception: SecurityException) { checkPermission() }
-        })
-
-        viewModel.createToastEvent.observe(this, Observer { toast(it) })
-
         viewModel.descriptionErrorEvent.observe(this, Observer { mypage_profile_description_card_edit_lay.error = it })
     }
 
