@@ -7,7 +7,7 @@ import com.mohaeyo.mohae.base.LifecycleCallback
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.model.GroupModel
 
-class GroupListViewModel: BaseViewModel(), LifecycleCallback {
+class GroupListViewModel: BaseViewModel() {
 
     val groupList = MutableLiveData<ArrayList<GroupModel>>().apply {
         val array = ArrayList<GroupModel>()
@@ -18,9 +18,10 @@ class GroupListViewModel: BaseViewModel(), LifecycleCallback {
                 "네트워크 상태를 확인해주세요.",
                 "네트워크 상태를 확인해주세요.",
                 "네트워크 상태를 확인해주세요.",
+                byteArrayOf(),
                 "네트워크 상태를 확인해주세요.",
-                "네트워크 상태를 확인해주세요.",
-                "데이터를 불러올 수 없습니다."
+                "데이터를 불러올 수 없습니다.",
+                false
             )
         )
         value = array
@@ -28,10 +29,6 @@ class GroupListViewModel: BaseViewModel(), LifecycleCallback {
 
     val startListToDetailEvent = SingleLiveEvent<GroupModel>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
-
-    override fun apply(event: Lifecycle.Event) {
-
-    }
 
     fun clickListToDoc() {
         startListToDocEvent.call()

@@ -12,6 +12,7 @@ import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentSignupBinding
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
+import kotlinx.android.synthetic.main.fragment_signup.*
 import javax.inject.Inject
 
 
@@ -55,5 +56,13 @@ class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
         viewModel.startSignInEvent.observe(this, Observer {
             findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         })
+
+        viewModel.usernameErrorEvent.observe(this, Observer { signup_username_edit_lay.error = it })
+
+        viewModel.idErrorEvent.observe(this, Observer { signup_id_edit_lay.error = it })
+
+        viewModel.passwordErrorEvent.observe(this, Observer { signup_password_edit_lay.error =  it})
+
+        viewModel.passwordCheckErrorEvent.observe(this, Observer { signup_password_check_edit_lay.error =  it})
     }
 }

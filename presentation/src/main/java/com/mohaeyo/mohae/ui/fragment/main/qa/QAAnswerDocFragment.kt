@@ -10,10 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentQaAnswerDocBinding
-import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
-import com.mohaeyo.mohae.model.QuestionModel
-import com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerDocViewModel
+import com.mohaeyo.mohae.viewmodel.main.qa.answerDoc.QAAnswerDocViewModel
 import com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerDocViewModelFactory
 import kotlinx.android.synthetic.main.fragment_qa_answer_doc.*
 import javax.inject.Inject
@@ -48,6 +46,8 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
 
     private fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
+
+        viewModel.answerErrorEvent.observe(this, Observer { qa_answer_doc_answer_edit_lay.error = it })
     }
 
     private fun backToList() {

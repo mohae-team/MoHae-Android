@@ -12,10 +12,19 @@ class PlaceDocViewModel(): BaseLocationViewModel() {
     val placeDescription = MutableLiveData<String>()
     val placeLocation = MutableLiveData<String>()
 
+    val placeNameErrorEvent = SingleLiveEvent<String>()
+    val placeDescriptionErrorEvent = SingleLiveEvent<String>()
+
     override fun updateAddressData(location: LatLng, addressTitle: String, addressSnippet: String, isSuccess: Boolean) {
-        drawMarkerEvent.value =
-            MapMakerModel(title = addressTitle, snippet = addressSnippet, location = location)
-        placeLocation.value = addressSnippet
+        if (isSuccess) {
+            drawMarkerEvent.value =
+                MapMakerModel(title = addressTitle, snippet = addressSnippet, location = location)
+            placeLocation.value = addressSnippet
+        } else {
+            drawMarkerEvent.value =
+                MapMakerModel(location = location, title = "다른 지역을 선택해주세요.", snippet = "다른 지역을 선택해주세요.")
+            placeLocation.value = "다른 지역을 선택해주세요."
+        }
     }
 
     val startDocToListEvent = SingleLiveEvent<Unit>()

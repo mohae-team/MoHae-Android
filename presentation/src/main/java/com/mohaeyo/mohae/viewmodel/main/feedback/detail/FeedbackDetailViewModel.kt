@@ -1,13 +1,11 @@
 package com.mohaeyo.mohae.viewmodel.main.feedback.detail
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.mohae.base.BaseViewModel
-import com.mohaeyo.mohae.base.LifecycleCallback
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.model.FeedbackModel
 
-class FeedbackDetailViewModel(): LifecycleCallback, BaseViewModel() {
+class FeedbackDetailViewModel(): BaseViewModel() {
 
     val selectedFeedbackId = MutableLiveData<Int>()
 
@@ -17,18 +15,16 @@ class FeedbackDetailViewModel(): LifecycleCallback, BaseViewModel() {
             "데이터를 불러올 수 없습니다.",
             "데이터를 불러올 수 없습니다.",
             "데이터를 불러올 수 없습니다.",
-            "데이터를 불러올 수 없습니다.",
+            byteArrayOf(),
             "데이터를 불러올 수 없습니다.",
             0.toString(),
-            0.toString())
+            0.toString(),
+            false
+        )
     }
     val startDetailToListEvent = SingleLiveEvent<Unit>()
     val startDetailToDialogEvent = SingleLiveEvent<Unit>()
     val closeDialog = SingleLiveEvent<Unit>()
-
-    override fun apply(event: Lifecycle.Event) {
-
-    }
 
     fun clickDetailToList() {
         startDetailToListEvent.call()

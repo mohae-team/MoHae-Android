@@ -52,7 +52,6 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
 
         viewModel.startDetailToAnswerListEvent.observe(this, Observer {
             qa_question_detail_answers_fab.doCommonAnimation(R.drawable.answers_to_write_answer)
-            qa_question_detail_back_fab.doBackAnimation(false)
             findNavController().navigate(R.id.action_QAQuestionDetailFragment_to_QAAnswerListFragment,
                 getQuestionItemBundle(viewModel.selectedQuestionItem.value!!))
         })

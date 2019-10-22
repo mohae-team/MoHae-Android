@@ -14,6 +14,7 @@ import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.viewmodel.main.qa.questionDoc.QAQuestionDocViewModel
 import com.mohaeyo.mohae.viewmodel.main.qa.questionDoc.QAQuestionDocViewModelFactory
+import kotlinx.android.synthetic.main.fragment_group_doc.*
 import kotlinx.android.synthetic.main.fragment_qa_question_doc.*
 import javax.inject.Inject
 
@@ -46,6 +47,12 @@ class QAQuestionDocFragment: DataBindingFragment<FragmentQaQuestionDocBinding>()
 
     private fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
+
+        viewModel.titleErrorEvent.observe(this, Observer { qa_question_doc_title_edit_lay.error = it })
+
+        viewModel.summaryErrorEvent.observe(this, Observer { qa_question_doc_summary_edit_lay.error = it })
+
+        viewModel.descriptionErrorEvent.observe(this, Observer { group_doc_description_edit_lay.error = it })
     }
 
     private fun backToList() {

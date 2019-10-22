@@ -38,6 +38,7 @@
                 android:layout_height="100dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:onClick="@{() -> vm.clickImageEdit()}"
                 android:backgroundTint="@color/colorBlackOpacity50"
                 android:gravity="center"
                 android:id="@+id/mypage_profile_edit_image_tv"
@@ -62,7 +63,7 @@
                 android:maxLines="1"
                 android:id="@+id/mypage_profile_edit_name_edit"
                 android:textSize="20sp"
-                android:text="@={vm.nameData}"
+                android:text="@={vm.nameText}"
                 android:textColor="@color/colorNightBlack"
                 android:fontFamily="@font/nanum_square_otf_bold"
                 android:background="@null"
@@ -80,18 +81,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatTextView
                 app:layout_constraintTop_toBottomOf="@id/mypage_profile_edit_name_edit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="16dp"
                 android:maxLines="1"
-                android:id="@+id/mypage_profile_edit_address_edit"
+                android:id="@+id/mypage_profile_edit_address_tv"
                 android:textSize="14sp"
-                android:text="@={vm.addressData}"
+                android:text="@={vm.addressText}"
                 android:textColor="@color/colorMypage"
                 android:fontFamily="@font/nanum_square_otf_regular"
-                android:background="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -100,37 +100,23 @@
                 android:id="@+id/mypage_profile_edit_address_edit_imv"
                 android:background="@drawable/ic_write_answer"
                 android:backgroundTint="@color/colorNightBlack"
-                app:layout_constraintStart_toEndOf="@id/mypage_profile_edit_address_edit"
-                app:layout_constraintTop_toTopOf="@id/mypage_profile_edit_address_edit"
-                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_edit_address_edit"
+                app:layout_constraintStart_toEndOf="@id/mypage_profile_edit_address_tv"
+                app:layout_constraintTop_toTopOf="@id/mypage_profile_edit_address_tv"
+                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_edit_address_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
-                app:layout_constraintTop_toBottomOf="@id/mypage_profile_edit_address_edit"
+        <fragment
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="16dp"
-                android:maxLines="1"
-                android:id="@+id/mypage_profile_edit_email_edit"
-                android:textSize="14sp"
-                android:text="@={vm.emailData}"
-                android:textColor="@color/colorNightBlack"
-                android:fontFamily="@font/nanum_square_otf_regular"
-                android:background="@null"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-                android:layout_marginStart="8dp"
-                android:id="@+id/mypage_profile_edit_email_edit_imv"
-                android:background="@drawable/ic_write_answer"
-                android:backgroundTint="@color/colorNightBlack"
-                app:layout_constraintStart_toEndOf="@id/mypage_profile_edit_email_edit"
-                app:layout_constraintTop_toTopOf="@id/mypage_profile_edit_email_edit"
-                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_edit_email_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintTop_toBottomOf="@id/mypage_profile_edit_address_tv"
+                app:layout_constraintBottom_toTopOf="@id/mypage_profile_edit_description_card_imv"
+                android:layout_marginVertical="24dp"
+                android:layout_marginHorizontal="64dp"
+                android:id="@+id/mypage_profile_edit_search_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mypage_profile_edit_description_card_imv"
@@ -154,29 +140,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <ScrollView
-                    android:id="@+id/mypage_profile_edit_description_card_scv"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    app:errorEnabled="true"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="180"
+                    app:hintTextColor="@color/colorMypage"
+                    app:boxStrokeColor="@color/colorMypage"
+                    android:id="@+id/mypage_profile_description_card_edit_lay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                        android:maxLines="10"
-                        android:padding="49dp"
-                        android:layout_gravity="center"
+                <com.google.android.material.textfield.TextInputEditText
+                        android:inputType="textMultiLine"
                         android:id="@+id/mypage_profile_description_card_edit"
                         android:fontFamily="@font/nanum_square_otf_bold"
                         android:lineSpacingExtra="2sp"
-                        android:textSize="12sp"
-                        android:text="@={vm.descriptionData}"
+                        android:hint="@string/mypage_profile_edit_description_edit"
                         android:textColor="@color/colorNightBlack"
-                        android:background="@null"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-            </ScrollView>
-
+                        android:maxLength="180"
+                        android:textColorHint="@color/colorDefault"
+                        android:maxLines="5"
+                        android:textSize="14sp"
+                        android:text="@={vm.descriptionText}"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

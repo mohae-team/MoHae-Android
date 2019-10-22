@@ -33,6 +33,11 @@ class SignUpViewModel: BaseLocationViewModel() {
     val startSignUpEvent = SingleLiveEvent<Unit>()
     val startSignUpAddressEvent = SingleLiveEvent<Unit>()
 
+    val usernameErrorEvent = SingleLiveEvent<String>()
+    val idErrorEvent = SingleLiveEvent<String>()
+    val passwordErrorEvent = SingleLiveEvent<String>()
+    val passwordCheckErrorEvent = SingleLiveEvent<String>()
+
     override fun updateAddressData(
         location: LatLng,
         addressTitle: String,
@@ -50,11 +55,18 @@ class SignUpViewModel: BaseLocationViewModel() {
         }
     }
 
-    fun clickBackToSignUp() {startSignUpEvent.call() }
+    fun clickBackToSignUp() { startSignUpEvent.call() }
 
     fun clickBackToSignIn() { startSignInEvent.call() }
 
-    fun clickSignUpNext() { startSignUpAddressEvent.call() }
+    fun clickSignUpNext() {
+        if (passwordText.value != passwordCheckText.value) {
+            passwordErrorEvent.value = "비밀번호와 비밀번호 확인이 일치하지 않습니다."
+            passwordCheckErrorEvent.value = "비밀번호와 비밀번호 확인이 일치하지 않습니다."
+        } else {
+            startSignUpAddressEvent.call()
+        }
+    }
 
     fun clickSignUpComplete() { startSignInEvent.call() }
 }

@@ -12,7 +12,6 @@ abstract class BaseLocationViewModel : BaseViewModel() {
 
     val drawMarkerEvent = SingleLiveEvent<MapMakerModel>()
     val locationUpdateEvent = SingleLiveEvent<Unit>()
-    val createToastEvent = SingleLiveEvent<String>()
 
     abstract fun updateAddressData(location: LatLng, addressTitle: String, addressSnippet: String, isSuccess: Boolean)
 
@@ -28,8 +27,12 @@ abstract class BaseLocationViewModel : BaseViewModel() {
             val addresses
                     = geocoder.getFromLocation(location.latitude, location.longitude, 1)
             try {
-                updateAddressData(location = location, addressTitle = addresses[0].locality,
-                    addressSnippet = addresses[0].getAddressLine(0), isSuccess = true)
+                if (addresses[0].subLocality != null)
+                    updateAddressData(location = location, addressTitle = addresses[0].subLocality,
+                        addressSnippet = addresses[0].getAddressLine(0), isSuccess = true)
+                else
+                    updateAddressData(location = location, addressTitle = addresses[0].locality,
+                        addressSnippet = addresses[0].getAddressLine(0), isSuccess = true)
             } catch (exception: Exception) {
                 when(exception) {
                     is IllegalStateException, is IndexOutOfBoundsException -> {

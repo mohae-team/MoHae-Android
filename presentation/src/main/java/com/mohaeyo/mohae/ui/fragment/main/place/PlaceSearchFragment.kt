@@ -52,16 +52,5 @@ class PlaceSearchFragment: EndPointLocationFragment<FragmentPlaceSearchBinding>(
         viewModel.dislikeEvent.observe(this, Observer {
             place_search_name_card_like_check.setBackgroundResource(R.drawable.ic_favorite_border_black)
         })
-
-        viewModel.drawMarkerEvent.observe(this, Observer {
-            drawMarker(title = it.title, snippet = it.snippet, location = it.location)
-        })
-
-        viewModel.locationUpdateEvent.observe(this, Observer {
-            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
-            catch (exception: SecurityException) { checkPermission() }
-        })
-
-        viewModel.createToastEvent.observe(this, Observer { toast(it) })
     }
 }

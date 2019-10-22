@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mohaeyo.mohae.BR
 import com.mohaeyo.mohae.databinding.ItemQaAnswerListBinding
 import com.mohaeyo.mohae.model.QuestionModel
-import com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerListViewModel
+import com.mohaeyo.mohae.viewmodel.main.qa.answerList.QAAnswerListViewModel
 
 class QAAnswerListAdapter(private val viewModel: QAAnswerListViewModel): RecyclerView.Adapter<QAAnswerListAdapter.QAAnswerListViewHolder>() {
 

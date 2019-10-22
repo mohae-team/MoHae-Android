@@ -58,17 +58,6 @@ class SignUpAddressFragment: BaseLocationFragment<FragmentSignupAddressBinding>(
         viewModel.startSignUpEvent.observe(this, Observer {
             findNavController().navigate(R.id.action_signUpAddressFragment_to_signUpFragment)
         })
-
-        viewModel.drawMarkerEvent.observe(this, Observer {
-            drawMarker(title = it.title, snippet = it.snippet, location = it.location)
-        })
-
-        viewModel.locationUpdateEvent.observe(this, Observer {
-            try { fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()) }
-            catch (exception: SecurityException) { checkPermission() }
-        })
-
-        viewModel.createToastEvent.observe(this, Observer { toast(it) })
     }
 
     private fun getArgSignUpData() {

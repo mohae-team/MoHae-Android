@@ -47,21 +47,31 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/place_doc_title_edit"
-                            android:padding="14dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:lineSpacingExtra="2sp"
-                            android:text="@={vm.placeName}"
-                            android:hint="@string/place_doc_title_edit"
-                            android:textSize="14sp"
-                            android:textColor="@color/colorNightBlack"
-                            android:background="@null"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_margin="10dp"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+                            app:errorEnabled="true"
+                            app:hintTextColor="@color/colorPlace"
+                            app:boxStrokeColor="@color/colorPlace"
+                            android:id="@+id/place_doc_title_edit_lay"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content">
 
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:singleLine="true"
+                                android:id="@+id/place_doc_title_edit"
+                                android:fontFamily="@font/nanum_square_otf_bold"
+                                android:hint="@string/place_doc_title_edit"
+                                android:textColor="@color/colorNightBlack"
+                                android:maxLength="20"
+                                android:textColorHint="@color/colorDefault"
+                                android:textSize="14sp"
+                                android:text="@={vm.placeName}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -77,22 +87,32 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                            android:textColor="@color/colorNightBlack"
-                            android:id="@+id/place_doc_description_edit"
-                            android:paddingVertical="52dp"
-                            android:paddingHorizontal="14dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:lineSpacingExtra="2sp"
-                            android:text="@={vm.placeDescription}"
-                            android:hint="@string/place_doc_description_edit"
-                            android:textSize="14sp"
-                            android:background="@null"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_margin="10dp"
+                            app:errorEnabled="true"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="200"
+                            app:hintTextColor="@color/colorPlace"
+                            app:boxStrokeColor="@color/colorPlace"
+                            android:id="@+id/place_doc_description_edit_lay"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
+                            android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:inputType="textMultiLine"
+                                android:id="@+id/place_doc_description_edit"
+                                android:fontFamily="@font/nanum_square_otf_bold"
+                                android:lineSpacingExtra="2sp"
+                                android:hint="@string/place_doc_description_edit"
+                                android:textColor="@color/colorNightBlack"
+                                android:maxLength="200"
+                                android:textColorHint="@color/colorDefault"
+                                android:maxLines="6"
+                                android:textSize="14sp"
+                                android:text="@={vm.placeDescription}"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatTextView

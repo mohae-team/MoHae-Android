@@ -32,7 +32,7 @@
     <string name="feedback_doc_address_edit">주소를 입력하세요</string>
     <string name="feedback_doc_summary_edit">요약을 입력하세요</string>
     <string name="feedback_doc_image_tv">이미지를 첨부하세요</string>
-    <string name="feedback_doc_description_edit">설명을 입력하세요</string>
+    <string name="feedback_doc_description_edit">문제 설명을 입력하세요</string>
     <string name="feedback_detail_dialog_like_tv">좋아요</string>
     <string name="feedback_detail_dialog_hate_tv">싫어요</string>
     <string name="qa_question_doc_title_tv">질문 게시물 작성</string>
@@ -46,6 +46,7 @@
     <string name="mypage_profile_edit_tv">수정</string>
     <string name="mypage_profile_edit_complete_tv">완료</string>
     <string name="mypage_profile_edit_image_tv">편집</string>
+    <string name="mypage_profile_edit_description_edit">소개를 입력하세요</string>
     <string name="place_doc_title_tv">시설 등록</string>
     <string name="place_doc_title_edit">시설 이름을 입력하세요</string>
     <string name="place_doc_description_edit">소개를 입력하세요</string>
