@@ -1,8 +1,12 @@
 package com.mohaeyo.mohae.ui.fragment.main.mypage
 
+import android.app.Activity.RESULT_OK
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
-import android.os.Looper
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
@@ -14,8 +18,14 @@ import com.mohaeyo.mohae.databinding.FragmentMypageProfileEditBinding
 import com.mohaeyo.mohae.viewmodel.main.mypage.MyPageProfileEditViewModel
 import com.mohaeyo.mohae.viewmodel.main.mypage.MyPageProfileEditViewModelFactory
 import kotlinx.android.synthetic.main.fragment_mypage_profile_edit.*
-import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
+import android.provider.MediaStore
+import android.util.Base64
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import org.jetbrains.anko.imageBitmap
+import java.io.ByteArrayOutputStream
+
 
 class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditBinding>() {
 
@@ -50,7 +60,7 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
     private fun observeEvent() {
         viewModel.startProfileEvent.observe(this, Observer { backToProfile() })
 
-        viewModel.imageUrlText.observe(this, Observer { setProfileImage() })
+        viewModel.getProfileImageEvent.observe(this, Observer { getProfileImage() })
 
         viewModel.descriptionErrorEvent.observe(this, Observer { mypage_profile_description_card_edit_lay.error = it })
     }
@@ -58,7 +68,30 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
     private fun backToProfile()
             = findNavController().navigate(R.id.action_myPageProfileEditFragment_to_myPageProfileFragment)
 
-    private fun setProfileImage() {
+    private fun getProfileImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(
+            Intent.createChooser(intent, "Select file to upload "), 0)
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                val selectedImageUri = data!!.data!!
+                val ims = activity!!.contentResolver.openInputStream(selectedImageUri)
+                val byteOutStream = ByteArrayOutputStream()
+                BitmapFactory.decodeStream(ims)
+                    .compress(Bitmap.CompressFormat.JPEG, 100, byteOutStream)
+                val imageByteArray = byteOutStream.toByteArray()
+
+                Glide.with(mypage_profile_edit_imv)
+                    .load(imageByteArray)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(mypage_profile_edit_imv)
+            }
+        }
     }
 }

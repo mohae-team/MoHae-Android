@@ -38,6 +38,7 @@
                 android:layout_height="100dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:onClick="@{() -> vm.clickImageEdit()}"
                 android:backgroundTint="@color/colorBlackOpacity50"
                 android:gravity="center"
                 android:id="@+id/mypage_profile_edit_image_tv"

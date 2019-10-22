@@ -16,6 +16,7 @@ class MyPageProfileEditViewModel: BaseLocationViewModel() {
     val idText = MutableLiveData<String>()
     val descriptionText = MutableLiveData<String>()
 
+    val getProfileImageEvent = SingleLiveEvent<Unit>()
     val descriptionErrorEvent = SingleLiveEvent<String>()
 
 
@@ -42,6 +43,10 @@ class MyPageProfileEditViewModel: BaseLocationViewModel() {
                 MapMakerModel(location = location, title = "다른 지역을 선택해주세요.", snippet = "다른 지역을 선택해주세요.")
             addressText.value = "다른 지역을 선택해주세요."
         }
+    }
+
+    fun clickImageEdit() {
+        getProfileImageEvent.call()
     }
 
     fun clickComplete() {

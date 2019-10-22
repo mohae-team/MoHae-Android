@@ -5,7 +5,7 @@ data class QuestionModel(
     val title: String,
     val writer: String,
     val summary: String,
-    val imageUrl: String,
+    val imageByteArray: ByteArray,
     val description: String,
     val answers: ArrayList<AnswerModel>
 ) {

@@ -6,7 +6,8 @@ data class GroupModel(
     val address: String,
     val term: String,
     val summary: String,
-    val imageUrl: String,
+    val imageUrl: ByteArray,
     val description: String,
-    val count: String
+    val count: String,
+    val isJoin: Boolean
 )
