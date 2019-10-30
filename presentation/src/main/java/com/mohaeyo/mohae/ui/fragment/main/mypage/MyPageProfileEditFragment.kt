@@ -88,7 +88,7 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
                 val imageByteArray = byteOutStream.toByteArray()
 
                 Glide.with(mypage_profile_edit_imv)
-                    .load(imageByteArray)
+                    .load(imageByteArray.toList().toByteArray())
                     .apply(RequestOptions.circleCropTransform())
                     .into(mypage_profile_edit_imv)
             }

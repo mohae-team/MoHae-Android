@@ -21,7 +21,10 @@ class SignInViewModel: BaseViewModel() {
     val idErrorEvent = SingleLiveEvent<String>()
     val passwordErrorEvent = SingleLiveEvent<String>()
 
-    fun clickLogin() { startMainEvent.call() }
+    fun clickLogin() {
+
+        startMainEvent.call()
+    }
 
     fun clickSignUp() { startSignUpEvent.call() }
 }

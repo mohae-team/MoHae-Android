@@ -16,7 +16,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private val baseUrl = "https://mohae.com"
+        private val baseUrl = "http://54.180.10.27:8080"
     }
 
     @Provides
