@@ -5,6 +5,7 @@ import android.content.Context
 import com.mohaeyo.mohae.di.app.BaseApp
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 @Module(includes = [(NetworkModule::class), (LocalModule::class)])
@@ -17,5 +18,7 @@ class AppModule {
     @Singleton
     fun provideApplication(app: BaseApp): Application = app
 
-
+    @Provides
+    @Singleton
+    fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 }
