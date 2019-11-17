@@ -4,6 +4,7 @@ import com.mohaeyo.data.datasource.AuthDataSource
 import com.mohaeyo.data.datasource.AuthDataSourceImpl
 import com.mohaeyo.data.local.pref.LocalStorage
 import com.mohaeyo.data.mapper.AuthDataMapper
+import com.mohaeyo.data.mapper.TokenDataMapper
 import com.mohaeyo.data.mapper.UserDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.AuthRepositoryImpl
@@ -39,9 +40,9 @@ class SignUpModule {
     @Provides
     fun provideAuthRepository(authDataMapper: AuthDataMapper,
                               authDataSource: AuthDataSource,
-                              userDataMapper: UserDataMapper
-    ): AuthRepository
-            = AuthRepositoryImpl(authDataSource, authDataMapper, userDataMapper)
+                              userDataMapper: UserDataMapper,
+                              tokenDataMapper: TokenDataMapper): AuthRepository
+            = AuthRepositoryImpl(authDataSource, authDataMapper, tokenDataMapper, userDataMapper)
 
     @FragmentScope
     @Provides
@@ -50,6 +51,10 @@ class SignUpModule {
     @FragmentScope
     @Provides
     fun provideAuthDataMapper(): AuthDataMapper = AuthDataMapper()
+
+    @FragmentScope
+    @Provides
+    fun provideTokenDataMapper(): TokenDataMapper = TokenDataMapper()
 
     @FragmentScope
     @Provides

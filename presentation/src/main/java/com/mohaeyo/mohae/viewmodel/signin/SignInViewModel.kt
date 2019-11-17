@@ -2,6 +2,7 @@ package com.mohaeyo.mohae.viewmodel.signin
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.AuthEntity
 import com.mohaeyo.domain.entity.TokenEntity
 import com.mohaeyo.domain.usecase.SignInUseCase
@@ -38,10 +39,10 @@ class SignInViewModel(val signInUseCase: SignInUseCase): BaseViewModel() {
     fun clickLogin() {
         val auth = AuthEntity(idText.value!!, passwordText.value!!)
 
-        signInUseCase.execute(auth, object: DisposableSubscriber<TokenEntity>() {
-            override fun onNext(t: TokenEntity) {
-                if (t.isSuccess) loginSuccess()
-                else loginFail(t.token)
+        signInUseCase.execute(auth, object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
+            override fun onNext(t: Pair<TokenEntity, ErrorHandlerEntity>) {
+                if (t.second.isSuccess) loginSuccess()
+                else loginFail(t.second.message)
             }
             override fun onComplete() {
 

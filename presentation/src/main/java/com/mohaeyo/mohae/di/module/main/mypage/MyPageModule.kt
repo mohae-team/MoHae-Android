@@ -6,7 +6,6 @@ import com.mohaeyo.mohae.ui.fragment.main.mypage.MyPageProfileFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-
 @Module
 abstract class MyPageModule {
 
@@ -17,4 +16,5 @@ abstract class MyPageModule {
     @MyPageFragmentScope
     @ContributesAndroidInjector(modules = [MyPageProfileEditModule::class])
     abstract fun myPageProfileEditFragment(): MyPageProfileEditFragment
+
 }

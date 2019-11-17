@@ -3,4 +3,5 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">54.180.10.27:8080</domain>
     </domain-config>
+    <base-config cleartextTrafficPermitted="true"/>
 </network-security-config>

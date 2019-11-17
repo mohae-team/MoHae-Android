@@ -3,6 +3,7 @@ package com.mohaeyo.mohae.viewmodel.signup
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
+import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.TokenEntity
 import com.mohaeyo.domain.entity.UserEntity
 import com.mohaeyo.domain.usecase.SignUpUseCase
@@ -11,6 +12,7 @@ import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.isValueBlank
 import com.mohaeyo.mohae.model.MapMakerModel
 import io.reactivex.subscribers.DisposableSubscriber
+import java.io.File
 
 class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel() {
 
@@ -84,14 +86,14 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
             id = idText.value!!,
             password = passwordText.value!!,
             username = usernameText.value!!,
-            imageByteList = emptyList(),
+            imageFile = File(""),
             address = addressText.value!!,
             description = ""
         )
-        signUpUseCase.execute(user, object: DisposableSubscriber<TokenEntity>() {
-            override fun onNext(t: TokenEntity) {
-                if (t.isSuccess) signUpSuccess()
-                else signUpFail(t.token)
+        signUpUseCase.execute(user, object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
+            override fun onNext(t: Pair<TokenEntity, ErrorHandlerEntity>) {
+                if (t.second.isSuccess) signUpSuccess()
+                else signUpFail(t.second.message)
             }
             override fun onComplete() {
 
