@@ -1,6 +1,7 @@
 package com.mohaeyo.data.remote
 
 import com.mohaeyo.data.dto.UserDto
+import com.mohaeyo.data.entity.PlaceData
 import com.mohaeyo.data.entity.TokenData
 import io.reactivex.Flowable
 import okhttp3.MultipartBody
@@ -24,4 +25,16 @@ interface Api {
 
     @GET("mypage/get")
     fun getProfile(): Flowable<UserDto>
+
+    @GET("place/get/{location}")
+    fun getPlace(@Path("location") location: String): Flowable<PlaceData>
+
+    @POST("place/post")
+    fun postPlace(@Body body: Any?): Flowable<PlaceData>
+
+    @POST("place/like")
+    fun postLikePlace(@Body body: Any?): Flowable<PlaceData>
+
+    @POST("place/dislike")
+    fun postDisLikePlace(@Body body: Any?): Flowable<PlaceData>
 }

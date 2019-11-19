@@ -10,7 +10,7 @@ import okhttp3.RequestBody
 interface UserDataSource {
     fun getRemoteUser(): Flowable<UserDto>
 
-    fun saveLocalUser(user: User): Flowable<User>
+    fun saveLocalUser(user: User)
 
     fun postRemoteUser(user: UserData): Flowable<UserDto>
 

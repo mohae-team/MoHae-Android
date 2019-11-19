@@ -33,7 +33,6 @@ class UserRepositoryImpl(private val datasource: UserDataSource,
     override fun getLocalUser(): UserEntity
             = mapUserDbToEntity(datasource.getLocalUser())
 
-    override fun saveLocalUser(user: UserEntity): Flowable<UserEntity>
+    override fun saveLocalUser(user: UserEntity)
             = datasource.saveLocalUser(mapUserEntityToDb(user))
-        .map { mapUserDbToEntity(it) }
 }

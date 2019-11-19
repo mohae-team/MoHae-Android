@@ -40,7 +40,7 @@ class MyPageProfileFragment: EndPointDataBindingFragment<FragmentMypageProfileBi
         viewModel.startProfileData.observe(this, Observer {
             binding.setVariable(BR.profileModel, it)
             Glide.with(mypage_profile_imv)
-                .load(it.imageFile)
+                .load(it.imageFile.toString())
                 .apply(RequestOptions.circleCropTransform())
                 .into(mypage_profile_imv)
         })

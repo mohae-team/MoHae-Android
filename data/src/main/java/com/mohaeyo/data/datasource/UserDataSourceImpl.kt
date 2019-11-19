@@ -13,12 +13,8 @@ class UserDataSourceImpl(private val api: Api, private val userDao: UserDao): Us
     override fun getRemoteUser(): Flowable<UserDto>
             = api.getProfile()
 
-    override fun saveLocalUser(user: User): Flowable<User> {
-        return Flowable.just(user).map {
-            userDao.saveUser(it)
-            return@map it
-        }
-    }
+    override fun saveLocalUser(user: User)
+            = userDao.saveUser(user)
 
     override fun postRemoteUser(user: UserData): Flowable<UserDto>
             = api.editProfile(

@@ -65,7 +65,7 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
 
         viewModel.setProfileImageEvent.observe(this, Observer {
             Glide.with(mypage_profile_edit_imv)
-                .load(viewModel.imageFile.value!!)
+                .load(viewModel.imageFile.value!!.toString())
                 .apply(RequestOptions.circleCropTransform())
                 .into(mypage_profile_edit_imv)
         })

@@ -13,7 +13,8 @@ class UserServiceImpl(private val userRepository: UserRepository): UserService {
         it to ErrorHandlerEntity(isSuccess = true)
     }.onErrorReturn {
         if (it is HttpException)
-            userRepository.getLocalUser() to ErrorHandlerEntity(message = when(it.code()) {
+            userRepository.getLocalUser() to ErrorHandlerEntity(message =
+            when(it.code()) {
                 404 -> "존재하지 않는 유저 정보입니다"
                 else -> "네트워크 상태를 확인해주세요"
             }, isSuccess = false)
@@ -27,7 +28,8 @@ class UserServiceImpl(private val userRepository: UserRepository): UserService {
         userRepository.saveLocalUser(it.first)
     }.onErrorReturn {
         if (it is HttpException)
-            userRepository.getLocalUser() to ErrorHandlerEntity(message = when(it.code()) {
+            userRepository.getLocalUser() to ErrorHandlerEntity(message =
+            when(it.code()) {
                 404 -> "존재하지 않는 유저 정보입니다"
                 else -> "네트워크 상태를 확인해주세요"
             }, isSuccess = false)

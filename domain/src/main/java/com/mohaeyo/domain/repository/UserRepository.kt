@@ -7,5 +7,5 @@ interface UserRepository {
     fun getRemoteUser(): Flowable<UserEntity>
     fun postRemoteUser(user: UserEntity): Flowable<UserEntity>
     fun getLocalUser(): UserEntity
-    fun saveLocalUser(user: UserEntity): Flowable<UserEntity>
+    fun saveLocalUser(user: UserEntity)
 }

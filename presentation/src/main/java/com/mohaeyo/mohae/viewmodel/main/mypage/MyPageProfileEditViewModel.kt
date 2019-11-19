@@ -113,7 +113,7 @@ class MyPageProfileEditViewModel(
 
                 }
                 override fun onError(t: Throwable?) {
-                    editFail("알 수 없는 오류가 발생했습니다")
+                    createToastEvent.value = "알 수 없는 오류가 발생했습니다"
                 }
             })
         } else createToastEvent.value = "전부 채워주세요"
