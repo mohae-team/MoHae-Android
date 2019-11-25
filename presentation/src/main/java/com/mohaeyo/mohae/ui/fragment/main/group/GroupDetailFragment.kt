@@ -7,6 +7,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentGroupDetailBinding
@@ -32,10 +34,10 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getArgGroupItem()
-        observeEvent()
-
         binding.vm = viewModel
+
+        observeEvent()
+        getArgGroupItem()
     }
 
     override fun onAttach(context: Context) {
@@ -51,7 +53,18 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
         viewModel.startDetailToListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToDialogEvent.observe(this, Observer {
-            GroupDetailDialogFragment().show(fragmentManager!!, "detail")
+            val dialog = GroupDetailDialogFragment()
+            val bundle = Bundle()
+
+            bundle.putInt("id", viewModel.selectedGroupId.value!!)
+            dialog.arguments = bundle
+            dialog.show(fragmentManager!!, "detail")
+        })
+
+        viewModel.setGroupImageEvent.observe(this, Observer {
+            Glide.with(group_detail_image_imv)
+                .load(viewModel.selectedGroupItem.value!!.imageFile.toString())
+                .into(group_detail_image_imv)
         })
     }
 
@@ -63,5 +76,6 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
 
     private fun getArgGroupItem() {
         viewModel.selectedGroupId.value = arguments!!.getInt("id")
+        viewModel.getGroupDetail()
     }
 }

@@ -5,5 +5,5 @@ data class PlaceModel(
     val location: String = "",
     val likeCount: Int = 0,
     val description: String = "",
-    val isLike: Boolean
+    val isLike: Boolean = false
 )

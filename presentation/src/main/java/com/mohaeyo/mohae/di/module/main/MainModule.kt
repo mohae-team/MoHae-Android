@@ -2,6 +2,7 @@ package com.mohaeyo.mohae.di.module.main
 
 import com.mohaeyo.mohae.di.module.main.feedback.FeedbackModule
 import com.mohaeyo.mohae.di.module.main.group.GroupModule
+import com.mohaeyo.mohae.di.module.main.group.GroupStaticModule
 import com.mohaeyo.mohae.di.module.main.mypage.MyPageModule
 import com.mohaeyo.mohae.di.module.main.mypage.MyPageStaticModule
 import com.mohaeyo.mohae.di.module.main.place.PlaceModule
@@ -28,7 +29,7 @@ abstract class MainModule {
     abstract fun qaFragment(): QAFragment
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [GroupModule::class])
+    @ContributesAndroidInjector(modules = [GroupModule::class, GroupStaticModule::class])
     abstract fun groupFragment(): GroupFragment
 
     @MainFragmentScope

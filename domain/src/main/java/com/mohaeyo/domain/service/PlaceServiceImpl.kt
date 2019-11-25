@@ -29,7 +29,7 @@ class PlaceServiceImpl(private val placeRepository: PlaceRepository): PlaceServi
         it to ErrorHandlerEntity(isSuccess = true)
     }.onErrorReturn {
         if (it is HttpException)
-            placeRepository.getLocalPlace() to ErrorHandlerEntity(message =
+            placeEntity to ErrorHandlerEntity(message =
             when(it.code()) {
                 404 -> "존재하지 않는 유저정보입니다"
                 403 -> "권한이 없습니다"
