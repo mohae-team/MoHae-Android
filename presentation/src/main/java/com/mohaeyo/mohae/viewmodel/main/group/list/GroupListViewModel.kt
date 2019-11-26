@@ -1,13 +1,10 @@
 package com.mohaeyo.mohae.viewmodel.main.group.list
 
-import android.util.Log
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.GroupEntity
 import com.mohaeyo.domain.usecase.GetGroupListUseCase
 import com.mohaeyo.mohae.base.BaseViewModel
-import com.mohaeyo.mohae.base.LifecycleCallback
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.mapper.GroupMapper
 import com.mohaeyo.mohae.model.GroupModel
@@ -29,10 +26,7 @@ class GroupListViewModel(
     init {
         getGroupListUseCase.execute(Unit, object: DisposableSubscriber<Pair<List<GroupEntity>, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<List<GroupEntity>, ErrorHandlerEntity>) {
-                if (t.second.isSuccess) {
-                    getListSuccess(t.first.map { groupMapper.mapEntityToModel(it) })
-                    Log.e("asd", "asdasdasdasdasdasd")
-                }
+                if (t.second.isSuccess) getListSuccess(t.first.map { groupMapper.mapEntityToModel(it) })
                 else getListFail(t.second.message, t.first.map { groupMapper.mapEntityToModel(it) })
             }
 

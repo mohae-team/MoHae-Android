@@ -1,5 +1,6 @@
 package com.mohaeyo.data.remote
 
+import com.mohaeyo.data.dto.FeedbackDto
 import com.mohaeyo.data.dto.GroupDto
 import com.mohaeyo.data.dto.UserDto
 import com.mohaeyo.data.entity.GroupData
@@ -46,11 +47,11 @@ interface Api {
     @GET("group/detail/{id}")
     fun getGroupDetail(@Path("id") id: Int): Flowable<GroupDto>
 
-    @POST("group/cancel")
-    fun postGroupJoinCancel(@Body body: Any?): Flowable<GroupDto>
+    @POST("group/cancel/{id}")
+    fun postGroupJoinCancel(@Path("id") id: Int): Flowable<GroupDto>
 
-    @POST("group/join")
-    fun postGroupJoin(@Body body: Any?): Flowable<GroupDto>
+    @POST("group/join/{id}")
+    fun postGroupJoin(@Path("id") id: Int): Flowable<GroupDto>
 
     @Multipart
     @POST("group/create")
@@ -62,4 +63,24 @@ interface Api {
                         @Part maxCount: MultipartBody.Part,
                         @Part description: MultipartBody.Part,
                         @Part imageFile: MultipartBody.Part): Flowable<GroupDto>
+
+    @Multipart
+    @POST("feedback/create")
+    fun postCreateFeedback(@Part location: MultipartBody.Part,
+                           @Part address: MultipartBody.Part,
+                           @Part summary: MultipartBody.Part,
+                           @Part description: MultipartBody.Part,
+                           @Part imageFile: MultipartBody.Part): Flowable<FeedbackDto>
+
+    @GET("feedback/list")
+    fun getFeedbackList(): Flowable<List<FeedbackDto>>
+
+    @GET("feedback/detail/{id}")
+    fun getFeedbackDetail(@Path("id") id: Int): Flowable<FeedbackDto>
+
+    @POST("feedback/like/{id}")
+    fun postFeedbackLike(@Path("id") id: Int): Flowable<FeedbackDto>
+
+    @POST("feedback/hate/{id}")
+    fun postFeedbackHate(@Path("id") id: Int): Flowable<FeedbackDto>
 }

@@ -23,21 +23,6 @@ class GroupDataMapper: Mapper<GroupEntity, GroupData> {
         isJoin = from.isJoin
     )
 
-    fun mapDataToEntity(from: GroupData): GroupEntity
-            = GroupEntity(
-        id = from.id,
-        title = from.title,
-        address = from.address,
-        location = from.location,
-        imageFile = from.imageFile,
-        count = from.count,
-        description = from.description,
-        summary = from.summary,
-        maxCount = from.maxCount,
-        term = from.term,
-        isJoin = from.isJoin
-    )
-
     fun mapDbToEntity(from: Group): GroupEntity
             = GroupEntity(
         id = from.id,

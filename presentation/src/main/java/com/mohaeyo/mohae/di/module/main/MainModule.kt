@@ -1,6 +1,7 @@
 package com.mohaeyo.mohae.di.module.main
 
 import com.mohaeyo.mohae.di.module.main.feedback.FeedbackModule
+import com.mohaeyo.mohae.di.module.main.feedback.FeedbackStaticModule
 import com.mohaeyo.mohae.di.module.main.group.GroupModule
 import com.mohaeyo.mohae.di.module.main.group.GroupStaticModule
 import com.mohaeyo.mohae.di.module.main.mypage.MyPageModule
@@ -21,7 +22,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainModule {
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [FeedbackModule::class])
+    @ContributesAndroidInjector(modules = [FeedbackModule::class, FeedbackStaticModule::class])
     abstract fun feedbackFragment(): FeedbackFragment
 
     @MainFragmentScope

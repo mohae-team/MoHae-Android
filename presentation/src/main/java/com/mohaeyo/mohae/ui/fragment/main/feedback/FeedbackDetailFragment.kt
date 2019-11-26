@@ -32,10 +32,10 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.vm = viewModel
+
         getArgFeedbackItem()
         observeEvent()
-
-        binding.vm = viewModel
     }
 
     override fun onAttach(context: Context) {
@@ -51,7 +51,12 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
         viewModel.startDetailToListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToDialogEvent.observe(this, Observer {
-            FeedbackDetailDialogFragment().show(fragmentManager!!, "detail")
+            val dialog = FeedbackDetailDialogFragment()
+            val bundle = Bundle()
+
+            bundle.putInt("id", viewModel.selectedFeedbackId.value!!)
+            dialog.arguments = bundle
+            dialog.show(fragmentManager!!, "detail")
         })
     }
 
@@ -63,5 +68,6 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
 
     private fun getArgFeedbackItem() {
         viewModel.selectedFeedbackId.value = arguments!!.getInt("id")
+        viewModel.getFeedbackDetail()
     }
 }

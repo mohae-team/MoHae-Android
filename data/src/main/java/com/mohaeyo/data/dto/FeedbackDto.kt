@@ -1,17 +1,15 @@
-package com.mohaeyo.domain.entity
+package com.mohaeyo.data.dto
 
-import java.io.File
-
-data class FeedbackEntity(
+data class FeedbackDto(
     val id: Int,
     val placeName: String,
     val location: String,
     val address: String,
     val summary: String,
-    val imageFile: File,
+    val imageUri: String,
     val description: String,
     val likeCount: Int,
     val hateCount: Int,
-    val isHate: Boolean,
-    val isLike: Boolean
+    val isLike: Boolean,
+    val isHate: Boolean
 )

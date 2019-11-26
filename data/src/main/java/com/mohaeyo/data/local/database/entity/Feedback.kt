@@ -1,14 +1,17 @@
-package com.mohaeyo.domain.entity
+package com.mohaeyo.data.local.database.entity
 
-import java.io.File
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class FeedbackEntity(
+@Entity
+data class Feedback(
+    @PrimaryKey
     val id: Int,
     val placeName: String,
     val location: String,
     val address: String,
     val summary: String,
-    val imageFile: File,
+    val imageUri: String,
     val description: String,
     val likeCount: Int,
     val hateCount: Int,

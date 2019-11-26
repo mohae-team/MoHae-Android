@@ -1,7 +1,6 @@
 package com.mohaeyo.data.datasource
 
 import com.mohaeyo.data.dto.GroupDto
-import com.mohaeyo.data.dto.GroupIdDto
 import com.mohaeyo.data.entity.GroupData
 import com.mohaeyo.data.local.database.dao.GroupDao
 import com.mohaeyo.data.local.database.entity.Group
@@ -45,8 +44,8 @@ class GroupDataSourceImpl(
     )
 
     override fun cancelGroup(id: Int): Flowable<GroupDto>
-            = api.postGroupJoinCancel(GroupIdDto(id))
+            = api.postGroupJoinCancel(id)
 
     override fun joinGroup(id: Int): Flowable<GroupDto>
-            = api.postGroupJoin(GroupIdDto(id))
+            = api.postGroupJoin(id)
 }

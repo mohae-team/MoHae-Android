@@ -89,7 +89,6 @@ class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
                 viewModel.postGroupModel.value!!.imageFile = copyStreamToFile(context!!, selectedImageUri)
                 Glide.with(group_doc_image_imv)
                     .load(selectedImageUri)
-                    .apply(RequestOptions.circleCropTransform())
                     .into(group_doc_image_imv)
             }
         }

@@ -1,8 +1,8 @@
-package com.mohaeyo.domain.entity
+package com.mohaeyo.data.entity
 
 import java.io.File
 
-data class FeedbackEntity(
+data class FeedbackData(
     val id: Int,
     val placeName: String,
     val location: String,
