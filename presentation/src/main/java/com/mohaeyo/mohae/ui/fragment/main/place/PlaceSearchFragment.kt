@@ -45,12 +45,9 @@ class PlaceSearchFragment: EndPointLocationFragment<FragmentPlaceSearchBinding>(
             findNavController().navigate(R.id.action_placeSearchFragment_to_placeDocFragment)
         })
 
-        viewModel.likeEvent.observe(this, Observer {
-            place_search_name_card_like_check.setBackgroundResource(R.drawable.ic_favorite_pink)
-        })
-
-        viewModel.dislikeEvent.observe(this, Observer {
-            place_search_name_card_like_check.setBackgroundResource(R.drawable.ic_favorite_border_black)
+        viewModel.placeIsLike.observe(this, Observer {
+            if (it) place_search_name_card_like_check.setBackgroundResource(R.drawable.ic_favorite_pink)
+            else place_search_name_card_like_check.setBackgroundResource(R.drawable.ic_favorite_border_black)
         })
     }
 }

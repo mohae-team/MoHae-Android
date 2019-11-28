@@ -39,8 +39,8 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getArgQuestionItem()
         observeEvent()
+        getArgQuestionItem()
         binding.vm = viewModel
     }
 
@@ -53,11 +53,11 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
     private fun backToList() {
         qa_answer_doc_post_fab.doCommonAnimation(R.drawable.check_to_write_answer)
         findNavController().navigate(R.id.action_QAAnswerDocFragment_to_QAAnswerListFragment,
-            getQuestionIdBundle(viewModel.selectedQuestionId.value!!))
+            getQuestionIdBundle(viewModel.answerModel.value!!.questionId))
     }
 
     private fun getArgQuestionItem() {
-        viewModel.selectedQuestionId.value = arguments!!.getInt("id")
+        viewModel.answerModel.value!!.questionId = arguments!!.getInt("id")
     }
 
     private fun getQuestionIdBundle(id: Int): Bundle {

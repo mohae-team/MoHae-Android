@@ -1,6 +1,8 @@
 package com.mohaeyo.mohae.di.module.main.group
 
+import com.mohaeyo.domain.usecase.CreateGroupUseCase
 import com.mohaeyo.mohae.di.scope.GroupFragmentScope
+import com.mohaeyo.mohae.mapper.GroupMapper
 import com.mohaeyo.mohae.viewmodel.main.group.doc.GroupDocViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -9,6 +11,12 @@ import dagger.Provides
 class GroupDocModule {
     @GroupFragmentScope
     @Provides
-    fun provideViewModelFactory(): GroupDocViewModelFactory
-            = GroupDocViewModelFactory()
+    fun provideViewModelFactory(
+        createGroupUseCase: CreateGroupUseCase,
+        groupMapper: GroupMapper
+    ): GroupDocViewModelFactory
+            = GroupDocViewModelFactory(
+        createGroupUseCase,
+        groupMapper
+    )
 }

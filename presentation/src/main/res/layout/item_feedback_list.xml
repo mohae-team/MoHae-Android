@@ -29,7 +29,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:fontFamily="@font/nanum_square_otf_bold"
                     android:lineSpacingExtra="2sp"
-                    android:text="@{feedbackItem.title}"
+                    android:text="@{feedbackItem.placeName}"
                     android:textSize="14sp"
                     android:textColor="@color/colorFeedback"
                     android:layout_width="0dp"

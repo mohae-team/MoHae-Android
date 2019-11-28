@@ -1,10 +1,15 @@
 package com.mohaeyo.mohae.di.module.main
 
 import com.mohaeyo.mohae.di.module.main.feedback.FeedbackModule
+import com.mohaeyo.mohae.di.module.main.feedback.FeedbackStaticModule
 import com.mohaeyo.mohae.di.module.main.group.GroupModule
+import com.mohaeyo.mohae.di.module.main.group.GroupStaticModule
 import com.mohaeyo.mohae.di.module.main.mypage.MyPageModule
+import com.mohaeyo.mohae.di.module.main.mypage.MyPageStaticModule
 import com.mohaeyo.mohae.di.module.main.place.PlaceModule
+import com.mohaeyo.mohae.di.module.main.place.PlaceStaticModule
 import com.mohaeyo.mohae.di.module.main.qa.QAModule
+import com.mohaeyo.mohae.di.module.main.qa.QAStaticModule
 import com.mohaeyo.mohae.di.scope.MainFragmentScope
 import com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackFragment
 import com.mohaeyo.mohae.ui.fragment.main.group.GroupFragment
@@ -18,22 +23,22 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainModule {
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [FeedbackModule::class])
+    @ContributesAndroidInjector(modules = [FeedbackModule::class, FeedbackStaticModule::class])
     abstract fun feedbackFragment(): FeedbackFragment
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [QAModule::class])
+    @ContributesAndroidInjector(modules = [QAModule::class, QAStaticModule::class])
     abstract fun qaFragment(): QAFragment
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [GroupModule::class])
+    @ContributesAndroidInjector(modules = [GroupModule::class, GroupStaticModule::class])
     abstract fun groupFragment(): GroupFragment
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [PlaceModule::class])
+    @ContributesAndroidInjector(modules = [PlaceModule::class, PlaceStaticModule::class])
     abstract fun placeFragment(): PlaceFragment
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [MyPageModule::class])
+    @ContributesAndroidInjector(modules = [MyPageModule::class, MyPageStaticModule::class])
     abstract fun mypageFragment(): MyPageFragment
 }

@@ -7,8 +7,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.core.net.toFile
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -19,12 +21,9 @@ import com.mohaeyo.mohae.viewmodel.main.mypage.MyPageProfileEditViewModel
 import com.mohaeyo.mohae.viewmodel.main.mypage.MyPageProfileEditViewModelFactory
 import kotlinx.android.synthetic.main.fragment_mypage_profile_edit.*
 import javax.inject.Inject
-import android.provider.MediaStore
-import android.util.Base64
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import org.jetbrains.anko.imageBitmap
-import java.io.ByteArrayOutputStream
+import com.mohaeyo.data.copyStreamToFile
 
 
 class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditBinding>() {
@@ -63,6 +62,13 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
         viewModel.getProfileImageEvent.observe(this, Observer { getProfileImage() })
 
         viewModel.descriptionErrorEvent.observe(this, Observer { mypage_profile_description_card_edit_lay.error = it })
+
+        viewModel.setProfileImageEvent.observe(this, Observer {
+            Glide.with(mypage_profile_edit_imv)
+                .load(viewModel.imageFile.value!!.toString())
+                .apply(RequestOptions.circleCropTransform())
+                .into(mypage_profile_edit_imv)
+        })
     }
 
     private fun backToProfile()
@@ -81,14 +87,9 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
         if(requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 val selectedImageUri = data!!.data!!
-                val ims = activity!!.contentResolver.openInputStream(selectedImageUri)
-                val byteOutStream = ByteArrayOutputStream()
-                BitmapFactory.decodeStream(ims)
-                    .compress(Bitmap.CompressFormat.JPEG, 100, byteOutStream)
-                val imageByteArray = byteOutStream.toByteArray()
-
+                viewModel.imageFile.value = copyStreamToFile(context!!, selectedImageUri)
                 Glide.with(mypage_profile_edit_imv)
-                    .load(imageByteArray)
+                    .load(selectedImageUri)
                     .apply(RequestOptions.circleCropTransform())
                     .into(mypage_profile_edit_imv)
             }

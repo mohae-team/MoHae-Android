@@ -39,7 +39,7 @@
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nanum_square_otf_bold"
                         android:lineSpacingExtra="2sp"
-                        android:text="@{vm.selectedGroupItem.address}"
+                        android:text="@{vm.selectedGroupItem.location}"
                         android:textSize="12sp"
                         android:gravity="center"
                         android:textColor="@color/colorGroup"
@@ -63,7 +63,7 @@
                         android:layout_marginHorizontal="24dp"
                         android:id="@+id/group_detail_image_imv"
                         android:layout_marginTop="24dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -72,7 +72,7 @@
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/nanum_square_otf_bold"
                         android:lineSpacingExtra="2sp"
-                        android:text="@{vm.selectedGroupItem.count}"
+                        android:text="@{vm.selectedGroupItem.countText}"
                         android:textSize="14sp"
                         android:textColor="@color/colorGroup"
                         android:gravity="center"

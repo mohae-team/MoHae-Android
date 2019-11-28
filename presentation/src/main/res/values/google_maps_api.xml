@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
-    ${API_KEY}
+    AIzaSyCdzsK1sAB_n4rG_ce58akGuHVa4V-gC-Y
     </string>
 </resources>

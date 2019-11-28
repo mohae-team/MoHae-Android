@@ -25,6 +25,7 @@ class GroupDetailDialogFragment: DataBindingDialogFragment<FragmentGroupDetailDi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.selectedGroupId.value = arguments!!.getInt("id")
         viewModel.closeDialog.observe(this, Observer { dismiss() })
 
         binding.vm = viewModel

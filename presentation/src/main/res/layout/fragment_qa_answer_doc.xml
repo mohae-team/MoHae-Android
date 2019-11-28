@@ -60,7 +60,7 @@
                             android:maxLines="6"
                             android:textColorHint="@color/colorDefault"
                             android:textSize="14sp"
-                            android:text="@={vm.answerText}"
+                            android:text="@={vm.answerModel.answer}"
                             android:layout_width="match_parent"
                             android:layout_height="180dp"/>
                 </com.google.android.material.textfield.TextInputLayout>

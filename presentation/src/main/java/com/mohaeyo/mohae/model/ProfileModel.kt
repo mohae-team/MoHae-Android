@@ -1,9 +1,11 @@
 package com.mohaeyo.mohae.model
 
+import java.io.File
+
 data class ProfileModel(
-    val imageByteArray: ByteArray,
-    val name: String,
-    val address: String,
-    val id: String,
-    val description: String
+    val imageFile: File = File(""),
+    val name: String = "",
+    val address: String = "",
+    val id: String = "",
+    val description: String = ""
 )

@@ -1,30 +1,58 @@
 package com.mohaeyo.mohae.viewmodel.main.feedback.detail
 
 import androidx.lifecycle.MutableLiveData
+import com.mohaeyo.domain.base.ErrorHandlerEntity
+import com.mohaeyo.domain.entity.FeedbackEntity
+import com.mohaeyo.domain.usecase.GetFeedbackDetailUseCase
+import com.mohaeyo.domain.usecase.HateFeedbackUseCase
+import com.mohaeyo.domain.usecase.LikeFeedbackUseCase
 import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
+import com.mohaeyo.mohae.mapper.FeedbackMapper
 import com.mohaeyo.mohae.model.FeedbackModel
+import io.reactivex.subscribers.DisposableSubscriber
 
-class FeedbackDetailViewModel(): BaseViewModel() {
+class FeedbackDetailViewModel(
+    private val getFeedbackDetailUseCase: GetFeedbackDetailUseCase,
+    private val likeFeedbackUseCase: LikeFeedbackUseCase,
+    private val hateFeedbackUseCase: HateFeedbackUseCase,
+    private val feedbackMapper: FeedbackMapper
+): BaseViewModel() {
 
     val selectedFeedbackId = MutableLiveData<Int>()
-
     val selectedFeedbackItem = MutableLiveData<FeedbackModel>().apply {
-        value = FeedbackModel(
-            0,
-            "데이터를 불러올 수 없습니다.",
-            "데이터를 불러올 수 없습니다.",
-            "데이터를 불러올 수 없습니다.",
-            byteArrayOf(),
-            "데이터를 불러올 수 없습니다.",
-            0.toString(),
-            0.toString(),
-            false
-        )
+        value = FeedbackModel()
     }
+
     val startDetailToListEvent = SingleLiveEvent<Unit>()
     val startDetailToDialogEvent = SingleLiveEvent<Unit>()
     val closeDialog = SingleLiveEvent<Unit>()
+
+    fun getFeedbackDetail() {
+        getFeedbackDetailUseCase.execute(selectedFeedbackId.value!!, object: DisposableSubscriber<Pair<FeedbackEntity, ErrorHandlerEntity>>() {
+            override fun onNext(t: Pair<FeedbackEntity, ErrorHandlerEntity>) {
+                if (t.second.isSuccess) getDetailSuccess(feedbackMapper.mapEntityToModel(t.first))
+                else getDetailFail(t.second.message, feedbackMapper.mapEntityToModel(t.first))
+            }
+
+            override fun onComplete() {
+
+            }
+
+            override fun onError(t: Throwable?) {
+                createToastEvent.value = "알 수 없는 오류가 발생했습니다"
+            }
+        })
+    }
+
+    private fun getDetailSuccess(feedbackModel: FeedbackModel) {
+        selectedFeedbackItem.value = feedbackModel
+    }
+
+    private fun getDetailFail(message: String, feedbackModel: FeedbackModel) {
+        createToastEvent.value = message
+        selectedFeedbackItem.value = feedbackModel
+    }
 
     fun clickDetailToList() {
         startDetailToListEvent.call()
@@ -35,10 +63,56 @@ class FeedbackDetailViewModel(): BaseViewModel() {
     }
 
     fun clickLike() {
+        likeFeedbackUseCase.execute(selectedFeedbackId.value!!, object: DisposableSubscriber<Pair<FeedbackEntity, ErrorHandlerEntity>>() {
+            override fun onNext(t: Pair<FeedbackEntity, ErrorHandlerEntity>) {
+                if (t.second.isSuccess) likeSuccess(feedbackMapper.mapEntityToModel(t.first))
+                else likeFail(t.second.message, feedbackMapper.mapEntityToModel(t.first))
+            }
+
+            override fun onComplete() {
+
+            }
+
+            override fun onError(t: Throwable?) {
+                createToastEvent.value = "알 수 없는 오류가 발생했습니다"
+            }
+        })
         closeDialog.call()
     }
 
+    private fun likeSuccess(feedbackModel: FeedbackModel) {
+        selectedFeedbackItem.value = feedbackModel
+    }
+
+    private fun likeFail(message: String, feedbackModel: FeedbackModel) {
+        createToastEvent.value = message
+        selectedFeedbackItem.value = feedbackModel
+    }
+
     fun clickHate() {
+        hateFeedbackUseCase.execute(selectedFeedbackId.value!!, object: DisposableSubscriber<Pair<FeedbackEntity, ErrorHandlerEntity>>() {
+            override fun onNext(t: Pair<FeedbackEntity, ErrorHandlerEntity>) {
+                if (t.second.isSuccess) hateSuccess(feedbackMapper.mapEntityToModel(t.first))
+                else hateFail(t.second.message, feedbackMapper.mapEntityToModel(t.first))
+            }
+
+            override fun onComplete() {
+
+            }
+
+            override fun onError(t: Throwable?) {
+                createToastEvent.value = "알 수 없는 오류가 발생했습니다"
+            }
+        })
         closeDialog.call()
+    }
+
+    private fun hateSuccess(feedbackModel: FeedbackModel) {
+        selectedFeedbackItem.value = feedbackModel
+    }
+
+    private fun hateFail(message: String, feedbackModel: FeedbackModel) {
+        createToastEvent.value = message
+        selectedFeedbackItem.value = feedbackModel
     }
 }

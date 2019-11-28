@@ -1,6 +1,7 @@
 package com.mohaeyo.mohae.ui.activity
 
 import android.os.Bundle
+import android.view.WindowManager
 import com.mohaeyo.mohae.R
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,5 +15,7 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }

@@ -2,7 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="answerItem" type="com.mohaeyo.mohae.model.QuestionModel.AnswerModel"/>
+        <variable name="answerItem" type="com.mohaeyo.mohae.model.AnswerModel"/>
         <variable name="vm"
                   type="com.mohaeyo.mohae.viewmodel.main.qa.answerList.QAAnswerListViewModel"/>
     </data>
@@ -28,7 +28,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:fontFamily="@font/nanum_square_otf_bold"
                     android:lineSpacingExtra="2sp"
-                    android:text="@{answerItem.writer}"
+                    android:text="@{answerItem.username}"
                     android:textSize="14sp"
                     android:textColor="@color/colorQa"
                     android:layout_width="0dp"

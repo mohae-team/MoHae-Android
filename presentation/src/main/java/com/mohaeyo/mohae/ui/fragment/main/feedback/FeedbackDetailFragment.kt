@@ -7,6 +7,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentFeedbackDetailBinding
@@ -32,10 +33,10 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.vm = viewModel
+
         getArgFeedbackItem()
         observeEvent()
-
-        binding.vm = viewModel
     }
 
     override fun onAttach(context: Context) {
@@ -51,7 +52,18 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
         viewModel.startDetailToListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToDialogEvent.observe(this, Observer {
-            FeedbackDetailDialogFragment().show(fragmentManager!!, "detail")
+            val dialog = FeedbackDetailDialogFragment()
+            val bundle = Bundle()
+
+            bundle.putInt("id", viewModel.selectedFeedbackId.value!!)
+            dialog.arguments = bundle
+            dialog.show(fragmentManager!!, "detail")
+        })
+
+        viewModel.selectedFeedbackItem.observe(this, Observer {
+            Glide.with(feedback_detail_image_imv)
+                .load(it.imageFile.toString())
+                .into(feedback_detail_image_imv)
         })
     }
 
@@ -63,5 +75,6 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
 
     private fun getArgFeedbackItem() {
         viewModel.selectedFeedbackId.value = arguments!!.getInt("id")
+        viewModel.getFeedbackDetail()
     }
 }

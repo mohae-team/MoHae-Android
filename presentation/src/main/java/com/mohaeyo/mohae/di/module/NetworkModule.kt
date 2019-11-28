@@ -2,6 +2,9 @@ package com.mohaeyo.mohae.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.mohaeyo.data.local.pref.LocalStorage
+import com.mohaeyo.data.remote.Api
+import com.mohaeyo.data.remote.AuthorizationInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -16,7 +19,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private val baseUrl = "https://mohae.com"
+        private val baseUrl = "http://54.180.10.27:8080/mohae/"
     }
 
     @Provides
@@ -25,9 +28,16 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideAuthorizationInterceptor(local: LocalStorage): AuthorizationInterceptor
+            = AuthorizationInterceptor(local)
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor,
+                            authorizationInterceptor: AuthorizationInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(authorizationInterceptor)
             .build()
     }
 
@@ -40,14 +50,14 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    @Named("retrofit")
-    fun provideRetrofit(gson : Gson, okHttpClient: OkHttpClient): Retrofit {
+    fun provideApi(gson : Gson, okHttpClient: OkHttpClient): Api {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(baseUrl)
             .client(okHttpClient)
             .build()
+            .create(Api::class.java)
     }
 
 }

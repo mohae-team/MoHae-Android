@@ -1,16 +1,13 @@
 package com.mohaeyo.mohae.model
 
+import java.io.File
+
 data class QuestionModel(
-    var id: Int,
-    val title: String,
-    val writer: String,
-    val summary: String,
-    val imageByteArray: ByteArray,
-    val description: String,
-    val answers: ArrayList<AnswerModel>
-) {
-    data class AnswerModel(
-        val answer: String,
-        val writer: String
-    )
-}
+    val id: Int = 0,
+    var title: String = "",
+    var username: String = "",
+    var address: String = "",
+    var summary: String = "",
+    var imageFile: File = File(""),
+    var description: String = ""
+)

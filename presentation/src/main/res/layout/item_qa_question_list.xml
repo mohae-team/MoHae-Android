@@ -44,7 +44,7 @@
                     android:fontFamily="@font/nanum_square_otf_regular"
                     android:lineSpacingExtra="2sp"
                     android:textSize="10sp"
-                    android:text="@{questionItem.writer}"
+                    android:text="@{questionItem.username}"
                     android:textColor="@color/colorQa"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
