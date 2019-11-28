@@ -62,17 +62,11 @@
 
 4. RxJava, RxKotlin, RxAndroid
 
-5. RxBinding
+5. Dagger2
 
-6. Dagger2
+6. Glide, Retrofit2, Okhttp3, Anko, Lottie, etc..
 
-7. Arrow
-
-8. Glide, Retrofit2, Okhttp3, Anko, Lottie, etc..
-
-9. Clean Code
-
-10. Functional Reactive Programming
+7. Clean Code
 
 ## Test
 
