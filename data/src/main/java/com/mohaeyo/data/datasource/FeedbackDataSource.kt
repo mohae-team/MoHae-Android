@@ -18,9 +18,9 @@ interface FeedbackDataSource {
 
     fun saveLocalFeedbackList(feedbackList: List<Feedback>)
 
-    fun createFeedback(feedback: FeedbackData): Flowable<FeedbackDto>
+    fun postCreateFeedback(feedback: FeedbackData): Flowable<FeedbackDto>
 
-    fun hateFeedback(id: Int): Flowable<FeedbackDto>
+    fun postHateFeedback(id: Int): Flowable<FeedbackDto>
 
-    fun likeFeedback(id: Int): Flowable<FeedbackDto>
+    fun postLikeFeedback(id: Int): Flowable<FeedbackDto>
 }

@@ -25,7 +25,7 @@ class FeedbackListViewModel(
         getFeedbackListUseCase.execute(Unit, object: DisposableSubscriber<Pair<List<FeedbackEntity>, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<List<FeedbackEntity>, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) getListSuccess(t.first.map { feedbackMapper.mapEntityToModel(it) })
-                else  getListFail(t.second.message, t.first.map { feedbackMapper.mapEntityToModel(it) })
+                else getListFail(t.second.message, t.first.map { feedbackMapper.mapEntityToModel(it) })
             }
 
             override fun onComplete() {

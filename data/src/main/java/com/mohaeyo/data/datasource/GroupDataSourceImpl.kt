@@ -31,7 +31,7 @@ class GroupDataSourceImpl(
     override fun saveLocalGroupList(groupList: List<Group>)
             = groupDao.saveGroup(*groupList.toTypedArray())
 
-        override fun createGroup(group: GroupData): Flowable<GroupDto>
+    override fun postCreateGroup(group: GroupData): Flowable<GroupDto>
             = api.postCreateGroup(
         title = MultipartBody.Part.createFormData("title", group.title),
         imageFile = MultipartBody.Part.createFormData("imageFile", group.imageFile.name, group.imageFile.toImageRequestBody()),
@@ -43,9 +43,9 @@ class GroupDataSourceImpl(
         maxCount = MultipartBody.Part.createFormData("maxCount", group.maxCount.toString())
     )
 
-    override fun cancelGroup(id: Int): Flowable<GroupDto>
+    override fun postCancelGroup(id: Int): Flowable<GroupDto>
             = api.postGroupJoinCancel(id)
 
-    override fun joinGroup(id: Int): Flowable<GroupDto>
+    override fun postJoinGroup(id: Int): Flowable<GroupDto>
             = api.postGroupJoin(id)
 }

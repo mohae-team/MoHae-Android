@@ -61,9 +61,9 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
             dialog.show(fragmentManager!!, "detail")
         })
 
-        viewModel.setGroupImageEvent.observe(this, Observer {
+        viewModel.selectedGroupItem.observe(this, Observer {
             Glide.with(group_detail_image_imv)
-                .load(viewModel.selectedGroupItem.value!!.imageFile.toString())
+                .load(it.imageFile.toString())
                 .into(group_detail_image_imv)
         })
     }

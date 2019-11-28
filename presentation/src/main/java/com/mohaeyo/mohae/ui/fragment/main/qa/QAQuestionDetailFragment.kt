@@ -7,6 +7,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentQaQuestionDetailBinding
@@ -48,6 +49,12 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
     }
 
     private fun observeEvent() {
+        viewModel.selectedQuestionItem.observe(this, Observer {
+            Glide.with(qa_question_detail_image_imv)
+                .load(it.imageFile.toString())
+                .into(qa_question_detail_image_imv)
+        })
+
         viewModel.startDetailToQuestionListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToAnswerListEvent.observe(this, Observer {
@@ -65,6 +72,8 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
 
     private fun getArgQuestionItem() {
         viewModel.selectedQuestionId.value = arguments!!.getInt("id")
+
+        viewModel.getQuestionDetail()
     }
 
     private fun getQuestionItemBundle(questionModel: QuestionModel): Bundle {

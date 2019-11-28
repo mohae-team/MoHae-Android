@@ -47,6 +47,31 @@ class FeedbackDocFragment: BaseLocationFragment<FragmentFeedbackDocBinding>() {
             })
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observeEvent()
+        binding.vm = viewModel
+    }
+
+    private fun observeEvent() {
+        viewModel.startDocToListEvent.observe(this, Observer { backToList() })
+
+        viewModel.summaryErrorEvent.observe(this, Observer { feedback_doc_summary_edit_lay.error = it })
+
+        viewModel.descriptionErrorEvent.observe(this, Observer { feedback_doc_description_edit_lay.error = it })
+
+        viewModel.setFeedbackImageEvent.observe(this, Observer { getLocalImage() })
+    }
+
+    private fun getLocalImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(
+            Intent.createChooser(intent, "Select file to upload "), 0)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 0) {
@@ -58,31 +83,6 @@ class FeedbackDocFragment: BaseLocationFragment<FragmentFeedbackDocBinding>() {
                     .into(feedback_doc_image_imv)
             }
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
-        binding.vm = viewModel
-    }
-
-    private fun getProfileImage() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(
-            Intent.createChooser(intent, "Select file to upload "), 0)
-    }
-
-    private fun observeEvent() {
-        viewModel.startDocToListEvent.observe(this, Observer { backToList() })
-
-        viewModel.summaryErrorEvent.observe(this, Observer { feedback_doc_summary_edit_lay.error = it })
-
-        viewModel.descriptionErrorEvent.observe(this, Observer { feedback_doc_description_edit_lay.error = it })
-
-        viewModel.setFeedbackImageEvent.observe(this, Observer { getProfileImage() })
     }
 
     private fun backToList() {

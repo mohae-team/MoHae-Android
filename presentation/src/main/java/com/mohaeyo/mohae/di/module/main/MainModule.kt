@@ -9,6 +9,7 @@ import com.mohaeyo.mohae.di.module.main.mypage.MyPageStaticModule
 import com.mohaeyo.mohae.di.module.main.place.PlaceModule
 import com.mohaeyo.mohae.di.module.main.place.PlaceStaticModule
 import com.mohaeyo.mohae.di.module.main.qa.QAModule
+import com.mohaeyo.mohae.di.module.main.qa.QAStaticModule
 import com.mohaeyo.mohae.di.scope.MainFragmentScope
 import com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackFragment
 import com.mohaeyo.mohae.ui.fragment.main.group.GroupFragment
@@ -26,7 +27,7 @@ abstract class MainModule {
     abstract fun feedbackFragment(): FeedbackFragment
 
     @MainFragmentScope
-    @ContributesAndroidInjector(modules = [QAModule::class])
+    @ContributesAndroidInjector(modules = [QAModule::class, QAStaticModule::class])
     abstract fun qaFragment(): QAFragment
 
     @MainFragmentScope

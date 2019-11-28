@@ -7,6 +7,7 @@ import com.mohaeyo.mohae.adapter.FeedbackListAdapter
 import com.mohaeyo.mohae.adapter.GroupListAdapter
 import com.mohaeyo.mohae.adapter.QAAnswerListAdapter
 import com.mohaeyo.mohae.adapter.QAQuestionListAdapter
+import com.mohaeyo.mohae.model.AnswerModel
 import com.mohaeyo.mohae.model.FeedbackModel
 import com.mohaeyo.mohae.model.GroupModel
 import com.mohaeyo.mohae.model.QuestionModel
@@ -27,6 +28,6 @@ fun RecyclerView.bindQuestionItems(questionItems: MutableLiveData<ArrayList<Ques
 }
 
 @BindingAdapter("answerItems")
-fun RecyclerView.bindAnswerItems(answerItems: MutableLiveData<ArrayList<QuestionModel.AnswerModel>>) {
+fun RecyclerView.bindAnswerItems(answerItems: MutableLiveData<ArrayList<AnswerModel>>) {
     (adapter as QAAnswerListAdapter).setItem(answerItems)
 }

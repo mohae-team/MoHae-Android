@@ -23,6 +23,7 @@ class FeedbackDetailViewModel(
     val selectedFeedbackItem = MutableLiveData<FeedbackModel>().apply {
         value = FeedbackModel()
     }
+
     val startDetailToListEvent = SingleLiveEvent<Unit>()
     val startDetailToDialogEvent = SingleLiveEvent<Unit>()
     val closeDialog = SingleLiveEvent<Unit>()

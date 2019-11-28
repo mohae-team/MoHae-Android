@@ -4,11 +4,11 @@ import com.mohaeyo.domain.entity.FeedbackEntity
 import io.reactivex.Flowable
 
 interface FeedbackRepository {
-    fun getRemoteListGroup(): Flowable<List<FeedbackEntity>>
+    fun getRemoteGroupList(): Flowable<List<FeedbackEntity>>
 
     fun getRemoteFeedbackDetail(id: Int): Flowable<FeedbackEntity>
 
-    fun getLocalListFeedback(): List<FeedbackEntity>
+    fun getLocalFeedbackList(): List<FeedbackEntity>
 
     fun getLocalFeedbackDetail(id: Int): FeedbackEntity
 

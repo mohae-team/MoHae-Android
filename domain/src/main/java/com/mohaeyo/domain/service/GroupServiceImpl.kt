@@ -8,20 +8,20 @@ import retrofit2.HttpException
 
 class GroupServiceImpl (private val groupRepository: GroupRepository): GroupService {
     override fun getListGroup(): Flowable<Pair<List<GroupEntity>,ErrorHandlerEntity>>
-            = groupRepository.getRemoteListGroup().map {
+            = groupRepository.getRemoteGroupList().map {
         it to ErrorHandlerEntity(isSuccess = true)
     }.doOnNext {
         groupRepository.saveLocalGroupList(it.first)
     }.onErrorReturn {
         if (it is HttpException)
-            groupRepository.getLocalListGroup() to ErrorHandlerEntity(message =
+            groupRepository.getLocalGroupList() to ErrorHandlerEntity(message =
             when(it.code()) {
                 404 -> "아직 모임이 없습니다"
                 403 -> "권한이 없습니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"
             }, isSuccess = false)
-        else groupRepository.getLocalListGroup() to ErrorHandlerEntity(isSuccess = true)
+        else groupRepository.getLocalGroupList() to ErrorHandlerEntity(isSuccess = true)
     }
 
     override fun getGroupDetail(id: Int): Flowable<Pair<GroupEntity, ErrorHandlerEntity>>
@@ -33,7 +33,7 @@ class GroupServiceImpl (private val groupRepository: GroupRepository): GroupServ
         if (it is HttpException)
             groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(message =
             when(it.code()) {
-                404 -> "아직 모임이 없습니다"
+                404 -> "존재하지 않는 게시물입니다"
                 403 -> "권한이 없습니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"
@@ -48,7 +48,7 @@ class GroupServiceImpl (private val groupRepository: GroupRepository): GroupServ
         if (it is HttpException)
             group to ErrorHandlerEntity(message =
             when(it.code()) {
-                404 -> "아직 모임이 없습니다"
+                404 -> "존재하지 않는 게시물입니다"
                 403 -> "권한이 없습니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"
@@ -63,7 +63,7 @@ class GroupServiceImpl (private val groupRepository: GroupRepository): GroupServ
         if (it is HttpException)
             groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(message =
             when(it.code()) {
-                404 -> "아직 모임이 없습니다"
+                404 -> "존재하지 않는 게시물입니다"
                 403 -> "권한이 없습니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"
@@ -78,7 +78,7 @@ class GroupServiceImpl (private val groupRepository: GroupRepository): GroupServ
         if (it is HttpException)
             groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(message =
             when(it.code()) {
-                404 -> "아직 모임이 없습니다"
+                404 -> "존재하지 않는 게시물입니다"
                 403 -> "권한이 없습니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"

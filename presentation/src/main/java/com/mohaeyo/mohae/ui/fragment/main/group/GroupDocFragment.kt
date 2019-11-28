@@ -68,12 +68,12 @@ class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
         })
 
         viewModel.setGroupImageEvent.observe(this, Observer {
-            getProfileImage()
+            getLocalImage()
         })
 
     }
 
-    private fun getProfileImage() {
+    private fun getLocalImage() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT

@@ -17,7 +17,7 @@ class GroupListViewModel(
 
     val groupList = MutableLiveData<ArrayList<GroupModel>>()
         .apply {
-            value = ArrayList(emptyList<GroupModel>())
+            value = ArrayList(emptyList())
     }
 
     val startListToDetailEvent = SingleLiveEvent<GroupModel>()

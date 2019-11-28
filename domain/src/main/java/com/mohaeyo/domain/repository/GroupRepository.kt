@@ -4,11 +4,11 @@ import com.mohaeyo.domain.entity.GroupEntity
 import io.reactivex.Flowable
 
 interface GroupRepository {
-    fun getRemoteListGroup(): Flowable<List<GroupEntity>>
+    fun getRemoteGroupList(): Flowable<List<GroupEntity>>
 
     fun getRemoteGroupDetail(id: Int): Flowable<GroupEntity>
 
-    fun getLocalListGroup(): List<GroupEntity>
+    fun getLocalGroupList(): List<GroupEntity>
 
     fun getLocalGroupDetail(id: Int): GroupEntity
 

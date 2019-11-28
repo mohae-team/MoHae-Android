@@ -11,13 +11,13 @@ class GroupRepositoryImpl(
     private val groupDataMapper: GroupDataMapper
 ): GroupRepository {
 
-    override fun getRemoteListGroup(): Flowable<List<GroupEntity>>
+    override fun getRemoteGroupList(): Flowable<List<GroupEntity>>
             = datasource.getRemoteListGroup().map { list -> list.map { groupDataMapper.mapDtoToEntity(it) } }
 
     override fun getRemoteGroupDetail(id: Int): Flowable<GroupEntity>
             = datasource.getRemoteGroupDetail(id).map { groupDataMapper.mapDtoToEntity(it) }
 
-    override fun getLocalListGroup(): List<GroupEntity>
+    override fun getLocalGroupList(): List<GroupEntity>
             = datasource.getLocalListGroup().map { groupDataMapper.mapDbToEntity(it) }
 
     override fun getLocalGroupDetail(id: Int): GroupEntity
@@ -30,12 +30,12 @@ class GroupRepositoryImpl(
             = datasource.saveLocalGroupList(groupList.map { groupDataMapper.mapEntityToDb(it) })
 
     override fun createGroup(group: GroupEntity): Flowable<GroupEntity>
-            = datasource.createGroup(groupDataMapper.mapFrom(group))
+            = datasource.postCreateGroup(groupDataMapper.mapFrom(group))
         .map { groupDataMapper.mapDtoToEntity(it) }
 
     override fun cancelGroup(id: Int): Flowable<GroupEntity>
-            = datasource.cancelGroup(id).map { groupDataMapper.mapDtoToEntity(it) }
+            = datasource.postCancelGroup(id).map { groupDataMapper.mapDtoToEntity(it) }
 
     override fun joinGroup(id: Int): Flowable<GroupEntity>
-            = datasource.joinGroup(id).map { groupDataMapper.mapDtoToEntity(it) }
+            = datasource.postJoinGroup(id).map { groupDataMapper.mapDtoToEntity(it) }
 }

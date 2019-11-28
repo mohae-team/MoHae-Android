@@ -9,7 +9,7 @@ import com.mohaeyo.data.local.database.entity.Feedback
 @Dao
 interface FeedbackDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveFeedback(vararg group: Feedback)
+    fun saveFeedback(vararg feedback: Feedback)
 
     @Query("SELECT * FROM `feedback` WHERE id = :id")
     fun getFeedback(id: Int): Feedback

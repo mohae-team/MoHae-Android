@@ -31,7 +31,7 @@ class FeedbackDataSourceImpl(
     override fun saveLocalFeedbackList(feedbackList: List<Feedback>)
             = feedbackDao.saveFeedback(*feedbackList.toTypedArray())
 
-    override fun createFeedback(feedback: FeedbackData): Flowable<FeedbackDto>
+    override fun postCreateFeedback(feedback: FeedbackData): Flowable<FeedbackDto>
             = api.postCreateFeedback(
         imageFile = MultipartBody.Part.createFormData("imageFile", feedback.imageFile.name, feedback.imageFile.toImageRequestBody()),
         description = MultipartBody.Part.createFormData("description", feedback.description),
@@ -40,9 +40,9 @@ class FeedbackDataSourceImpl(
         location = MultipartBody.Part.createFormData("location", feedback.location)
     )
 
-    override fun hateFeedback(id: Int): Flowable<FeedbackDto>
+    override fun postHateFeedback(id: Int): Flowable<FeedbackDto>
             = api.postFeedbackHate(id)
 
-    override fun likeFeedback(id: Int): Flowable<FeedbackDto>
+    override fun postLikeFeedback(id: Int): Flowable<FeedbackDto>
             = api.postFeedbackLike(id)
 }

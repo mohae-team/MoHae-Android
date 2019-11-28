@@ -2,10 +2,9 @@ package com.mohaeyo.data.remote
 
 import com.mohaeyo.data.dto.FeedbackDto
 import com.mohaeyo.data.dto.GroupDto
+import com.mohaeyo.data.dto.QuestionDto
 import com.mohaeyo.data.dto.UserDto
-import com.mohaeyo.data.entity.GroupData
-import com.mohaeyo.data.entity.PlaceData
-import com.mohaeyo.data.entity.TokenData
+import com.mohaeyo.data.entity.*
 import io.reactivex.Flowable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -83,4 +82,25 @@ interface Api {
 
     @POST("feedback/hate/{id}")
     fun postFeedbackHate(@Path("id") id: Int): Flowable<FeedbackDto>
+
+    @GET("qa/question/list")
+    fun getQuestionList(): Flowable<List<QuestionDto>>
+
+    @Multipart
+    @POST("qa/question/create")
+    fun postCreateQuestion(
+        @Part title: MultipartBody.Part,
+        @Part summary: MultipartBody.Part,
+        @Part description: MultipartBody.Part,
+        @Part imageFile: MultipartBody.Part
+    ): Flowable<QuestionDto>
+
+    @GET("qa/question/detail/{id}")
+    fun getQuestionDetail(@Path("id") id: Int): Flowable<QuestionDto>
+
+    @POST("qa/answer/create")
+    fun postCreateAnswer(@Body body: Any?): Flowable<AnswerData>
+
+    @GET("qa/answer/list/{id}")
+    fun getAnswerList(@Path("id") id: Int): Flowable<List<AnswerData>>
 }

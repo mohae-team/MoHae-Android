@@ -10,13 +10,13 @@ class FeedbackRepositoryImpl(
     private val datasource: FeedbackDataSource,
     private val feedbackDataMapper: FeedbackDataMapper
 ): FeedbackRepository {
-    override fun getRemoteListGroup(): Flowable<List<FeedbackEntity>>
+    override fun getRemoteGroupList(): Flowable<List<FeedbackEntity>>
             = datasource.getRemoteListFeedback().map { list -> list.map { feedbackDataMapper.mapDtoToEntity(it)} }
 
     override fun getRemoteFeedbackDetail(id: Int): Flowable<FeedbackEntity>
             = datasource.getRemoteFeedbackDetail(id).map { feedbackDataMapper.mapDtoToEntity(it) }
 
-    override fun getLocalListFeedback(): List<FeedbackEntity>
+    override fun getLocalFeedbackList(): List<FeedbackEntity>
             = datasource.getLocalListFeedback().map { feedbackDataMapper.mapDbToEntity(it) }
 
     override fun getLocalFeedbackDetail(id: Int): FeedbackEntity
@@ -29,11 +29,11 @@ class FeedbackRepositoryImpl(
             = datasource.saveLocalFeedbackList(feedbackList.map { feedbackDataMapper.mapEntityToDb(it) })
 
     override fun createFeedback(feedback: FeedbackEntity): Flowable<FeedbackEntity>
-            = datasource.createFeedback(feedbackDataMapper.mapFrom(feedback)).map { feedbackDataMapper.mapDtoToEntity(it) }
+            = datasource.postCreateFeedback(feedbackDataMapper.mapFrom(feedback)).map { feedbackDataMapper.mapDtoToEntity(it) }
 
     override fun hateFeedback(id: Int): Flowable<FeedbackEntity>
-            = datasource.hateFeedback(id).map { feedbackDataMapper.mapDtoToEntity(it) }
+            = datasource.postHateFeedback(id).map { feedbackDataMapper.mapDtoToEntity(it) }
 
     override fun likeFeedback(id: Int): Flowable<FeedbackEntity>
-            = datasource.likeFeedback(id).map { feedbackDataMapper.mapDtoToEntity(it) }
+            = datasource.postLikeFeedback(id).map { feedbackDataMapper.mapDtoToEntity(it) }
 }

@@ -66,7 +66,7 @@
                                 android:maxLength="12"
                                 android:textColorHint="@color/colorDefault"
                                 android:textSize="14sp"
-                                android:text="@={vm.titleText}"
+                                android:text="@={vm.questionModel.title}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -104,13 +104,14 @@
                                 android:maxLength="28"
                                 android:textColorHint="@color/colorDefault"
                                 android:textSize="14sp"
-                                android:text="@={vm.summaryText}"
+                                android:text="@={vm.questionModel.summary}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                        android:onClick="@{() -> vm.clickSetImage()}"
                         app:cardCornerRadius="14dp"
                         app:cardElevation="14dp"
                         android:layout_marginHorizontal="24dp"
@@ -122,23 +123,37 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/qa_question_doc_image_imv"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/qa_question_doc_image_edit"
-                            android:padding="14dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:fontFamily="@font/nanum_square_otf_bold"
-                            android:lineSpacingExtra="2sp"
-                            android:hint="@string/qa_question_doc_image_tv"
-                            android:textSize="14sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_margin="10dp"
+                                android:id="@+id/qa_question_doc_image_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/nanum_square_otf_bold"
+                                android:gravity="center"
+                                android:hint="@string/qa_question_doc_image_tv"
+                                android:lineSpacingExtra="2sp"
+                                android:padding="14dp"
+                                android:textSize="14sp" />
 
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/qa_question_doc_image_imv"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -162,7 +177,7 @@
                             app:errorEnabled="true"
                             app:hintTextColor="@color/colorQa"
                             app:boxStrokeColor="@color/colorQa"
-                            android:id="@+id/qa_answer_doc_answer_edit_lay"
+                            android:id="@+id/qa_question_doc_description_edit_lay"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -177,7 +192,7 @@
                                 android:maxLines="6"
                                 android:textColorHint="@color/colorDefault"
                                 android:textSize="14sp"
-                                android:text="@={vm.descriptionText}"
+                                android:text="@={vm.questionModel.description}"
                                 android:layout_width="match_parent"
                                 android:layout_height="180dp"/>
                     </com.google.android.material.textfield.TextInputLayout>

@@ -7,6 +7,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentFeedbackDetailBinding
@@ -57,6 +58,12 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
             bundle.putInt("id", viewModel.selectedFeedbackId.value!!)
             dialog.arguments = bundle
             dialog.show(fragmentManager!!, "detail")
+        })
+
+        viewModel.selectedFeedbackItem.observe(this, Observer {
+            Glide.with(feedback_detail_image_imv)
+                .load(it.imageFile.toString())
+                .into(feedback_detail_image_imv)
         })
     }
 

@@ -1,12 +1,13 @@
 package com.mohaeyo.domain.entity
 
+import java.io.File
+
 data class QuestionEntity(
-    val postId: Int,
+    val id: Int,
     val title: String,
-    val writer: String,
+    val username: String,
     val address: String,
     val summary: String,
-    val imageByteList: List<Byte>,
-    val description: String,
-    val answerList: List<AnswerEntity>
+    val imageFile: File,
+    val description: String
 )

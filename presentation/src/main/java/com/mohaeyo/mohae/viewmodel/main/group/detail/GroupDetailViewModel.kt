@@ -24,7 +24,6 @@ class GroupDetailViewModel(
 
     val startDetailToListEvent = SingleLiveEvent<Unit>()
     val startDetailToDialogEvent = SingleLiveEvent<Unit>()
-    val setGroupImageEvent = SingleLiveEvent<Unit>()
     val closeDialog = SingleLiveEvent<Unit>()
 
     fun getGroupDetail() {
@@ -90,7 +89,6 @@ class GroupDetailViewModel(
 
     private fun getDetailSuccess(group: GroupModel) {
         selectedGroupItem.value = group
-        setGroupImageEvent.call()
     }
 
     private fun getDetailFail(message: String, group: GroupModel) {

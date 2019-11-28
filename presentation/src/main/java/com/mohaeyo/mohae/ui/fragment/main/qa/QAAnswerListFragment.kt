@@ -52,14 +52,14 @@ class QAAnswerListFragment: DataBindingFragment<FragmentQaAnswerListBinding>() {
     private fun backToDetail() {
         qa_answer_list_answer_doc_fab.doCommonAnimation(R.drawable.write_answer_to_answers)
         findNavController().navigate(R.id.action_QAAnswerListFragment_to_QAQuestionDetailFragment,
-            getQuestionItemBundle(viewModel.selectedQuestionItem.value!!))
+            getQuestionItemBundle(viewModel.selectedQuestionId.value!!))
     }
 
     private fun observeEvent() {
         viewModel.startListToDocEvent.observe(this, Observer {
             qa_answer_list_answer_doc_fab.doCommonAnimation(R.drawable.write_answer_to_check)
             findNavController().navigate(R.id.action_QAAnswerListFragment_to_QAAnswerDocFragment,
-                getQuestionItemBundle(viewModel.selectedQuestionItem.value!!))
+                getQuestionItemBundle(viewModel.selectedQuestionId.value!!))
         })
 
         viewModel.startListToDetailEvent.observe(this, Observer { backToDetail() })
@@ -67,11 +67,13 @@ class QAAnswerListFragment: DataBindingFragment<FragmentQaAnswerListBinding>() {
 
     private fun getArgQuestionItem() {
         viewModel.selectedQuestionId.value = arguments!!.getInt("id")
+
+        viewModel.getAnswerList()
     }
 
-    private fun getQuestionItemBundle(questionModel: QuestionModel): Bundle {
+    private fun getQuestionItemBundle(questionId: Int): Bundle {
         val bundle = Bundle()
-        with(questionModel) { bundle.putInt("id", id) }
+        bundle.putInt("id", questionId)
 
         return bundle
     }

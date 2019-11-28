@@ -18,9 +18,9 @@ interface GroupDataSource {
 
     fun saveLocalGroupList(groupList: List<Group>)
 
-    fun createGroup(group: GroupData): Flowable<GroupDto>
+    fun postCreateGroup(group: GroupData): Flowable<GroupDto>
 
-    fun cancelGroup(id: Int): Flowable<GroupDto>
+    fun postCancelGroup(id: Int): Flowable<GroupDto>
 
-    fun joinGroup(id: Int): Flowable<GroupDto>
+    fun postJoinGroup(id: Int): Flowable<GroupDto>
 }
