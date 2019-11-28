@@ -24,22 +24,20 @@ class FeedbackListFragment: EndPointDataBindingFragment<FragmentFeedbackListBind
     @Inject
     lateinit var factory: FeedbackListViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(FeedbackListViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(FeedbackListViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_feedback_list
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
         binding.vm = viewModel
 
         binding.feedbackList.layoutManager = LinearLayoutManager(context)
         binding.feedbackList.adapter = FeedbackListAdapter(viewModel)
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startListToDocEvent.observe(this, Observer {
             feedback_list_add_fab.doCommonAnimation(R.drawable.add_to_check)
             feedback_list_back_fab.doBackAnimation(true)
@@ -55,9 +53,7 @@ class FeedbackListFragment: EndPointDataBindingFragment<FragmentFeedbackListBind
 
     private fun getFeedbackItemBundle(feedbackModel: FeedbackModel): Bundle {
         val bundle = Bundle()
-
         with(feedbackModel) { bundle.putInt("id", id) }
-
         return bundle
     }
 }

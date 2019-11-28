@@ -47,10 +47,9 @@ class SignUpAddressFragment: BaseLocationFragment<FragmentSignupAddressBinding>(
 
 
         getArgSignUpData()
-        observeViewModelEvent()
     }
 
-    private fun observeViewModelEvent() {
+    override fun observeEvent() {
         viewModel.startSignInEvent.observe(this, Observer {
             findNavController().navigate(R.id.action_signUpAddressFragment_to_loginFragment)
         })

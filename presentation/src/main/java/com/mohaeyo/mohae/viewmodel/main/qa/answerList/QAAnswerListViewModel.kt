@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.qa.answerList
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.AnswerEntity
@@ -15,9 +16,7 @@ class QAAnswerListViewModel(
     private val getAnswerListUseCase: GetAnswerListUseCase,
     private val answerMapper: AnswerMapper
 ): BaseViewModel() {
-
     val selectedQuestionId = MutableLiveData<Int>()
-
     val answerList = MutableLiveData<ArrayList<AnswerModel>>().apply {
         value = ArrayList(emptyList())
     }
@@ -25,7 +24,21 @@ class QAAnswerListViewModel(
     val startListToDetailEvent = SingleLiveEvent<Unit>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
 
-    fun getAnswerList() {
+    override fun apply(event: Lifecycle.Event) {
+        when(event) {
+            Lifecycle.Event.ON_START -> getAnswerList()
+        }
+    }
+
+    fun clickListToDetail() {
+        startListToDetailEvent.call()
+    }
+
+    fun clickWriteAnswer() {
+        startListToDocEvent.call()
+    }
+
+    private fun getAnswerList() {
         getAnswerListUseCase.execute(selectedQuestionId.value!!, object: DisposableSubscriber<Pair<List<AnswerEntity>, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<List<AnswerEntity>, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) getListSuccess(t.first.map { answerMapper.mapEntityToModel(it) })
@@ -49,13 +62,5 @@ class QAAnswerListViewModel(
     private fun getListFail(message: String, answerList: List<AnswerModel>) {
         this.answerList.value = ArrayList(answerList)
         createToastEvent.value = message
-    }
-
-    fun clickListToDetail() {
-        startListToDetailEvent.call()
-    }
-
-    fun clickWriteAnswer() {
-        startListToDocEvent.call()
     }
 }

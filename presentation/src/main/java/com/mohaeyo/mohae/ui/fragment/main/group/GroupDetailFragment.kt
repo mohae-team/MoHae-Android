@@ -26,17 +26,15 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
     @Inject
     lateinit var factory: GroupDetailViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupDetailViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupDetailViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_group_detail
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.vm = viewModel
 
-        observeEvent()
         getArgGroupItem()
     }
 
@@ -49,7 +47,7 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
             })
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startDetailToListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToDialogEvent.observe(this, Observer {
@@ -76,6 +74,5 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
 
     private fun getArgGroupItem() {
         viewModel.selectedGroupId.value = arguments!!.getInt("id")
-        viewModel.getGroupDetail()
     }
 }

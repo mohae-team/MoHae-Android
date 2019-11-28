@@ -51,12 +51,10 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
         binding.vm = viewModel
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startProfileEvent.observe(this, Observer { backToProfile() })
 
         viewModel.getProfileImageEvent.observe(this, Observer { getProfileImage() })

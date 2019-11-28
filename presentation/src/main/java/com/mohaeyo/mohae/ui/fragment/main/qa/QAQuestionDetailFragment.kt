@@ -24,7 +24,7 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
     @Inject
     lateinit var factory: QAQuestionDetailViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(
         QAQuestionDetailViewModel::class.java) }
 
     override val layoutId: Int
@@ -32,11 +32,9 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
 
         getArgQuestionItem()
-        observeEvent()
-
-        binding.vm = viewModel
     }
 
     override fun onAttach(context: Context) {
@@ -48,7 +46,7 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
             })
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.selectedQuestionItem.observe(this, Observer {
             Glide.with(qa_question_detail_image_imv)
                 .load(it.imageFile.toString())
@@ -72,15 +70,11 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
 
     private fun getArgQuestionItem() {
         viewModel.selectedQuestionId.value = arguments!!.getInt("id")
-
-        viewModel.getQuestionDetail()
     }
 
     private fun getQuestionItemBundle(questionModel: QuestionModel): Bundle {
         val bundle = Bundle()
-
         with(questionModel) { bundle.putInt("id", id) }
-
         return bundle
     }
 }

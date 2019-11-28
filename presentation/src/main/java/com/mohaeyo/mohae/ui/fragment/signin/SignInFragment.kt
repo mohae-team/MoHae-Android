@@ -18,7 +18,7 @@ class SignInFragment: EndPointDataBindingFragment<FragmentSigninBinding>() {
     @Inject
     lateinit var factory: SignInViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignInViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignInViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_signin
@@ -26,11 +26,9 @@ class SignInFragment: EndPointDataBindingFragment<FragmentSigninBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-
-        observeViewModelEvent()
     }
 
-    private fun observeViewModelEvent() {
+    override fun observeEvent() {
         viewModel.startMainEvent.observe(this, Observer {
             findNavController(view!!).navigate(R.id.action_loginFragment_to_main_fragment)
         })

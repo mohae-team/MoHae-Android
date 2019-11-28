@@ -23,22 +23,20 @@ class QAQuestionListFragment: EndPointDataBindingFragment<FragmentQaQuestionList
     @Inject
     lateinit var factory: QAQuestionListViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAQuestionListViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAQuestionListViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_qa_question_list
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
         binding.vm = viewModel
 
         binding.qaQuestionList.layoutManager = LinearLayoutManager(context)
         binding.qaQuestionList.adapter = QAQuestionListAdapter(viewModel)
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startListToDocEvent.observe(this, Observer {
             qa_question_list_add_fab.doCommonAnimation(R.drawable.add_to_check)
             qa_question_list_back_fab.doBackAnimation(true)

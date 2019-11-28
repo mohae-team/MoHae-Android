@@ -38,7 +38,7 @@ class PlaceSearchFragment: EndPointLocationFragment<FragmentPlaceSearchBinding>(
 
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startSearchToDocEvent.observe(this, Observer {
             place_search_add_fab.doCommonAnimation(R.drawable.add_to_check)
             place_search_back_fab.doBackAnimation(true)

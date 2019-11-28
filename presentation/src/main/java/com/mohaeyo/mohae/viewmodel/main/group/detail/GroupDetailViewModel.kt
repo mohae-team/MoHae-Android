@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.group.detail
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.GroupEntity
@@ -7,6 +8,7 @@ import com.mohaeyo.domain.usecase.CancelJoinGroupUseCase
 import com.mohaeyo.domain.usecase.GetGroupDetailUseCase
 import com.mohaeyo.domain.usecase.JoinGroupUseCase
 import com.mohaeyo.mohae.base.BaseViewModel
+import com.mohaeyo.mohae.base.LifecycleCallback
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.mapper.GroupMapper
 import com.mohaeyo.mohae.model.GroupModel
@@ -17,7 +19,7 @@ class GroupDetailViewModel(
     private val joinGroupUseCase: JoinGroupUseCase,
     private val cancelJoinGroupUseCase: CancelJoinGroupUseCase,
     private val groupMapper: GroupMapper
-): BaseViewModel() {
+): BaseViewModel(), LifecycleCallback {
 
     val selectedGroupId = MutableLiveData<Int>()
     val selectedGroupItem = MutableLiveData<GroupModel>()
@@ -26,7 +28,13 @@ class GroupDetailViewModel(
     val startDetailToDialogEvent = SingleLiveEvent<Unit>()
     val closeDialog = SingleLiveEvent<Unit>()
 
-    fun getGroupDetail() {
+    override fun apply(event: Lifecycle.Event) {
+        when(event) {
+            Lifecycle.Event.ON_RESUME -> getGroupDetail()
+        }
+    }
+
+    private fun getGroupDetail() {
         getGroupDetailUseCase.execute(selectedGroupId.value!!, object: DisposableSubscriber<Pair<GroupEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<GroupEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) getDetailSuccess(groupMapper.mapEntityToModel(t.first))

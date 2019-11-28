@@ -21,7 +21,7 @@ class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
     @Inject
     lateinit var factory: MainViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(MainViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(MainViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_main
@@ -45,6 +45,10 @@ class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
 
         main_navigation.selectedItemId = R.id.navigation_group
         main_navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
+
+    }
+
+    override fun observeEvent() {
 
     }
 

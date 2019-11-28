@@ -49,17 +49,17 @@ class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
         binding.vm = viewModel
     }
 
-    private fun backToList() {
-        place_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
-        place_doc_back_fab.doBackAnimation(false)
-        findNavController().navigate(R.id.action_placeDocFragment_to_placeSearchFragment)
-    }
-
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
 
         viewModel.placeNameErrorEvent.observe(this, Observer { place_doc_title_edit_lay.error = it })
 
         viewModel.placeDescriptionErrorEvent.observe(this, Observer { place_doc_description_edit_lay.error = it })
+    }
+
+    private fun backToList() {
+        place_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
+        place_doc_back_fab.doBackAnimation(false)
+        findNavController().navigate(R.id.action_placeDocFragment_to_placeSearchFragment)
     }
 }

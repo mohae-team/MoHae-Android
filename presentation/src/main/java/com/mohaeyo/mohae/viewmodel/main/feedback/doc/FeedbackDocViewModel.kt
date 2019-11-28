@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.feedback.doc
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import com.mohaeyo.domain.base.ErrorHandlerEntity
@@ -27,6 +28,10 @@ class FeedbackDocViewModel(
     val descriptionErrorEvent = SingleLiveEvent<String>()
     val setFeedbackImageEvent = SingleLiveEvent<Unit>()
 
+    override fun apply(event: Lifecycle.Event) {
+
+    }
+
     override fun updateAddressData(
         location: LatLng,
         addressTitle: String,
@@ -44,16 +49,6 @@ class FeedbackDocViewModel(
             feedbackModel.value!!.address = addressTitle
             feedbackModel.value!!.location = "다른 지역을 선택해주세요."
         }
-    }
-
-    private fun createSuccess(feedbackModel: FeedbackModel) {
-        this.feedbackModel.value = feedbackModel
-        startDocToListEvent.call()
-    }
-
-    private fun createFail(message: String, feedbackModel: FeedbackModel) {
-        createToastEvent.value = message
-        this.feedbackModel.value = feedbackModel
     }
 
     fun clickSetImage() {
@@ -79,5 +74,15 @@ class FeedbackDocViewModel(
 
     fun clickDocToList() {
         startDocToListEvent.call()
+    }
+
+    private fun createSuccess(feedbackModel: FeedbackModel) {
+        this.feedbackModel.value = feedbackModel
+        startDocToListEvent.call()
+    }
+
+    private fun createFail(message: String, feedbackModel: FeedbackModel) {
+        createToastEvent.value = message
+        this.feedbackModel.value = feedbackModel
     }
 }

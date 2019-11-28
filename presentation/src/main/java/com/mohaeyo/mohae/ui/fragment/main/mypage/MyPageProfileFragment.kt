@@ -23,7 +23,7 @@ class MyPageProfileFragment: EndPointDataBindingFragment<FragmentMypageProfileBi
     @Inject
     lateinit var factory: MyPageProfileViewModelFactory
 
-    private val viewModel
+    override val viewModel
             by lazy { ViewModelProviders.of(this, factory).get(MyPageProfileViewModel::class.java) }
 
     override val layoutId: Int
@@ -31,12 +31,10 @@ class MyPageProfileFragment: EndPointDataBindingFragment<FragmentMypageProfileBi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
         binding.vm = viewModel
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startProfileData.observe(this, Observer {
             binding.setVariable(BR.profileModel, it)
             Glide.with(mypage_profile_imv)

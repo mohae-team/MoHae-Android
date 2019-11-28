@@ -26,7 +26,7 @@ import java.util.*
 
 abstract class BaseLocationFragment<V: ViewDataBinding>: DataBindingFragment<V>() {
 
-    abstract val viewModel: BaseLocationViewModel
+    abstract override val viewModel: BaseLocationViewModel
 
     abstract val mapId: Int
 

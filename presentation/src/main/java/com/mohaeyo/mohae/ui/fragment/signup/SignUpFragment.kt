@@ -24,7 +24,7 @@ class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
     @Inject
     lateinit var factory: SignUpViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignUpViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignUpViewModel::class.java) }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,11 +40,9 @@ class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-
-        observeViewModelEvent()
     }
 
-    private fun observeViewModelEvent() {
+    override fun observeEvent() {
         viewModel.startSignUpAddressEvent.observe(this, Observer {
             val bundle = Bundle()
             bundle.putString("username", viewModel.usernameText.value)

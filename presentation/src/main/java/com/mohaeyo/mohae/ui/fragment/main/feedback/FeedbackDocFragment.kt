@@ -49,12 +49,23 @@ class FeedbackDocFragment: BaseLocationFragment<FragmentFeedbackDocBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
         binding.vm = viewModel
     }
 
-    private fun observeEvent() {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 0) {
+            if (resultCode == Activity.RESULT_OK) {
+                val selectedImageUri = data!!.data!!
+                viewModel.feedbackModel.value!!.imageFile = copyStreamToFile(context!!, selectedImageUri)
+                Glide.with(feedback_doc_image_imv)
+                    .load(selectedImageUri)
+                    .into(feedback_doc_image_imv)
+            }
+        }
+    }
+
+    override fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
 
         viewModel.summaryErrorEvent.observe(this, Observer { feedback_doc_summary_edit_lay.error = it })
@@ -70,19 +81,6 @@ class FeedbackDocFragment: BaseLocationFragment<FragmentFeedbackDocBinding>() {
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(
             Intent.createChooser(intent, "Select file to upload "), 0)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 0) {
-            if (resultCode == Activity.RESULT_OK) {
-                val selectedImageUri = data!!.data!!
-                viewModel.feedbackModel.value!!.imageFile = copyStreamToFile(context!!, selectedImageUri)
-                Glide.with(feedback_doc_image_imv)
-                    .load(selectedImageUri)
-                    .into(feedback_doc_image_imv)
-            }
-        }
     }
 
     private fun backToList() {

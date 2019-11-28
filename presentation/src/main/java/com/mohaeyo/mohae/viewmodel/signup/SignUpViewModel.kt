@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.signup
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
@@ -9,6 +10,7 @@ import com.mohaeyo.domain.entity.UserEntity
 import com.mohaeyo.domain.usecase.SignUpUseCase
 import com.mohaeyo.mohae.base.BaseLocationViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
+import com.mohaeyo.mohae.isNotValueBlank
 import com.mohaeyo.mohae.isValueBlank
 import com.mohaeyo.mohae.model.MapMakerModel
 import io.reactivex.subscribers.DisposableSubscriber
@@ -23,10 +25,10 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
     val addressText = MutableLiveData<String>().apply { value = "거주 지역을 선택해주세요"}
 
     val nextBtnClickable = MediatorLiveData<Boolean>().apply {
-        addSource(usernameText) { value = !usernameText.isValueBlank() && !idText.isValueBlank() && !passwordText.isValueBlank() && !passwordCheckText.isValueBlank() }
-        addSource(idText) { value = !usernameText.isValueBlank() && !idText.isValueBlank() && !passwordText.isValueBlank() && !passwordCheckText.isValueBlank() }
-        addSource(passwordText) { value = !usernameText.isValueBlank() && !idText.isValueBlank() && !passwordText.isValueBlank() && !passwordCheckText.isValueBlank() }
-        addSource(passwordCheckText) { value =  !usernameText.isValueBlank() && !idText.isValueBlank() && !passwordText.isValueBlank() && !passwordCheckText.isValueBlank() }
+        addSource(usernameText) { value = checkFullText() }
+        addSource(idText) { value = checkFullText() }
+        addSource(passwordText) { value = checkFullText() }
+        addSource(passwordCheckText) { value =  checkFullText() }
     }
 
     val completeBtnClickable = MediatorLiveData<Boolean>().apply {
@@ -41,6 +43,10 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
     val idErrorEvent = SingleLiveEvent<String>()
     val passwordErrorEvent = SingleLiveEvent<String>()
     val passwordCheckErrorEvent = SingleLiveEvent<String>()
+
+    override fun apply(event: Lifecycle.Event) {
+
+    }
 
     override fun updateAddressData(
         location: LatLng,
@@ -59,18 +65,11 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
         }
     }
 
-    private fun signUpSuccess() {
-        createToastEvent.value = "회원가입 되었습니다"
-        startSignInEvent.call()
-    }
+    fun clickBackToSignUp()
+            = startSignUpEvent.call()
 
-    private fun signUpFail(message: String) {
-        createToastEvent.value = message
-    }
-
-    fun clickBackToSignUp() { startSignUpEvent.call() }
-
-    fun clickBackToSignIn() { startSignInEvent.call() }
+    fun clickBackToSignIn()
+            = startSignInEvent.call()
 
     fun clickSignUpNext() {
         if (passwordText.value != passwordCheckText.value) {
@@ -82,14 +81,18 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
     }
 
     fun clickSignUpComplete() {
-        val user = UserEntity(
+        signUp(UserEntity(
             id = idText.value!!,
             password = passwordText.value!!,
             username = usernameText.value!!,
             imageFile = File(""),
             address = addressText.value!!,
             description = ""
-        )
+        ))
+        startSignInEvent.call()
+    }
+
+    private fun signUp(user: UserEntity) {
         signUpUseCase.execute(user, object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<TokenEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) signUpSuccess()
@@ -102,6 +105,18 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
                 createToastEvent.value = "오류가 발생했습니다"
             }
         })
+    }
+
+    private fun signUpSuccess() {
+        createToastEvent.value = "회원가입 되었습니다"
         startSignInEvent.call()
     }
+
+    private fun signUpFail(message: String) {
+        createToastEvent.value = message
+    }
+
+    private fun checkFullText(): Boolean
+            = usernameText.isNotValueBlank() && idText.isNotValueBlank()
+                && passwordText.isNotValueBlank() && passwordCheckText.isNotValueBlank()
 }

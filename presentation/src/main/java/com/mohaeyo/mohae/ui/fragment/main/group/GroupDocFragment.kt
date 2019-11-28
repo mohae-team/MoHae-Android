@@ -46,8 +46,6 @@ class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
         binding.vm = viewModel
     }
 
@@ -57,7 +55,7 @@ class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
         findNavController().navigate(R.id.action_groupDocFragment_to_groupListFragment)
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
 
         viewModel.errorEvent.observe(this, Observer {

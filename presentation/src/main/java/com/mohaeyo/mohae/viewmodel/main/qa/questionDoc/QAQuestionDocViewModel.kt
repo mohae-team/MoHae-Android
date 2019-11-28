@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.qa.questionDoc
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.QuestionEntity
@@ -23,6 +24,18 @@ class QAQuestionDocViewModel(
     val summaryErrorEvent = SingleLiveEvent<String>()
     val descriptionErrorEvent = SingleLiveEvent<String>()
     val setImageEvent = SingleLiveEvent<Unit>()
+
+    override fun apply(event: Lifecycle.Event) {
+
+    }
+
+    fun clickSetImage() {
+        setImageEvent.call()
+    }
+
+    fun clickDocToList() {
+        startDocToListEvent.call()
+    }
 
     fun clickPostQuestion() {
         createQuestionUseCase.execute(questionMapper.mapFrom(questionModel.value!!), object: DisposableSubscriber<Pair<QuestionEntity, ErrorHandlerEntity>>() {
@@ -48,11 +61,5 @@ class QAQuestionDocViewModel(
 
     private fun createFail(message: String, question: QuestionModel) {
         createToastEvent.value = message
-    }
-
-    fun clickSetImage() = setImageEvent.call()
-
-    fun clickDocToList() {
-        startDocToListEvent.call()
     }
 }

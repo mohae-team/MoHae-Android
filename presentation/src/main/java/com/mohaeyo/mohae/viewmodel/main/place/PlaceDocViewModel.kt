@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.place
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import com.mohaeyo.domain.base.ErrorHandlerEntity
@@ -28,12 +29,11 @@ class PlaceDocViewModel(
 
     val placeNameErrorEvent = SingleLiveEvent<String>()
     val placeDescriptionErrorEvent = SingleLiveEvent<String>()
+    val startDocToListEvent = SingleLiveEvent<Unit>()
 
-    val mapPlaceModelToEntity: (PlaceModel) -> PlaceEntity
-            = { placeMapper.mapModelToEntity(it) }
+    override fun apply(event: Lifecycle.Event) {
 
-    val mapPlaceEntityToModel: (PlaceEntity) -> PlaceModel
-            = { placeMapper.mapFrom(it) }
+    }
 
     override fun updateAddressData(location: LatLng, addressTitle: String, addressSnippet: String, isSuccess: Boolean) {
         if (isSuccess) {
@@ -48,12 +48,31 @@ class PlaceDocViewModel(
         }
     }
 
-    val startDocToListEvent = SingleLiveEvent<Unit>()
+    fun clickPostPlace() {
+        when {
+            placeName.value.isNullOrBlank() ->
+                placeNameErrorEvent.value = "이름을 정해주세요"
+            placeDescription.value.isNullOrBlank() ->
+                placeDescriptionErrorEvent.value = "설명을 적어주세요"
+            else ->
+                postPlaceInfo(PlaceModel(
+                    name = placeName.value!!,
+                    location = placeLocation.value!!,
+                    description = placeDescription.value!!,
+                    likeCount = 0,
+                    isLike = false
+                ))
+        }
+    }
+
+    fun clickDocToList() {
+        startDocToListEvent.call()
+    }
 
     private fun getPlaceInfo(location: String)
             = getPlaceInfoUseCase.execute(location, object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
         override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
-            if (t.second.isSuccess) getSuccess(mapPlaceEntityToModel(t.first))
+            if (t.second.isSuccess) getSuccess(placeMapper.mapFrom(t.first))
             else getFail(t.second.message)
         }
 
@@ -77,9 +96,9 @@ class PlaceDocViewModel(
     }
 
     private fun postPlaceInfo(place: PlaceModel)
-            = postPlaceInfoUseCase.execute(mapPlaceModelToEntity(place), object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
+            = postPlaceInfoUseCase.execute(placeMapper.mapModelToEntity(place), object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
         override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
-            if (t.second.isSuccess) postSuccess(mapPlaceEntityToModel(t.first))
+            if (t.second.isSuccess) postSuccess(placeMapper.mapFrom(t.first))
             else postFail(t.second.message)
         }
 
@@ -101,22 +120,5 @@ class PlaceDocViewModel(
 
     private fun postFail(message: String) {
         createToastEvent.value = message
-    }
-
-    fun clickPostPlace() =
-        when {
-            placeName.value.isNullOrBlank() -> placeNameErrorEvent.value = "이름을 정해주세요"
-            placeDescription.value.isNullOrBlank() -> placeDescriptionErrorEvent.value = "설명을 적어주세요"
-            else -> postPlaceInfo(PlaceModel(
-                name = placeName.value!!,
-                location = placeLocation.value!!,
-                description = placeDescription.value!!,
-                likeCount = 0,
-                isLike = false
-            ))
-        }
-
-    fun clickDocToList() {
-        startDocToListEvent.call()
     }
 }

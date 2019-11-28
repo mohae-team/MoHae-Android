@@ -1,6 +1,7 @@
 package com.mohaeyo.mohae.viewmodel.main.place
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import com.mohaeyo.domain.base.ErrorHandlerEntity
@@ -30,8 +31,9 @@ class PlaceSearchViewModel(
 
     val startSearchToDocEvent = SingleLiveEvent<Unit>()
 
-    val mapPlaceEntityToModel: (PlaceEntity) -> PlaceModel
-            = { placeMapper.mapFrom(it) }
+    override fun apply(event: Lifecycle.Event) {
+
+    }
 
     override fun updateAddressData(location: LatLng, addressTitle: String, addressSnippet: String, isSuccess: Boolean) {
         if (isSuccess) {
@@ -49,10 +51,19 @@ class PlaceSearchViewModel(
         }
     }
 
+    fun clickSearchToDoc() {
+        startSearchToDocEvent.call()
+    }
+
+    fun clickLike() {
+        if (placeIsLike.value!!) disLikePlaceInfo()
+        else likePlaceInfo()
+    }
+
     private fun getPlaceInfo(location: String)
             = getPlaceInfoUseCase.execute(location, object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
         override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
-            if (t.second.isSuccess) getSuccess(mapPlaceEntityToModel(t.first))
+            if (t.second.isSuccess) getSuccess(placeMapper.mapFrom(t.first))
             else getFail(t.second.message)
         }
 
@@ -131,14 +142,5 @@ class PlaceSearchViewModel(
 
     private fun disLikeFail(message: String) {
         createToastEvent.value = message
-    }
-
-    fun clickSearchToDoc() {
-        startSearchToDocEvent.call()
-    }
-
-    fun clickLike() {
-        if (placeIsLike.value!!) disLikePlaceInfo()
-        else likePlaceInfo()
     }
 }

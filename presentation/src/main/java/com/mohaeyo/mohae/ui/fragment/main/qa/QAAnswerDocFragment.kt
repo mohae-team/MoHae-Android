@@ -22,7 +22,7 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
     @Inject
     lateinit var factory: QAAnswerDocViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAAnswerDocViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAAnswerDocViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_qa_answer_doc
@@ -38,13 +38,12 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
-        getArgQuestionItem()
         binding.vm = viewModel
+
+        getArgQuestionItem()
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
 
         viewModel.answerErrorEvent.observe(this, Observer { qa_answer_doc_answer_edit_lay.error = it })

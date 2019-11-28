@@ -23,22 +23,20 @@ class GroupListFragment: EndPointDataBindingFragment<FragmentGroupListBinding>()
     @Inject
     lateinit var factory: GroupListViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupListViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupListViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_group_list
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
         binding.vm = viewModel
 
         binding.groupList.layoutManager = LinearLayoutManager(context)
         binding.groupList.adapter = GroupListAdapter(viewModel)
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startListToDocEvent.observe(this, Observer {
             group_list_add_fab.doCommonAnimation(R.drawable.add_to_check)
             group_list_back_fab.doBackAnimation(true)
@@ -54,9 +52,7 @@ class GroupListFragment: EndPointDataBindingFragment<FragmentGroupListBinding>()
 
     private fun getGroupItemBundle(groupModel: GroupModel): Bundle {
         val bundle = Bundle()
-
         with(groupModel) { bundle.putInt("id", id) }
-
         return bundle
     }
 }

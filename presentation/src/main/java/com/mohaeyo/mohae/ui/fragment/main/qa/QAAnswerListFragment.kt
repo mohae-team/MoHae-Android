@@ -24,20 +24,19 @@ class QAAnswerListFragment: DataBindingFragment<FragmentQaAnswerListBinding>() {
     @Inject
     lateinit var factory: QAAnswerListViewModelFactory
 
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAAnswerListViewModel::class.java) }
+    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAAnswerListViewModel::class.java) }
 
     override val layoutId: Int
         get() = R.layout.fragment_qa_answer_list
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        getArgQuestionItem()
-        observeEvent()
         binding.vm = viewModel
 
         binding.qaAnswerList.layoutManager = LinearLayoutManager(context)
         binding.qaAnswerList.adapter = QAAnswerListAdapter(viewModel)
+
+        getArgQuestionItem()
     }
 
     override fun onAttach(context: Context) {
@@ -49,13 +48,7 @@ class QAAnswerListFragment: DataBindingFragment<FragmentQaAnswerListBinding>() {
             })
     }
 
-    private fun backToDetail() {
-        qa_answer_list_answer_doc_fab.doCommonAnimation(R.drawable.write_answer_to_answers)
-        findNavController().navigate(R.id.action_QAAnswerListFragment_to_QAQuestionDetailFragment,
-            getQuestionItemBundle(viewModel.selectedQuestionId.value!!))
-    }
-
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startListToDocEvent.observe(this, Observer {
             qa_answer_list_answer_doc_fab.doCommonAnimation(R.drawable.write_answer_to_check)
             findNavController().navigate(R.id.action_QAAnswerListFragment_to_QAAnswerDocFragment,
@@ -65,16 +58,19 @@ class QAAnswerListFragment: DataBindingFragment<FragmentQaAnswerListBinding>() {
         viewModel.startListToDetailEvent.observe(this, Observer { backToDetail() })
     }
 
+    private fun backToDetail() {
+        qa_answer_list_answer_doc_fab.doCommonAnimation(R.drawable.write_answer_to_answers)
+        findNavController().navigate(R.id.action_QAAnswerListFragment_to_QAQuestionDetailFragment,
+            getQuestionItemBundle(viewModel.selectedQuestionId.value!!))
+    }
+
     private fun getArgQuestionItem() {
         viewModel.selectedQuestionId.value = arguments!!.getInt("id")
-
-        viewModel.getAnswerList()
     }
 
     private fun getQuestionItemBundle(questionId: Int): Bundle {
         val bundle = Bundle()
         bundle.putInt("id", questionId)
-
         return bundle
     }
 }
