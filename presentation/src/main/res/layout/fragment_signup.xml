@@ -175,6 +175,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginHorizontal="24dp"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:layout_marginTop="36dp"

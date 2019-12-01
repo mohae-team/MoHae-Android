@@ -2,6 +2,7 @@ package com.mohaeyo.mohae.ui.fragment.main.group
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -41,6 +42,12 @@ class GroupListFragment: EndPointDataBindingFragment<FragmentGroupListBinding>()
             group_list_add_fab.doCommonAnimation(R.drawable.add_to_check)
             group_list_back_fab.doBackAnimation(true)
             findNavController().navigate(R.id.action_groupListFragment_to_groupDocFragment)
+        })
+
+        viewModel.listAnimationEvent.observe(this, Observer {
+            binding.groupList.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_slide_from_bottom)
+            binding.groupList.scheduleLayoutAnimation()
         })
 
         viewModel.startListToDetailEvent.observe(this, Observer {

@@ -21,6 +21,7 @@ class QAQuestionListViewModel(
 
     val startListToDetailEvent = SingleLiveEvent<QuestionModel>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
+    val listAnimationEvent = SingleLiveEvent<Unit>()
 
     init {
         getQuestionList()
@@ -59,10 +60,12 @@ class QAQuestionListViewModel(
 
     private fun getListSuccess(questionList: List<QuestionModel>) {
         this.questionList.value = ArrayList(questionList)
+        listAnimationEvent.call()
     }
 
     private fun getListFail(message: String, questionList: List<QuestionModel>) {
         createToastEvent.value = message
         this.questionList.value = ArrayList(questionList)
+        listAnimationEvent.call()
     }
 }

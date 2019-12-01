@@ -24,6 +24,7 @@ class GroupListViewModel(
 
     val startListToDetailEvent = SingleLiveEvent<GroupModel>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
+    val listAnimationEvent = SingleLiveEvent<Unit>()
 
     override fun apply(event: Lifecycle.Event) {
         when(event) {
@@ -58,10 +59,12 @@ class GroupListViewModel(
 
     private fun getListSuccess(groupList: List<GroupModel>) {
         this.groupList.value = ArrayList(groupList)
+        listAnimationEvent.call()
     }
 
     private fun getListFail(message: String, groupList: List<GroupModel>) {
         createToastEvent.value = message
         this.groupList.value = ArrayList(groupList)
+        listAnimationEvent.call()
     }
 }

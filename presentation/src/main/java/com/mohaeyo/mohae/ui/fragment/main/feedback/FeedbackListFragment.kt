@@ -2,6 +2,7 @@ package com.mohaeyo.mohae.ui.fragment.main.feedback
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,12 @@ class FeedbackListFragment: EndPointDataBindingFragment<FragmentFeedbackListBind
             feedback_list_add_fab.doCommonAnimation(R.drawable.add_to_check)
             feedback_list_back_fab.doBackAnimation(true)
             findNavController().navigate(R.id.action_feedbackListFragment_to_feedbackDocFragment)
+        })
+
+        viewModel.listAnimationEvent.observe(this, Observer {
+            binding.feedbackList.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_slide_from_bottom)
+            binding.feedbackList.scheduleLayoutAnimation()
         })
 
         viewModel.startListToDetailEvent.observe(this, Observer {

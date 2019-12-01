@@ -11,13 +11,11 @@
             tools:layout="@layout/fragment_feedback_list">
         <action
                 android:id="@+id/action_feedbackListFragment_to_feedbackDetailFragment"
-                app:popUpTo="@id/feedbackListFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/feedbackDetailFragment"/>
         <action
                 android:id="@+id/action_feedbackListFragment_to_feedbackDocFragment"
-                app:popUpTo="@id/feedbackListFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/feedbackDocFragment"/>
@@ -28,7 +26,6 @@
             tools:layout="@layout/fragment_feedback_doc">
         <action
                 android:id="@+id/action_feedbackDocFragment_to_feedbackListFragment"
-                app:popUpTo="@id/feedbackDocFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/feedbackListFragment"/>
@@ -39,7 +36,6 @@
             tools:layout="@layout/fragment_feedback_detail">
         <action
                 android:id="@+id/action_feedbackDetailFragment_to_feedbackListFragment"
-                app:popUpTo="@id/feedbackDetailFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/feedbackListFragment"/>

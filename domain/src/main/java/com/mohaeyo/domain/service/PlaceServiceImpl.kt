@@ -48,6 +48,7 @@ class PlaceServiceImpl(private val placeRepository: PlaceRepository): PlaceServi
             when(it.code()) {
                 404 -> "아직 등록되지 않은 장소입니다"
                 403 -> "권한이 없습니다"
+                409 -> "이미 좋아요가 반영되었습니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"
             }, isSuccess = false)
@@ -63,6 +64,7 @@ class PlaceServiceImpl(private val placeRepository: PlaceRepository): PlaceServi
             when(it.code()) {
                 404 -> "아직 등록되지 않은 장소입니다"
                 403 -> "권한이 없습니다"
+                409 -> "이미 좋아요가 반영되었습니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"
             }, isSuccess = false)

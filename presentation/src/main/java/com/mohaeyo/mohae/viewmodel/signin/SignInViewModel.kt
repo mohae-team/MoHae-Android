@@ -11,9 +11,13 @@ import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.isNotValueBlank
 import com.mohaeyo.mohae.isValueBlank
+import com.mohaeyo.mohae.mapper.AuthMapper
+import com.mohaeyo.mohae.model.AuthModel
 import io.reactivex.subscribers.DisposableSubscriber
 
-class SignInViewModel(val signInUseCase: SignInUseCase): BaseViewModel() {
+class SignInViewModel(
+    private val signInUseCase: SignInUseCase,
+    private val authMapper: AuthMapper): BaseViewModel() {
 
     val idText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
@@ -32,9 +36,9 @@ class SignInViewModel(val signInUseCase: SignInUseCase): BaseViewModel() {
     }
 
     fun clickLogin() {
-        val auth = AuthEntity(idText.value!!, passwordText.value!!)
+        val auth = AuthModel(idText.value!!, passwordText.value!!)
 
-        signInUseCase.execute(auth, object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
+        signInUseCase.execute(authMapper.mapFrom(auth), object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<TokenEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) loginSuccess()
                 else loginFail(t.second.message)

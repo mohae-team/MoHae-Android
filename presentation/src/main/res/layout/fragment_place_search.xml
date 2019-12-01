@@ -58,7 +58,7 @@
                                 android:ellipsize="end"
                                 android:singleLine="true"
                                 android:layout_margin="12dp"
-                                android:text="@{vm.placeName}"
+                                android:text="@{vm.placeModel.name}"
                                 android:id="@+id/place_search_name_card_name_tv"
                                 android:textSize="12sp"
                                 android:textColor="@color/colorNightBlack"
@@ -76,7 +76,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 android:id="@+id/place_search_name_card_like_check"
                                 android:button="@null"
-                                android:checked="@{vm.placeIsLike}"
+                                android:checked="@{vm.placeModel.like}"
                                 android:onClick="@{() -> vm.clickLike()}"
                                 android:background="@drawable/ic_favorite_border_black"
                                 android:stateListAnimator="@animator/animator_scale"/>
@@ -88,7 +88,7 @@
                                 android:maxLines="1"
                                 android:maxLength="6"
                                 android:layout_margin="12dp"
-                                android:text="@{String.valueOf(vm.placeLikeCount)}"
+                                android:text="@{String.valueOf(vm.placeModel.likeCount)}"
                                 android:id="@+id/place_search_name_card_like_tv"
                                 android:textSize="12sp"
                                 android:textColor="@color/colorNightBlack"
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                            android:text="@{vm.placeDescription}"
+                            android:text="@{vm.placeModel.description}"
                             android:id="@+id/place_search_description_card_description_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

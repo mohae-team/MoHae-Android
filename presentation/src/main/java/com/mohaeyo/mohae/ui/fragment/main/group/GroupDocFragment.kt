@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.size
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -56,7 +57,9 @@ class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
     }
 
     override fun observeEvent() {
-        viewModel.startDocToListEvent.observe(this, Observer { backToList() })
+        viewModel.startDocToListEvent.observe(this, Observer {
+            requireActivity().onBackPressed()
+        })
 
         viewModel.errorEvent.observe(this, Observer {
             group_doc_title_edit_lay.error = it

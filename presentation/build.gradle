@@ -55,7 +55,7 @@ dependencies {
     implementation 'android.arch.persistence.room:rxjava2:1.1.1'
     kapt "android.arch.persistence.room:compiler:1.1.1"
     // okHttp3, logger
-    implementation 'com.squareup.okhttp3:okhttp:4.0.0-RC1'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0-RC1'
     // rxJava2
     implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
@@ -72,10 +72,10 @@ dependencies {
     // anko
     implementation 'org.jetbrains.anko:anko:0.10.8'
     // glide
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
     // lottie
-    implementation 'com.airbnb.android:lottie:3.0.6'
+    implementation 'com.airbnb.android:lottie:3.0.7'
 
     // navigation ui
     implementation "androidx.navigation:navigation-fragment-ktx:2.1.0"

@@ -71,6 +71,7 @@
                     android:layout_height="0dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginHorizontal="24dp"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:layout_marginTop="16dp"

@@ -2,6 +2,7 @@ package com.mohaeyo.mohae.ui.fragment.main.qa
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -41,6 +42,12 @@ class QAQuestionListFragment: EndPointDataBindingFragment<FragmentQaQuestionList
             qa_question_list_add_fab.doCommonAnimation(R.drawable.add_to_check)
             qa_question_list_back_fab.doBackAnimation(true)
             findNavController().navigate(R.id.action_QAQuestionListFragment_to_QAQuestionDocFragment)
+        })
+
+        viewModel.listAnimationEvent.observe(this, Observer {
+            binding.qaQuestionList.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_slide_from_bottom)
+            binding.qaQuestionList.scheduleLayoutAnimation()
         })
 
         viewModel.startListToDetailEvent.observe(this, Observer {

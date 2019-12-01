@@ -22,10 +22,9 @@ class PlaceDocViewModel(
     private val postPlaceInfoUseCase: PostPlaceInfoUseCase,
     private val placeMapper: PlaceMapper
 ): BaseLocationViewModel() {
-
-    val placeName = MutableLiveData<String>()
-    val placeDescription = MutableLiveData<String>()
-    val placeLocation = MutableLiveData<String>()
+    val placeModel = MutableLiveData<PlaceModel>().apply {
+        value = PlaceModel()
+    }
 
     val placeNameErrorEvent = SingleLiveEvent<String>()
     val placeDescriptionErrorEvent = SingleLiveEvent<String>()
@@ -39,31 +38,18 @@ class PlaceDocViewModel(
         if (isSuccess) {
             drawMarkerEvent.value =
                 MapMakerModel(title = addressTitle, snippet = addressSnippet, location = location)
-            placeLocation.value = addressSnippet
+            placeModel.value!!.location = addressSnippet
             getPlaceInfo(addressSnippet)
         } else {
             drawMarkerEvent.value =
                 MapMakerModel(location = location, title = "다른 지역을 선택해주세요.", snippet = "다른 지역을 선택해주세요.")
-            placeLocation.value = "다른 지역을 선택해주세요."
+            placeModel.value!!.location = ""
         }
     }
 
-    fun clickPostPlace() {
-        when {
-            placeName.value.isNullOrBlank() ->
-                placeNameErrorEvent.value = "이름을 정해주세요"
-            placeDescription.value.isNullOrBlank() ->
-                placeDescriptionErrorEvent.value = "설명을 적어주세요"
-            else ->
-                postPlaceInfo(PlaceModel(
-                    name = placeName.value!!,
-                    location = placeLocation.value!!,
-                    description = placeDescription.value!!,
-                    likeCount = 0,
-                    isLike = false
-                ))
-        }
-    }
+    fun clickPostPlace()
+            = checkDocText()
+
 
     fun clickDocToList() {
         startDocToListEvent.call()
@@ -86,12 +72,17 @@ class PlaceDocViewModel(
     })
 
     private fun getSuccess(place: PlaceModel) {
-        placeName.value = place.name
+        placeModel.value = PlaceModel(
+            name = place.name
+        )
     }
 
     private fun getFail(message: String) {
-        placeName.value = ""
-        placeDescription.value = ""
+        placeModel.value = PlaceModel(
+            name = "",
+            location = ""
+        )
+
         createToastEvent.value = message
     }
 
@@ -112,13 +103,28 @@ class PlaceDocViewModel(
     })
 
     private fun postSuccess(place: PlaceModel) {
-        placeName.value = place.name
-        placeDescription.value = place.description
+        placeModel.value = PlaceModel(
+            name = place.name,
+            description = place.description
+        )
 
         startDocToListEvent.call()
     }
 
     private fun postFail(message: String) {
         createToastEvent.value = message
+    }
+
+    private fun checkDocText() {
+        with(placeModel.value!!) {
+            when {
+                name.isBlank() ->
+                    placeNameErrorEvent.value = "이름을 정해주세요"
+                description.isBlank() ->
+                    placeDescriptionErrorEvent.value = "설명을 적어주세요"
+                else ->
+                    postPlaceInfo(this)
+            }
+        }
     }
 }

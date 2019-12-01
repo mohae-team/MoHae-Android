@@ -35,8 +35,7 @@ class MyPageProfileFragment: EndPointDataBindingFragment<FragmentMypageProfileBi
     }
 
     override fun observeEvent() {
-        viewModel.startProfileData.observe(this, Observer {
-            binding.setVariable(BR.profileModel, it)
+        viewModel.userModel.observe(this, Observer {
             Glide.with(mypage_profile_imv)
                 .load(it.imageFile.toString())
                 .apply(RequestOptions.circleCropTransform())

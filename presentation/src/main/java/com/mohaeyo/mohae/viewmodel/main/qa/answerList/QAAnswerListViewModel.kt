@@ -23,6 +23,7 @@ class QAAnswerListViewModel(
 
     val startListToDetailEvent = SingleLiveEvent<Unit>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
+    val listAnimationEvent = SingleLiveEvent<Unit>()
 
     override fun apply(event: Lifecycle.Event) {
         when(event) {
@@ -57,10 +58,12 @@ class QAAnswerListViewModel(
 
     private fun getListSuccess(answerList: List<AnswerModel>) {
         this.answerList.value = ArrayList(answerList)
+        listAnimationEvent.call()
     }
 
     private fun getListFail(message: String, answerList: List<AnswerModel>) {
         this.answerList.value = ArrayList(answerList)
         createToastEvent.value = message
+        listAnimationEvent.call()
     }
 }

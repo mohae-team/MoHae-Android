@@ -8,8 +8,9 @@ import com.mohaeyo.domain.service.AuthService
 import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 
-class SignInUseCase(val service: AuthService,
-                    composite: CompositeDisposable): UseCase<Pair<TokenEntity, ErrorHandlerEntity>, AuthEntity>(composite) {
+class SignInUseCase(
+    private val service: AuthService,
+    composite: CompositeDisposable): UseCase<Pair<TokenEntity, ErrorHandlerEntity>, AuthEntity>(composite) {
 
     override fun createFlowable(auth: AuthEntity): Flowable<Pair<TokenEntity, ErrorHandlerEntity>>
             = service.signIn(auth)

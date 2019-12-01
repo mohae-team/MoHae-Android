@@ -8,6 +8,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/group_card"
             app:cardCornerRadius="14dp"
             app:cardElevation="14dp"

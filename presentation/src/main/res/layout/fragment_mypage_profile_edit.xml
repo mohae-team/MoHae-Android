@@ -63,7 +63,7 @@
                 android:maxLines="1"
                 android:id="@+id/mypage_profile_edit_name_edit"
                 android:textSize="20sp"
-                android:text="@={vm.nameText}"
+                android:text="@={vm.userModel.username}"
                 android:textColor="@color/colorNightBlack"
                 android:fontFamily="@font/nanum_square_otf_bold"
                 android:background="@null"
@@ -89,7 +89,7 @@
                 android:maxLines="1"
                 android:id="@+id/mypage_profile_edit_address_tv"
                 android:textSize="14sp"
-                android:text="@={vm.addressText}"
+                android:text="@={vm.userModel.address}"
                 android:textColor="@color/colorMypage"
                 android:fontFamily="@font/nanum_square_otf_regular"
                 android:layout_width="wrap_content"
@@ -162,7 +162,7 @@
                         android:textColorHint="@color/colorDefault"
                         android:maxLines="5"
                         android:textSize="14sp"
-                        android:text="@={vm.descriptionText}"
+                        android:text="@={vm.userModel.description}"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"/>
             </com.google.android.material.textfield.TextInputLayout>

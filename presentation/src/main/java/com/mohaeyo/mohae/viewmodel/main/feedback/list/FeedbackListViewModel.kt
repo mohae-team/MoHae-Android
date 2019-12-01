@@ -21,6 +21,7 @@ class FeedbackListViewModel(
 
     val startListToDetailEvent = SingleLiveEvent<FeedbackModel>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
+    val listAnimationEvent = SingleLiveEvent<Unit>()
 
     override fun apply(event: Lifecycle.Event) {
         when(event) {
@@ -55,10 +56,12 @@ class FeedbackListViewModel(
 
     private fun getListSuccess(feedbackList: List<FeedbackModel>) {
         this.feedbackList.value = ArrayList(feedbackList)
+        listAnimationEvent.call()
     }
 
     private fun getListFail(message: String, feedbackList: List<FeedbackModel>) {
         createToastEvent.value = message
         this.feedbackList.value = ArrayList(feedbackList)
+        listAnimationEvent.call()
     }
 }

@@ -51,6 +51,7 @@ class FeedbackServiceImpl(
             feedback to ErrorHandlerEntity(message =
             when(it.code()) {
                 403 -> "권한이 없습니다"
+                404 -> "정보가 입력되지 않은 곳입니다"
                 500 -> "서버 에러가 발생했습니다"
                 else -> "네트워크 상태를 확인해주세요"
             }, isSuccess = false)

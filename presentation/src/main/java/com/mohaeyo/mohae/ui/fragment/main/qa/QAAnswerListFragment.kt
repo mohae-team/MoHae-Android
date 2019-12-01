@@ -3,6 +3,7 @@ package com.mohaeyo.mohae.ui.fragment.main.qa
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -53,6 +54,12 @@ class QAAnswerListFragment: DataBindingFragment<FragmentQaAnswerListBinding>() {
             qa_answer_list_answer_doc_fab.doCommonAnimation(R.drawable.write_answer_to_check)
             findNavController().navigate(R.id.action_QAAnswerListFragment_to_QAAnswerDocFragment,
                 getQuestionItemBundle(viewModel.selectedQuestionId.value!!))
+        })
+
+        viewModel.listAnimationEvent.observe(this, Observer {
+            binding.qaAnswerList.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_slide_from_bottom)
+            binding.qaAnswerList.scheduleLayoutAnimation()
         })
 
         viewModel.startListToDetailEvent.observe(this, Observer { backToDetail() })

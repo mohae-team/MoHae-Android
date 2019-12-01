@@ -12,11 +12,15 @@ import com.mohaeyo.mohae.base.BaseLocationViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.isNotValueBlank
 import com.mohaeyo.mohae.isValueBlank
+import com.mohaeyo.mohae.mapper.UserMapper
 import com.mohaeyo.mohae.model.MapMakerModel
+import com.mohaeyo.mohae.model.UserModel
 import io.reactivex.subscribers.DisposableSubscriber
 import java.io.File
 
-class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel() {
+class SignUpViewModel(
+    private val signUpUseCase: SignUpUseCase,
+    private val userMapper: UserMapper): BaseLocationViewModel() {
 
     val usernameText = MutableLiveData<String>()
     val idText = MutableLiveData<String>()
@@ -81,7 +85,7 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
     }
 
     fun clickSignUpComplete() {
-        signUp(UserEntity(
+        signUp(UserModel(
             id = idText.value!!,
             password = passwordText.value!!,
             username = usernameText.value!!,
@@ -92,8 +96,8 @@ class SignUpViewModel(val signUpUseCase: SignUpUseCase): BaseLocationViewModel()
         startSignInEvent.call()
     }
 
-    private fun signUp(user: UserEntity) {
-        signUpUseCase.execute(user, object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
+    private fun signUp(user: UserModel) {
+        signUpUseCase.execute(userMapper.mapFrom(user), object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<TokenEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) signUpSuccess()
                 else signUpFail(t.second.message)

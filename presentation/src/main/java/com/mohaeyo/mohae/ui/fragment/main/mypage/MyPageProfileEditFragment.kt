@@ -63,7 +63,7 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
 
         viewModel.setProfileImageEvent.observe(this, Observer {
             Glide.with(mypage_profile_edit_imv)
-                .load(viewModel.imageFile.value!!.toString())
+                .load(viewModel.userModel.value!!.imageFile.toString())
                 .apply(RequestOptions.circleCropTransform())
                 .into(mypage_profile_edit_imv)
         })
@@ -85,7 +85,7 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
         if(requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 val selectedImageUri = data!!.data!!
-                viewModel.imageFile.value = copyStreamToFile(context!!, selectedImageUri)
+                viewModel.userModel.value!!.imageFile = copyStreamToFile(context!!, selectedImageUri)
                 Glide.with(mypage_profile_edit_imv)
                     .load(selectedImageUri)
                     .apply(RequestOptions.circleCropTransform())

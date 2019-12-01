@@ -14,6 +14,7 @@ import com.mohaeyo.domain.service.AuthServiceImpl
 import com.mohaeyo.domain.usecase.SignInUseCase
 import com.mohaeyo.domain.usecase.SignUpUseCase
 import com.mohaeyo.mohae.di.scope.FragmentScope
+import com.mohaeyo.mohae.mapper.UserMapper
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -23,8 +24,8 @@ import io.reactivex.disposables.CompositeDisposable
 class SignUpModule {
     @FragmentScope
     @Provides
-    fun provideViewModelFactory(signUpUseCase: SignUpUseCase): SignUpViewModelFactory
-            = SignUpViewModelFactory(signUpUseCase)
+    fun provideViewModelFactory(signUpUseCase: SignUpUseCase, userMapper: UserMapper): SignUpViewModelFactory
+            = SignUpViewModelFactory(signUpUseCase, userMapper)
 
     @FragmentScope
     @Provides
@@ -55,6 +56,10 @@ class SignUpModule {
     @FragmentScope
     @Provides
     fun provideTokenDataMapper(): TokenDataMapper = TokenDataMapper()
+
+    @FragmentScope
+    @Provides
+    fun provideUserMapper(): UserMapper = UserMapper()
 
     @FragmentScope
     @Provides

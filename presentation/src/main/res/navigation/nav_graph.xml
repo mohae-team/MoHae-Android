@@ -44,12 +44,12 @@
         <action
                 android:id="@+id/action_loginFragment_to_main_fragment"
                 app:popUpTo="@id/loginFragment"
-                app:enterAnim="@anim/fadein"
+                app:enterAnim="@anim/slide_from_right"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/mainFragment"/>
         <action android:id="@+id/action_loginFragment_to_signUpFragment"
                 app:popUpTo="@id/loginFragment"
-                app:enterAnim="@anim/fadein"
+                app:enterAnim="@anim/slide_from_right"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/signUpFragment"/>
     </fragment>
@@ -60,12 +60,12 @@
         <action android:id="@+id/action_signUpFragment_to_loginFragment"
                 app:popUpTo="@id/signUpFragment"
                 app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
+                app:exitAnim="@anim/slide_from_left"
                 app:destination="@id/loginFragment"/>
         <action
                 android:id="@+id/action_signUpFragment_to_signUpAddressFragment"
                 app:popUpTo="@id/signUpFragment"
-                app:enterAnim="@anim/fadein"
+                app:enterAnim="@anim/slide_from_right"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/signUpAddressFragment" />
     </fragment>
@@ -78,12 +78,12 @@
                 android:id="@+id/action_signUpAddressFragment_to_signUpFragment"
                 app:popUpTo="@id/signUpAddressFragment"
                 app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
+                app:exitAnim="@anim/slide_from_left"
                 app:destination="@id/signUpFragment" />
         <action
                 android:id="@+id/action_signUpAddressFragment_to_loginFragment"
                 app:popUpTo="@id/signUpAddressFragment"
-                app:enterAnim="@anim/fadein"
+                app:enterAnim="@anim/slide_from_right"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/loginFragment" />
     </fragment>

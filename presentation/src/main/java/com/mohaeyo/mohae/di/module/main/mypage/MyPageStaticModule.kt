@@ -6,7 +6,6 @@ import com.mohaeyo.data.datasource.UserDataSource
 import com.mohaeyo.data.datasource.UserDataSourceImpl
 import com.mohaeyo.data.local.database.UserDatabase
 import com.mohaeyo.data.local.database.dao.UserDao
-import com.mohaeyo.data.local.pref.LocalStorage
 import com.mohaeyo.data.mapper.UserDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.UserRepositoryImpl
@@ -16,8 +15,7 @@ import com.mohaeyo.domain.service.UserServiceImpl
 import com.mohaeyo.domain.usecase.EditUserProfileUseCase
 import com.mohaeyo.domain.usecase.GetUserProfileUseCase
 import com.mohaeyo.mohae.di.scope.MainFragmentScope
-import com.mohaeyo.mohae.di.scope.MyPageFragmentScope
-import com.mohaeyo.mohae.mapper.ProfileMapper
+import com.mohaeyo.mohae.mapper.UserMapper
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -48,7 +46,7 @@ class MyPageStaticModule {
 
     @MainFragmentScope
     @Provides
-    fun provideProfileMapper(): ProfileMapper = ProfileMapper()
+    fun provideUserMapper(): UserMapper = UserMapper()
 
     @MainFragmentScope
     @Provides
