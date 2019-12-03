@@ -21,11 +21,8 @@ import kotlinx.android.synthetic.main.fragment_feedback_list.*
 import javax.inject.Inject
 
 class FeedbackListFragment: EndPointDataBindingFragment<FragmentFeedbackListBinding>() {
-
     @Inject
-    lateinit var factory: FeedbackListViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(FeedbackListViewModel::class.java) }
+    override lateinit var viewModel: FeedbackListViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_feedback_list

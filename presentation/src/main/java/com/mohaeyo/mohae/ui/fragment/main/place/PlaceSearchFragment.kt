@@ -18,11 +18,8 @@ import com.mohaeyo.mohae.base.EndPointLocationFragment
 import org.jetbrains.anko.support.v4.toast
 
 class PlaceSearchFragment: EndPointLocationFragment<FragmentPlaceSearchBinding>() {
-
     @Inject
-    lateinit var factory: PlaceSearchViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(PlaceSearchViewModel::class.java) }
+    override lateinit var viewModel: PlaceSearchViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_place_search

@@ -24,11 +24,6 @@
               android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackDocFragment"
               android:label="FeedbackDocFragment"
             tools:layout="@layout/fragment_feedback_doc">
-        <action
-                android:id="@+id/action_feedbackDocFragment_to_feedbackListFragment"
-                app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
-                app:destination="@id/feedbackListFragment"/>
     </fragment>
     <fragment android:id="@+id/feedbackDetailFragment"
               android:name="com.mohaeyo.mohae.ui.fragment.main.feedback.FeedbackDetailFragment"

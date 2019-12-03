@@ -73,14 +73,15 @@ class PlaceDocViewModel(
 
     private fun getSuccess(place: PlaceModel) {
         placeModel.value = PlaceModel(
-            name = place.name
+            name = place.name,
+            location = place.location
         )
     }
 
     private fun getFail(message: String) {
         placeModel.value = PlaceModel(
             name = "",
-            location = ""
+            location = placeModel.value!!.location
         )
 
         createToastEvent.value = message

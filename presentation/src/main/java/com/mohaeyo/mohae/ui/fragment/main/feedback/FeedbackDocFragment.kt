@@ -31,9 +31,7 @@ class FeedbackDocFragment: BaseLocationFragment<FragmentFeedbackDocBinding>() {
         get() = R.id.feedback_doc_search_map
 
     @Inject
-    lateinit var factory: FeedbackDocViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(FeedbackDocViewModel::class.java) }
+    override lateinit var viewModel: FeedbackDocViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_feedback_doc
@@ -86,6 +84,6 @@ class FeedbackDocFragment: BaseLocationFragment<FragmentFeedbackDocBinding>() {
     private fun backToList() {
         feedback_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
         feedback_doc_back_fab.doBackAnimation(false)
-        findNavController().navigate(R.id.action_feedbackDocFragment_to_feedbackListFragment)
+        parentFragment!!.parentFragment!!.findNavController().navigate(R.id.action_feedbackFragment_self)
     }
 }

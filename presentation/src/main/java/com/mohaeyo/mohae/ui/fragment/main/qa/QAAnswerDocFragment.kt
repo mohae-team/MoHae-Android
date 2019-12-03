@@ -17,12 +17,8 @@ import kotlinx.android.synthetic.main.fragment_qa_answer_doc.*
 import javax.inject.Inject
 
 class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
-
-
     @Inject
-    lateinit var factory: QAAnswerDocViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAAnswerDocViewModel::class.java) }
+    override lateinit var viewModel: QAAnswerDocViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_qa_answer_doc
@@ -51,7 +47,7 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
 
     private fun backToList() {
         qa_answer_doc_post_fab.doCommonAnimation(R.drawable.check_to_write_answer)
-        findNavController().navigate(R.id.action_QAAnswerDocFragment_to_QAAnswerListFragment,
+        parentFragment!!.parentFragment!!.findNavController().navigate(R.id.action_QAFragment_self,
             getQuestionIdBundle(viewModel.answerModel.value!!.questionId))
     }
 

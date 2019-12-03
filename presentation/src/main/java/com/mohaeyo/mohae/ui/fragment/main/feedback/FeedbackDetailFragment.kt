@@ -23,9 +23,7 @@ import javax.inject.Inject
 class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>() {
 
     @Inject
-    lateinit var factory: FeedbackDetailViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(FeedbackDetailViewModel::class.java) }
+    override lateinit var viewModel: FeedbackDetailViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_feedback_detail

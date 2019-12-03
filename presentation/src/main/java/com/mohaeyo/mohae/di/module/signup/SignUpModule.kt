@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.di.module.signup
 
+import androidx.lifecycle.ViewModelProviders
 import com.mohaeyo.data.datasource.AuthDataSource
 import com.mohaeyo.data.datasource.AuthDataSourceImpl
 import com.mohaeyo.data.local.pref.LocalStorage
@@ -15,6 +16,9 @@ import com.mohaeyo.domain.usecase.SignInUseCase
 import com.mohaeyo.domain.usecase.SignUpUseCase
 import com.mohaeyo.mohae.di.scope.FragmentScope
 import com.mohaeyo.mohae.mapper.UserMapper
+import com.mohaeyo.mohae.ui.fragment.signup.SignUpAddressFragment
+import com.mohaeyo.mohae.ui.fragment.signup.SignUpFragment
+import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -22,6 +26,14 @@ import io.reactivex.disposables.CompositeDisposable
 
 @Module
 class SignUpModule {
+    @FragmentScope
+    @Provides
+    fun provideViewModel(
+        viewModelFactory: SignUpViewModelFactory,
+        fragment: SignUpFragment
+    ): SignUpViewModel
+            = ViewModelProviders.of(fragment, viewModelFactory).get(SignUpViewModel::class.java)
+
     @FragmentScope
     @Provides
     fun provideViewModelFactory(signUpUseCase: SignUpUseCase, userMapper: UserMapper): SignUpViewModelFactory

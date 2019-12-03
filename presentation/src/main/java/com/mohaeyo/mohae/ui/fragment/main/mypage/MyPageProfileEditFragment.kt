@@ -24,6 +24,7 @@ import javax.inject.Inject
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mohaeyo.data.copyStreamToFile
+import org.jetbrains.anko.activityManager
 
 
 class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditBinding>() {
@@ -32,10 +33,7 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
         get() = R.id.mypage_profile_edit_search_map
 
     @Inject
-    lateinit var factory: MyPageProfileEditViewModelFactory
-
-    override val viewModel
-            by lazy { ViewModelProviders.of(this, factory).get(MyPageProfileEditViewModel::class.java) }
+    override lateinit var viewModel: MyPageProfileEditViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_mypage_profile_edit
@@ -70,7 +68,7 @@ class MyPageProfileEditFragment: BaseLocationFragment<FragmentMypageProfileEditB
     }
 
     private fun backToProfile()
-            = findNavController().navigate(R.id.action_myPageProfileEditFragment_to_myPageProfileFragment)
+            = parentFragment!!.parentFragment!!.findNavController().navigate(R.id.action_myPageFragment_self)
 
     private fun getProfileImage() {
         val intent = Intent()

@@ -30,9 +30,5 @@
               android:name="com.mohaeyo.mohae.ui.fragment.main.group.GroupDocFragment"
               android:label="GroupDocFragment"
             tools:layout="@layout/fragment_group_doc">
-        <action android:id="@+id/action_groupDocFragment_to_groupListFragment"
-                app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
-                app:destination="@id/groupListFragment"/>
     </fragment>
 </navigation>

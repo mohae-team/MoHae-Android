@@ -14,7 +14,9 @@ import io.reactivex.subscribers.DisposableSubscriber
 class MyPageProfileViewModel(
     private val getUserProfileUseCase: GetUserProfileUseCase,
     private val userMapper: UserMapper): BaseViewModel() {
-    val userModel = MutableLiveData<UserModel>()
+    val userModel = MutableLiveData<UserModel>().apply {
+        value = UserModel()
+    }
 
     val startProfileEditEvent = SingleLiveEvent<Unit>()
     val startLoginEvent = SingleLiveEvent<Unit>()

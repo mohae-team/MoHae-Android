@@ -22,11 +22,8 @@ import kotlinx.android.synthetic.main.fragment_group_detail.*
 import javax.inject.Inject
 
 class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
-
     @Inject
-    lateinit var factory: GroupDetailViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupDetailViewModel::class.java) }
+    override lateinit var viewModel: GroupDetailViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_group_detail

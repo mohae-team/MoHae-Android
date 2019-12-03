@@ -25,11 +25,8 @@ import kotlinx.android.synthetic.main.fragment_group_doc.*
 import javax.inject.Inject
 
 class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
-
     @Inject
-    lateinit var factory: GroupDocViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupDocViewModel::class.java) }
+    override lateinit var viewModel: GroupDocViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_group_doc
@@ -53,7 +50,7 @@ class GroupDocFragment: BaseLocationFragment<FragmentGroupDocBinding>() {
     private fun backToList() {
         group_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
         group_doc_back_fab.doBackAnimation(false)
-        findNavController().navigate(R.id.action_groupDocFragment_to_groupListFragment)
+        parentFragment!!.parentFragment!!.findNavController().navigate(R.id.action_groupFragment_self)
     }
 
     override fun observeEvent() {

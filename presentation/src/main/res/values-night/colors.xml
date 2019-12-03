@@ -3,4 +3,5 @@
     <color name="colorNightWhite">#000000</color>
     <color name="colorNightGray">#121212</color>
     <color name="colorNightBlack">#F0F0F0</color>
+    <color name="colorNightGroup">#F0F0F0</color>
 </resources>

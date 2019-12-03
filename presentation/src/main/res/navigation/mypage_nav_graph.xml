@@ -11,7 +11,7 @@
             android:label="MyPageProfileFragment"
             tools:layout="@layout/fragment_mypage_profile">
         <action
-                app:popUpTo="@id/myPageProfileFragment"
+                app:launchSingleTop="true"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 android:id="@+id/action_myPageProfileFragment_to_myPageProfileEditFragment"
@@ -23,7 +23,7 @@
             android:label="MyPageProfileEditFragment"
             tools:layout="@layout/fragment_mypage_profile_edit">
         <action
-                app:popUpTo="@id/myPageProfileEditFragment"
+                app:launchSingleTop="true"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 android:id="@+id/action_myPageProfileEditFragment_to_myPageProfileFragment"

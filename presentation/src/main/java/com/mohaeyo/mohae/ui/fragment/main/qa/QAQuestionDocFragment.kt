@@ -24,9 +24,7 @@ import javax.inject.Inject
 
 class QAQuestionDocFragment: DataBindingFragment<FragmentQaQuestionDocBinding>() {
     @Inject
-    lateinit var factory: QAQuestionDocViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAQuestionDocViewModel::class.java) }
+    override lateinit var viewModel: QAQuestionDocViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_qa_question_doc
@@ -81,6 +79,6 @@ class QAQuestionDocFragment: DataBindingFragment<FragmentQaQuestionDocBinding>()
     private fun backToList() {
         qa_question_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
         qa_question_doc_back_fab.doBackAnimation(false)
-        findNavController().navigate(R.id.action_QAQuestionDocFragment_to_QAQuestionListFragment)
+        parentFragment!!.parentFragment!!.findNavController().navigate(R.id.action_QAFragment_self)
     }
 }

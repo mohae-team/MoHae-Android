@@ -21,11 +21,8 @@ import kotlinx.android.synthetic.main.fragment_place_doc.*
 import javax.inject.Inject
 
 class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
-
     @Inject
-    lateinit var factory: PlaceDocViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(PlaceDocViewModel::class.java) }
+    override lateinit var viewModel: PlaceDocViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_place_doc
@@ -60,6 +57,6 @@ class PlaceDocFragment: BaseLocationFragment<FragmentPlaceDocBinding>() {
     private fun backToList() {
         place_doc_post_fab.doCommonAnimation(R.drawable.check_to_add)
         place_doc_back_fab.doBackAnimation(false)
-        findNavController().navigate(R.id.action_placeDocFragment_to_placeSearchFragment)
+        parentFragment!!.parentFragment!!.findNavController().navigate(R.id.action_placeFragment_self)
     }
 }

@@ -1,4 +1,4 @@
-package com.mohaeyo.mohae.di.module.signin
+package com.mohaeyo.mohae.di.module.signup
 
 import androidx.lifecycle.ViewModelProviders
 import com.mohaeyo.data.datasource.AuthDataSource
@@ -13,34 +13,36 @@ import com.mohaeyo.domain.repository.AuthRepository
 import com.mohaeyo.domain.service.AuthService
 import com.mohaeyo.domain.service.AuthServiceImpl
 import com.mohaeyo.domain.usecase.SignInUseCase
+import com.mohaeyo.domain.usecase.SignUpUseCase
 import com.mohaeyo.mohae.di.scope.FragmentScope
-import com.mohaeyo.mohae.mapper.AuthMapper
-import com.mohaeyo.mohae.ui.fragment.signin.SignInFragment
-import com.mohaeyo.mohae.viewmodel.signin.SignInViewModel
-import com.mohaeyo.mohae.viewmodel.signin.SignInViewModelFactory
+import com.mohaeyo.mohae.mapper.UserMapper
+import com.mohaeyo.mohae.ui.fragment.signup.SignUpAddressFragment
+import com.mohaeyo.mohae.ui.fragment.signup.SignUpFragment
+import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
+import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
 
 @Module
-class SignInModule {
+class SignUpAddressModule {
     @FragmentScope
     @Provides
     fun provideViewModel(
-        viewModelFactory: SignInViewModelFactory,
-        fragment: SignInFragment
-    ): SignInViewModel
-            = ViewModelProviders.of(fragment, viewModelFactory).get(SignInViewModel::class.java)
+        viewModelFactory: SignUpViewModelFactory,
+        fragment: SignUpAddressFragment
+    ): SignUpViewModel
+            = ViewModelProviders.of(fragment, viewModelFactory).get(SignUpViewModel::class.java)
 
     @FragmentScope
     @Provides
-    fun provideViewModelFactory(signInUseCase: SignInUseCase, authMapper: AuthMapper): SignInViewModelFactory
-            = SignInViewModelFactory(signInUseCase, authMapper)
+    fun provideViewModelFactory(signUpUseCase: SignUpUseCase, userMapper: UserMapper): SignUpViewModelFactory
+            = SignUpViewModelFactory(signUpUseCase, userMapper)
 
     @FragmentScope
     @Provides
-    fun provideSignInUseCase(authService: AuthService, composite: CompositeDisposable): SignInUseCase
-            = SignInUseCase(authService, composite)
+    fun provideSignUpUseCase(authService: AuthService, composite: CompositeDisposable): SignUpUseCase
+            = SignUpUseCase(authService, composite)
 
     @FragmentScope
     @Provides
@@ -69,7 +71,7 @@ class SignInModule {
 
     @FragmentScope
     @Provides
-    fun provideAuthMapper(): AuthMapper = AuthMapper()
+    fun provideUserMapper(): UserMapper = UserMapper()
 
     @FragmentScope
     @Provides

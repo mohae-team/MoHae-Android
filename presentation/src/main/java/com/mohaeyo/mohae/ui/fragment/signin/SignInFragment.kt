@@ -14,11 +14,8 @@ import kotlinx.android.synthetic.main.fragment_signin.*
 import javax.inject.Inject
 
 class SignInFragment: EndPointDataBindingFragment<FragmentSigninBinding>() {
-
     @Inject
-    lateinit var factory: SignInViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignInViewModel::class.java) }
+    override lateinit var viewModel: SignInViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_signin

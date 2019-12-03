@@ -20,11 +20,8 @@ import kotlinx.android.synthetic.main.fragment_qa_question_list.*
 import javax.inject.Inject
 
 class QAQuestionListFragment: EndPointDataBindingFragment<FragmentQaQuestionListBinding>() {
-
     @Inject
-    lateinit var factory: QAQuestionListViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAQuestionListViewModel::class.java) }
+    override lateinit var viewModel: QAQuestionListViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_qa_question_list

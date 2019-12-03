@@ -31,8 +31,8 @@ fun FloatingActionButton.doCommonAnimation(resId: Int) {
 
 fun FloatingActionButton.doBackAnimation(isBack: Boolean) {
     val anim =
-        if (isBack) TranslateAnimation(0f, -1000f, 0f, 0f)
-        else TranslateAnimation(0f, 1000f, 0f, 0f)
+        if (isBack) TranslateAnimation(0f, -700f, 0f, 0f)
+        else TranslateAnimation(0f, 700f, 0f, 0f)
     anim.duration = 400
     this.startAnimation(anim)
 }

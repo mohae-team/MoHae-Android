@@ -17,11 +17,8 @@ import javax.inject.Inject
 
 
 class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
-
     @Inject
-    lateinit var factory: MainViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(MainViewModel::class.java) }
+    override lateinit var viewModel: MainViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_main

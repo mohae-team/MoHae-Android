@@ -20,11 +20,8 @@ import kotlinx.android.synthetic.main.fragment_group_list.*
 import javax.inject.Inject
 
 class GroupListFragment: EndPointDataBindingFragment<FragmentGroupListBinding>() {
-
     @Inject
-    lateinit var factory: GroupListViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(GroupListViewModel::class.java) }
+    override lateinit var viewModel: GroupListViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_group_list

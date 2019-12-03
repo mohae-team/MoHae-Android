@@ -22,11 +22,5 @@
             android:name="com.mohaeyo.mohae.ui.fragment.main.place.PlaceDocFragment"
             android:label="PlaceDocFragment"
             tools:layout="@layout/fragment_place_doc">
-        <action
-                app:popUpTo="@id/placeDocFragment"
-                app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
-                android:id="@+id/action_placeDocFragment_to_placeSearchFragment"
-                app:destination="@id/placeSearchFragment" />
     </fragment>
 </navigation>

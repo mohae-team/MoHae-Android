@@ -22,9 +22,7 @@ class SignUpFragment: DataBindingFragment<FragmentSignupBinding>() {
         get() = R.layout.fragment_signup
 
     @Inject
-    lateinit var factory: SignUpViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignUpViewModel::class.java) }
+    override lateinit var viewModel: SignUpViewModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

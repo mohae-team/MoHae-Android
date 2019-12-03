@@ -20,11 +20,9 @@ import javax.inject.Inject
 
 class MyPageProfileFragment: EndPointDataBindingFragment<FragmentMypageProfileBinding>() {
 
-    @Inject
-    lateinit var factory: MyPageProfileViewModelFactory
 
-    override val viewModel
-            by lazy { ViewModelProviders.of(this, factory).get(MyPageProfileViewModel::class.java) }
+    @Inject
+    override lateinit var viewModel: MyPageProfileViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_mypage_profile

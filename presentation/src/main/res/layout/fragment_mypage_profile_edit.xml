@@ -15,6 +15,7 @@
             android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:onClick="@{() -> vm.clickComplete()}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
