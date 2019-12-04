@@ -9,7 +9,9 @@ import com.mohaeyo.data.toImageRequestBody
 import io.reactivex.Flowable
 import okhttp3.MultipartBody
 
-class UserDataSourceImpl(private val api: Api, private val userDao: UserDao): UserDataSource {
+class UserDataSourceImpl(
+    private val api: Api,
+    private val userDao: UserDao): UserDataSource {
     override fun getRemoteUser(): Flowable<UserDto>
             = api.getProfile()
 

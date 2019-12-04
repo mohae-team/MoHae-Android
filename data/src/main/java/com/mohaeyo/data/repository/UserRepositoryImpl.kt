@@ -11,28 +11,17 @@ import io.reactivex.Flowable
 
 class UserRepositoryImpl(private val datasource: UserDataSource,
                          private val userDataMapper: UserDataMapper) : UserRepository {
-    val mapUserEntityToData: (UserEntity) -> UserData
-            = { userDataMapper.mapFrom(it) }
-
-    val mapUserDtoToEntity: (UserDto) -> UserEntity
-            = { userDataMapper.mapDtoToEntity(it) }
-
-    val mapUserDbToEntity: (User) -> UserEntity
-            = { userDataMapper.mapDbToEntity(it) }
-
-    val mapUserEntityToDb: (UserEntity) -> User
-            = { userDataMapper.mapEntityToDb(it) }
 
     override fun getRemoteUser(): Flowable<UserEntity>
-            = datasource.getRemoteUser().map { mapUserDtoToEntity(it) }
+            = datasource.getRemoteUser().map { userDataMapper.mapDtoToEntity(it) }
 
     override fun postRemoteUser(user: UserEntity): Flowable<UserEntity>
-            = datasource.postRemoteUser(mapUserEntityToData(user))
-        .map { mapUserDtoToEntity(it) }
+            = datasource.postRemoteUser(userDataMapper.mapFrom(user))
+        .map { userDataMapper.mapDtoToEntity(it) }
 
     override fun getLocalUser(): UserEntity
-            = mapUserDbToEntity(datasource.getLocalUser())
+            = userDataMapper.mapDbToEntity(datasource.getLocalUser())
 
     override fun saveLocalUser(user: UserEntity)
-            = datasource.saveLocalUser(mapUserEntityToDb(user))
+            = datasource.saveLocalUser(userDataMapper.mapEntityToDb(user))
 }

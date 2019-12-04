@@ -7,7 +7,9 @@ import com.mohaeyo.data.local.pref.LocalStorage
 import com.mohaeyo.data.remote.Api
 import io.reactivex.Flowable
 
-class AuthDataSourceImpl(val api: Api, val pref: LocalStorage): AuthDataSource {
+class AuthDataSourceImpl(
+    private val api: Api,
+    private val pref: LocalStorage): AuthDataSource {
     override fun postRemoteSignIn(auth: AuthData): Flowable<TokenData>
             = api.signIn(auth)
 

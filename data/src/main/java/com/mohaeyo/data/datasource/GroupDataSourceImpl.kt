@@ -10,8 +10,8 @@ import io.reactivex.Flowable
 import okhttp3.MultipartBody
 
 class GroupDataSourceImpl(
-    val api: Api,
-    val groupDao: GroupDao
+    private val api: Api,
+    private val groupDao: GroupDao
 ): GroupDataSource {
     override fun getRemoteListGroup(): Flowable<List<GroupDto>>
             = api.getGroupList().map { it.toList() }
