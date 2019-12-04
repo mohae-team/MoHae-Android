@@ -4,13 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.mohaeyo.data.copyStreamToFile
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
@@ -18,7 +15,6 @@ import com.mohaeyo.mohae.databinding.FragmentQaQuestionDocBinding
 import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.viewmodel.main.qa.questionDoc.QAQuestionDocViewModel
-import com.mohaeyo.mohae.viewmodel.main.qa.questionDoc.QAQuestionDocViewModelFactory
 import kotlinx.android.synthetic.main.fragment_qa_question_doc.*
 import javax.inject.Inject
 
@@ -69,9 +65,7 @@ class QAQuestionDocFragment: DataBindingFragment<FragmentQaQuestionDocBinding>()
             if (resultCode == Activity.RESULT_OK) {
                 val selectedImageUri = data!!.data!!
                 viewModel.questionModel.value!!.imageFile = copyStreamToFile(context!!, selectedImageUri)
-                Glide.with(qa_question_doc_image_imv)
-                    .load(selectedImageUri)
-                    .into(qa_question_doc_image_imv)
+                viewModel.questionModel.value = viewModel.questionModel.value!!
             }
         }
     }

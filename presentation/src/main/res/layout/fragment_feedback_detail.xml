@@ -51,6 +51,7 @@
                         android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatImageView
+                        app:setImage="@{vm.selectedFeedbackItem.imageFile}"
                         app:layout_constraintTop_toBottomOf="@id/feedback_detail_address_tv"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

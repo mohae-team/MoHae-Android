@@ -3,19 +3,15 @@ package com.mohaeyo.mohae.ui.fragment.main.place
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.databinding.FragmentPlaceSearchBinding
 import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.viewmodel.main.place.PlaceSearchViewModel
-import com.mohaeyo.mohae.viewmodel.main.place.PlaceSearchViewModelFactory
 import kotlinx.android.synthetic.main.fragment_place_search.*
 import javax.inject.Inject
-import android.os.Looper
 import com.mohaeyo.mohae.base.EndPointLocationFragment
-import org.jetbrains.anko.support.v4.toast
 
 class PlaceSearchFragment: EndPointLocationFragment<FragmentPlaceSearchBinding>() {
     @Inject

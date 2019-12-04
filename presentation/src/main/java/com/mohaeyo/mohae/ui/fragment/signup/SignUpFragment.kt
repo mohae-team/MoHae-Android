@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentSignupBinding
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
-import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
 import kotlinx.android.synthetic.main.fragment_signup.*
 import javax.inject.Inject
 

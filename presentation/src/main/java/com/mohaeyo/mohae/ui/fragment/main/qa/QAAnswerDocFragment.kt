@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentQaAnswerDocBinding
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.viewmodel.main.qa.answerDoc.QAAnswerDocViewModel
-import com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerDocViewModelFactory
 import kotlinx.android.synthetic.main.fragment_qa_answer_doc.*
 import javax.inject.Inject
 

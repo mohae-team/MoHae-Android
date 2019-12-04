@@ -25,7 +25,6 @@ class MyPageProfileEditViewModel(
 
     val startProfileEvent = SingleLiveEvent<Unit>()
     val getProfileImageEvent = SingleLiveEvent<Unit>()
-    val setProfileImageEvent = SingleLiveEvent<Unit>()
     val descriptionErrorEvent = SingleLiveEvent<String>()
 
     override fun apply(event: Lifecycle.Event) {
@@ -92,7 +91,6 @@ class MyPageProfileEditViewModel(
 
     private fun getSuccess(user: UserModel) {
         userModel.value = user
-        setProfileImageEvent.call()
     }
 
     private fun getFail(message: String) {
@@ -101,7 +99,6 @@ class MyPageProfileEditViewModel(
 
     private fun editSuccess() {
         createToastEvent.value = "수정이 완료되었습니다"
-        startProfileEvent.call()
     }
 
     private fun editFail(message: String) {

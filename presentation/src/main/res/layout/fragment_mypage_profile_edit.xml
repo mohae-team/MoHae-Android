@@ -30,6 +30,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mypage_profile_edit_imv"
+                app:setCircleImage="@{vm.userModel.imageFile}"
                 android:background="@drawable/radius_profile_edit_circle"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

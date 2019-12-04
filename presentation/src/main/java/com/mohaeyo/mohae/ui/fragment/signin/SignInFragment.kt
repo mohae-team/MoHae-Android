@@ -3,13 +3,11 @@ package com.mohaeyo.mohae.ui.fragment.signin
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.EndPointDataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentSigninBinding
 import com.mohaeyo.mohae.viewmodel.signin.SignInViewModel
-import com.mohaeyo.mohae.viewmodel.signin.SignInViewModelFactory
 import kotlinx.android.synthetic.main.fragment_signin.*
 import javax.inject.Inject
 

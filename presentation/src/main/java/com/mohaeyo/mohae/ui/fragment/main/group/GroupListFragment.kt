@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mohaeyo.mohae.R
@@ -15,7 +14,6 @@ import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.model.GroupModel
 import com.mohaeyo.mohae.viewmodel.main.group.list.GroupListViewModel
-import com.mohaeyo.mohae.viewmodel.main.group.list.GroupListViewModelFactory
 import kotlinx.android.synthetic.main.fragment_group_list.*
 import javax.inject.Inject
 

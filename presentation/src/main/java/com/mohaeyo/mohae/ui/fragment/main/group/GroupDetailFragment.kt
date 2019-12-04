@@ -5,19 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentGroupDetailBinding
 import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
-import com.mohaeyo.mohae.model.GroupModel
 import com.mohaeyo.mohae.ui.dialog.GroupDetailDialogFragment
 import com.mohaeyo.mohae.viewmodel.main.group.detail.GroupDetailViewModel
-import com.mohaeyo.mohae.viewmodel.main.group.detail.GroupDetailViewModelFactory
 import kotlinx.android.synthetic.main.fragment_group_detail.*
 import javax.inject.Inject
 
@@ -54,12 +49,6 @@ class GroupDetailFragment: DataBindingFragment<FragmentGroupDetailBinding>() {
             bundle.putInt("id", viewModel.selectedGroupId.value!!)
             dialog.arguments = bundle
             dialog.show(fragmentManager!!, "detail")
-        })
-
-        viewModel.selectedGroupItem.observe(this, Observer {
-            Glide.with(group_detail_image_imv)
-                .load(it.imageFile.toString())
-                .into(group_detail_image_imv)
         })
     }
 

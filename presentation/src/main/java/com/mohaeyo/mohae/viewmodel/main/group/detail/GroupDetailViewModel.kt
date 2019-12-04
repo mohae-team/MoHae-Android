@@ -23,7 +23,9 @@ class GroupDetailViewModel(
 ): BaseViewModel(), LifecycleCallback {
 
     val selectedGroupId = MutableLiveData<Int>()
-    val selectedGroupItem = MutableLiveData<GroupModel>()
+    val selectedGroupItem = MutableLiveData<GroupModel>().apply {
+        value = GroupModel()
+    }
 
     val startDetailToListEvent = SingleLiveEvent<Unit>()
     val startDetailToDialogEvent = SingleLiveEvent<Unit>()

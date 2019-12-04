@@ -11,8 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import kotlinx.android.synthetic.main.fragment_splash.*
 
-
-
 class SplashFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?

@@ -2,18 +2,14 @@ package com.mohaeyo.mohae.ui.fragment.signup
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Looper
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.BaseLocationFragment
 import com.mohaeyo.mohae.databinding.FragmentSignupAddressBinding
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
-import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
-import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 

@@ -2,13 +2,9 @@ package com.mohaeyo.mohae.ui.fragment.main.place
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.HandlerThread
-import android.os.Looper
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.BaseLocationFragment
@@ -16,7 +12,6 @@ import com.mohaeyo.mohae.databinding.FragmentPlaceDocBinding
 import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.viewmodel.main.place.PlaceDocViewModel
-import com.mohaeyo.mohae.viewmodel.main.place.PlaceDocViewModelFactory
 import kotlinx.android.synthetic.main.fragment_place_doc.*
 import javax.inject.Inject
 

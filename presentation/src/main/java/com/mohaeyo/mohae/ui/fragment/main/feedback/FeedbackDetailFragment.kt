@@ -55,12 +55,6 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
             dialog.arguments = bundle
             dialog.show(fragmentManager!!, "detail")
         })
-
-        viewModel.selectedFeedbackItem.observe(this, Observer {
-            Glide.with(feedback_detail_image_imv)
-                .load(it.imageFile.toString())
-                .into(feedback_detail_image_imv)
-        })
     }
 
     private fun backToList() {

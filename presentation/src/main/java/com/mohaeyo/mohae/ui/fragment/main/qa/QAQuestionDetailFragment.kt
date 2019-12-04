@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentQaQuestionDetailBinding
@@ -15,7 +13,6 @@ import com.mohaeyo.mohae.doBackAnimation
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.model.QuestionModel
 import com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAQuestionDetailViewModel
-import com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAQuestionDetailViewModelFactory
 import kotlinx.android.synthetic.main.fragment_qa_question_detail.*
 import javax.inject.Inject
 
@@ -43,12 +40,6 @@ class QAQuestionDetailFragment: DataBindingFragment<FragmentQaQuestionDetailBind
     }
 
     override fun observeEvent() {
-        viewModel.selectedQuestionItem.observe(this, Observer {
-            Glide.with(qa_question_detail_image_imv)
-                .load(it.imageFile.toString())
-                .into(qa_question_detail_image_imv)
-        })
-
         viewModel.startDetailToQuestionListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToAnswerListEvent.observe(this, Observer {
