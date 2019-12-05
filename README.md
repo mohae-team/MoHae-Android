@@ -69,14 +69,9 @@
 7. Clean Code
 
 ## Test
+1. Mokito
 
-1. TDD
-
-2. Kluent
-
-3. Mokito
-
-4. JUnit4
+2. JUnit4
 
 ## Task
 
