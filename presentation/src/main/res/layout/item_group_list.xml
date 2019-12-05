@@ -8,6 +8,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
             android:onClick="@{() -> vm.clickGroupItem(groupItem)}"
             android:id="@+id/group_card"
             app:cardCornerRadius="14dp"

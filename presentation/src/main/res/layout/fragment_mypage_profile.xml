@@ -9,14 +9,16 @@
                 type="com.mohaeyo.mohae.viewmodel.main.mypage.MyPageProfileViewModel" />
         <variable
                 name="profileModel"
-                type="com.mohaeyo.mohae.model.ProfileModel" />
+                type="com.mohaeyo.mohae.model.UserModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:onClick="@{() -> vm.clickLogout()}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +32,7 @@
                 android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:onClick="@{() -> vm.clickEdit()}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +47,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mypage_profile_imv"
+                app:setCircleImage="@{vm.userModel.imageFile}"
                 android:background="@drawable/radius_profile_edit_circle"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +63,7 @@
                 android:layout_margin="24dp"
                 android:id="@+id/mypage_profile_name_tv"
                 android:textSize="20sp"
-                android:text="@{profileModel.name}"
+                android:text="@{vm.userModel.username}"
                 android:textColor="@color/colorNightBlack"
                 android:fontFamily="@font/nanum_square_otf_bold"
                 android:layout_width="wrap_content"
@@ -72,7 +76,7 @@
                 android:layout_margin="16dp"
                 android:id="@+id/mypage_profile_address_tv"
                 android:textSize="14sp"
-                android:text="@{profileModel.address}"
+                android:text="@{vm.userModel.address}"
                 android:textColor="@color/colorMypage"
                 android:fontFamily="@font/nanum_square_otf_regular"
                 android:layout_width="wrap_content"
@@ -85,7 +89,7 @@
                 android:layout_margin="16dp"
                 android:id="@+id/mypage_profile_email_tv"
                 android:textSize="14sp"
-                android:text="@{profileModel.id}"
+                android:text="@{vm.userModel.id}"
                 android:textColor="@color/colorNightBlack"
                 android:fontFamily="@font/nanum_square_otf_regular"
                 android:layout_width="wrap_content"
@@ -110,7 +114,7 @@
                     android:fontFamily="@font/nanum_square_otf_bold"
                     android:lineSpacingExtra="2sp"
                     android:textSize="12sp"
-                    android:text="@{profileModel.description}"
+                    android:text="@{vm.userModel.description}"
                     android:textColor="@color/colorNightBlack"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"/>

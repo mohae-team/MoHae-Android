@@ -5,6 +5,8 @@ import com.mohaeyo.domain.entity.GroupEntity
 import com.mohaeyo.domain.repository.GroupRepository
 import io.reactivex.Flowable
 import retrofit2.HttpException
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 class GroupServiceImpl (private val groupRepository: GroupRepository): GroupService {
     override fun getListGroup(): Flowable<Pair<List<GroupEntity>,ErrorHandlerEntity>>
@@ -13,15 +15,18 @@ class GroupServiceImpl (private val groupRepository: GroupRepository): GroupServ
     }.doOnNext {
         groupRepository.saveLocalGroupList(it.first)
     }.onErrorReturn {
-        if (it is HttpException)
-            groupRepository.getLocalGroupList() to ErrorHandlerEntity(message =
-            when(it.code()) {
-                404 -> "아직 모임이 없습니다"
-                403 -> "권한이 없습니다"
-                500 -> "서버 에러가 발생했습니다"
-                else -> "네트워크 상태를 확인해주세요"
-            }, isSuccess = false)
-        else groupRepository.getLocalGroupList() to ErrorHandlerEntity(isSuccess = true)
+        groupRepository.getLocalGroupList() to when (it) {
+            is HttpException -> when(it.code()) {
+                200 -> ErrorHandlerEntity(isSuccess = true)
+                404 -> ErrorHandlerEntity(message = "아직 모임이 없습니다")
+                403 -> ErrorHandlerEntity(message = "권한이 없습니다")
+                500 -> ErrorHandlerEntity(message = "서버 에러가 발생했습니다")
+                else -> ErrorHandlerEntity(message = "알 수 없는 오류가 발생했습니다")
+            }
+            is ConnectException -> ErrorHandlerEntity(message = "인터넷 연결이 되지 않았습니다")
+            is SocketTimeoutException -> ErrorHandlerEntity(message = "인터넷 연결이 불안정합니다")
+            else -> ErrorHandlerEntity()
+        }
     }
 
     override fun getGroupDetail(id: Int): Flowable<Pair<GroupEntity, ErrorHandlerEntity>>
@@ -30,59 +35,71 @@ class GroupServiceImpl (private val groupRepository: GroupRepository): GroupServ
     }.doOnNext {
         groupRepository.saveLocalGroup(it.first)
     }.onErrorReturn {
-        if (it is HttpException)
-            groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(message =
-            when(it.code()) {
-                404 -> "존재하지 않는 게시물입니다"
-                403 -> "권한이 없습니다"
-                500 -> "서버 에러가 발생했습니다"
-                else -> "네트워크 상태를 확인해주세요"
-            }, isSuccess = false)
-        else groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(isSuccess = true)
+        groupRepository.getLocalGroupDetail(id) to when (it) {
+            is HttpException -> when(it.code()) {
+                200 -> ErrorHandlerEntity(isSuccess = true)
+                404 -> ErrorHandlerEntity(message = "존재하지 않는 모임입니다")
+                403 -> ErrorHandlerEntity(message = "권한이 없습니다")
+                500 -> ErrorHandlerEntity(message = "서버 에러가 발생했습니다")
+                else -> ErrorHandlerEntity(message = "알 수 없는 오류가 발생했습니다")
+            }
+            is ConnectException -> ErrorHandlerEntity(message = "인터넷 연결이 되지 않았습니다")
+            is SocketTimeoutException -> ErrorHandlerEntity(message = "인터넷 연결이 불안정합니다")
+            else -> ErrorHandlerEntity()
+        }
     }
 
     override fun createGroup(group: GroupEntity): Flowable<Pair<GroupEntity, ErrorHandlerEntity>>
             = groupRepository.createGroup(group).map {
         it to ErrorHandlerEntity(isSuccess = true)
     }.onErrorReturn {
-        if (it is HttpException)
-            group to ErrorHandlerEntity(message =
-            when(it.code()) {
-                404 -> "존재하지 않는 게시물입니다"
-                403 -> "권한이 없습니다"
-                500 -> "서버 에러가 발생했습니다"
-                else -> "네트워크 상태를 확인해주세요"
-            }, isSuccess = false)
-        else group to ErrorHandlerEntity(isSuccess = true)
+        group to when (it) {
+            is HttpException -> when(it.code()) {
+                200 -> ErrorHandlerEntity(isSuccess = true)
+                404 -> ErrorHandlerEntity(message = "존재하지 않는 유저입니다")
+                403 -> ErrorHandlerEntity(message = "권한이 없습니다")
+                500 -> ErrorHandlerEntity(message = "서버 에러가 발생했습니다")
+                else -> ErrorHandlerEntity(message = "알 수 없는 오류가 발생했습니다")
+            }
+            is ConnectException -> ErrorHandlerEntity(message = "인터넷 연결이 되지 않았습니다")
+            is SocketTimeoutException -> ErrorHandlerEntity(message = "인터넷 연결이 불안정합니다")
+            else -> ErrorHandlerEntity()
+        }
     }
 
     override fun cancelGroup(id: Int): Flowable<Pair<GroupEntity, ErrorHandlerEntity>>
             = groupRepository.cancelGroup(id).map {
         it to ErrorHandlerEntity(isSuccess = true)
     }.onErrorReturn {
-        if (it is HttpException)
-            groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(message =
-            when(it.code()) {
-                404 -> "존재하지 않는 게시물입니다"
-                403 -> "권한이 없습니다"
-                500 -> "서버 에러가 발생했습니다"
-                else -> "네트워크 상태를 확인해주세요"
-            }, isSuccess = false)
-        else groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(isSuccess = true)
+        groupRepository.getLocalGroupDetail(id) to when (it) {
+            is HttpException -> when(it.code()) {
+                200 -> ErrorHandlerEntity(isSuccess = true)
+                404 -> ErrorHandlerEntity(message = "존재하지 않는 모임입니다")
+                403 -> ErrorHandlerEntity(message = "권한이 없습니다")
+                500 -> ErrorHandlerEntity(message = "서버 에러가 발생했습니다")
+                else -> ErrorHandlerEntity(message = "알 수 없는 오류가 발생했습니다")
+            }
+            is ConnectException -> ErrorHandlerEntity(message = "인터넷 연결이 되지 않았습니다")
+            is SocketTimeoutException -> ErrorHandlerEntity(message = "인터넷 연결이 불안정합니다")
+            else -> ErrorHandlerEntity()
+        }
     }
 
     override fun joinGroup(id: Int): Flowable<Pair<GroupEntity, ErrorHandlerEntity>>
             = groupRepository.joinGroup(id).map {
         it to ErrorHandlerEntity(isSuccess = true)
     }.onErrorReturn {
-        if (it is HttpException)
-            groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(message =
-            when(it.code()) {
-                404 -> "존재하지 않는 게시물입니다"
-                403 -> "권한이 없습니다"
-                500 -> "서버 에러가 발생했습니다"
-                else -> "네트워크 상태를 확인해주세요"
-            }, isSuccess = false)
-        else groupRepository.getLocalGroupDetail(id) to ErrorHandlerEntity(isSuccess = true)
+        groupRepository.getLocalGroupDetail(id) to when (it) {
+            is HttpException -> when (it.code()) {
+                200 -> ErrorHandlerEntity(isSuccess = true)
+                404 -> ErrorHandlerEntity(message = "존재하지 않는 모임입니다")
+                403 -> ErrorHandlerEntity(message = "권한이 없습니다")
+                500 -> ErrorHandlerEntity(message = "서버 에러가 발생했습니다")
+                else -> ErrorHandlerEntity(message = "알 수 없는 오류가 발생했습니다")
+            }
+            is ConnectException -> ErrorHandlerEntity(message = "인터넷 연결이 되지 않았습니다")
+            is SocketTimeoutException -> ErrorHandlerEntity(message = "인터넷 연결이 불안정합니다")
+            else -> ErrorHandlerEntity()
+        }
     }
 }

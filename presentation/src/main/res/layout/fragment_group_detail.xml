@@ -60,6 +60,7 @@
                         android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatImageView
+                        app:setImage="@{vm.selectedGroupItem.imageFile}"
                         android:layout_marginHorizontal="24dp"
                         android:id="@+id/group_detail_image_imv"
                         android:layout_marginTop="24dp"

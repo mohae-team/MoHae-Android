@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.qa.questionList
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.QuestionEntity
@@ -20,12 +21,27 @@ class QAQuestionListViewModel(
 
     val startListToDetailEvent = SingleLiveEvent<QuestionModel>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
+    val listAnimationEvent = SingleLiveEvent<Unit>()
 
     init {
         getQuestionList()
     }
 
-    fun getQuestionList() {
+    override fun apply(event: Lifecycle.Event) {
+        when(event) {
+            Lifecycle.Event.ON_START -> getQuestionList()
+        }
+    }
+
+    fun clickListToDoc() {
+        startListToDocEvent.call()
+    }
+
+    fun clickQuestionItem(question: QuestionModel) {
+        startListToDetailEvent.value = question
+    }
+
+    private fun getQuestionList() {
         getQuestionListUseCase.execute(Unit, object: DisposableSubscriber<Pair<List<QuestionEntity>, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<List<QuestionEntity>, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) getListSuccess(t.first.map { questionMapper.mapEntityToModel(it) })
@@ -44,18 +60,12 @@ class QAQuestionListViewModel(
 
     private fun getListSuccess(questionList: List<QuestionModel>) {
         this.questionList.value = ArrayList(questionList)
+        listAnimationEvent.call()
     }
 
     private fun getListFail(message: String, questionList: List<QuestionModel>) {
         createToastEvent.value = message
         this.questionList.value = ArrayList(questionList)
-    }
-
-    fun clickListToDoc() {
-        startListToDocEvent.call()
-    }
-
-    fun clickQuestionItem(question: QuestionModel) {
-        startListToDetailEvent.value = question
+        listAnimationEvent.call()
     }
 }

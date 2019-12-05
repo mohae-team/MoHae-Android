@@ -9,12 +9,10 @@
               android:label="GroupListFragment"
             tools:layout="@layout/fragment_group_list">
         <action android:id="@+id/action_groupListFragment_to_groupDetailFragment"
-                app:popUpTo="@id/groupListFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/groupDetailFragment"/>
         <action android:id="@+id/action_groupListFragment_to_groupDocFragment"
-                app:popUpTo="@id/groupListFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/groupDocFragment"/>
@@ -24,7 +22,6 @@
               android:label="GroupDetailFragment"
             tools:layout="@layout/fragment_group_detail">
         <action android:id="@+id/action_groupDetailFragment_to_groupListFragment"
-                app:popUpTo="@id/groupDetailFragment"
                 app:enterAnim="@anim/fadein"
                 app:exitAnim="@anim/fadeout"
                 app:destination="@id/groupListFragment"/>
@@ -33,10 +30,5 @@
               android:name="com.mohaeyo.mohae.ui.fragment.main.group.GroupDocFragment"
               android:label="GroupDocFragment"
             tools:layout="@layout/fragment_group_doc">
-        <action android:id="@+id/action_groupDocFragment_to_groupListFragment"
-                app:popUpTo="@id/groupDocFragment"
-                app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
-                app:destination="@id/groupListFragment"/>
     </fragment>
 </navigation>

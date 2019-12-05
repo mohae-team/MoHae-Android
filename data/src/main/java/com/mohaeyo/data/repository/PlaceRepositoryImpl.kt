@@ -10,33 +10,22 @@ import io.reactivex.Flowable
 
 class PlaceRepositoryImpl(private val datasource: PlaceDataSource,
                           private val placeDataMapper: PlaceDataMapper): PlaceRepository {
-    val mapPlaceEntityToData: (PlaceEntity) -> PlaceData
-            = { placeDataMapper.mapFrom(it) }
-
-    val mapPlaceDataToEntity: (PlaceData) -> PlaceEntity
-            = { placeDataMapper.mapDtoToEntity(it) }
-
-    val mapPlaceDbToEntity: (Place) -> PlaceEntity
-            = { placeDataMapper.mapDbToEntity(it) }
-
-    val mapPlaceEntityToDb: (PlaceEntity) -> Place
-            = { placeDataMapper.mapEntityToDb(it) }
 
     override fun getRemotePlace(location: String): Flowable<PlaceEntity>
-            = datasource.getRemotePlace(location).map { mapPlaceDataToEntity(it) }
+            = datasource.getRemotePlace(location).map { placeDataMapper.mapDataToEntity(it) }
 
     override fun postRemotePlace(place: PlaceEntity): Flowable<PlaceEntity>
-            = datasource.postRemotePlace(mapPlaceEntityToData(place)).map { mapPlaceDataToEntity(it) }
+            = datasource.postRemotePlace(placeDataMapper.mapFrom(place)).map { placeDataMapper.mapDataToEntity(it) }
 
     override fun getLocalPlace(): PlaceEntity
-            = mapPlaceDbToEntity(datasource.getLocalPlace())
+            = placeDataMapper.mapDbToEntity(datasource.getLocalPlace())
 
     override fun saveLocalPlace(place: PlaceEntity)
-            = datasource.saveLocalPlace(mapPlaceEntityToDb(place))
+            = datasource.saveLocalPlace(placeDataMapper.mapEntityToDb(place))
 
     override fun postLikeRemotePlace(location: String): Flowable<PlaceEntity>
-            = datasource.postRemoteLikePlace(location).map { mapPlaceDataToEntity(it) }
+            = datasource.postRemoteLikePlace(location).map { placeDataMapper.mapDataToEntity(it) }
 
     override fun postDisLikeRemotePlace(location: String): Flowable<PlaceEntity>
-            = datasource.postRemoteDisLikePlace(location).map { mapPlaceDataToEntity(it) }
+            = datasource.postRemoteDisLikePlace(location).map { placeDataMapper.mapDataToEntity(it) }
 }

@@ -122,6 +122,7 @@
                                 android:layout_height="wrap_content"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
+                                app:setImage="@{vm.feedbackModel.imageFile}"
                                 android:id="@+id/feedback_doc_image_imv"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"

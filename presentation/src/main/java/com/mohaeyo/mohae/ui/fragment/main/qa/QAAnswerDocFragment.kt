@@ -5,24 +5,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.DataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentQaAnswerDocBinding
 import com.mohaeyo.mohae.doCommonAnimation
 import com.mohaeyo.mohae.viewmodel.main.qa.answerDoc.QAAnswerDocViewModel
-import com.mohaeyo.mohae.viewmodel.main.qa.questionDetail.QAAnswerDocViewModelFactory
 import kotlinx.android.synthetic.main.fragment_qa_answer_doc.*
 import javax.inject.Inject
 
 class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
-
-
     @Inject
-    lateinit var factory: QAAnswerDocViewModelFactory
-
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(QAAnswerDocViewModel::class.java) }
+    override lateinit var viewModel: QAAnswerDocViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_qa_answer_doc
@@ -38,13 +32,12 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observeEvent()
-        getArgQuestionItem()
         binding.vm = viewModel
+
+        getArgQuestionItem()
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startDocToListEvent.observe(this, Observer { backToList() })
 
         viewModel.answerErrorEvent.observe(this, Observer { qa_answer_doc_answer_edit_lay.error = it })
@@ -52,7 +45,7 @@ class QAAnswerDocFragment: DataBindingFragment<FragmentQaAnswerDocBinding>() {
 
     private fun backToList() {
         qa_answer_doc_post_fab.doCommonAnimation(R.drawable.check_to_write_answer)
-        findNavController().navigate(R.id.action_QAAnswerDocFragment_to_QAAnswerListFragment,
+        parentFragment!!.parentFragment!!.findNavController().navigate(R.id.action_QAFragment_self,
             getQuestionIdBundle(viewModel.answerModel.value!!.questionId))
     }
 

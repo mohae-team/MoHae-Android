@@ -3,7 +3,6 @@ package com.mohaeyo.mohae.ui.fragment.main
 import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -11,17 +10,13 @@ import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.EndPointDataBindingFragment
 import com.mohaeyo.mohae.databinding.FragmentMainBinding
 import com.mohaeyo.mohae.viewmodel.main.MainViewModel
-import com.mohaeyo.mohae.viewmodel.main.MainViewModelFactory
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 
 class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
-
     @Inject
-    lateinit var factory: MainViewModelFactory
-
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(MainViewModel::class.java) }
+    override lateinit var viewModel: MainViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_main
@@ -45,6 +40,10 @@ class MainFragment: EndPointDataBindingFragment<FragmentMainBinding>() {
 
         main_navigation.selectedItemId = R.id.navigation_group
         main_navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
+
+    }
+
+    override fun observeEvent() {
 
     }
 

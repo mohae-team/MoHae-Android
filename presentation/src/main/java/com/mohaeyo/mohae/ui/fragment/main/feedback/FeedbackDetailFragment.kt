@@ -23,20 +23,16 @@ import javax.inject.Inject
 class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>() {
 
     @Inject
-    lateinit var factory: FeedbackDetailViewModelFactory
-
-    private val viewModel by lazy { ViewModelProviders.of(this, factory).get(FeedbackDetailViewModel::class.java) }
+    override lateinit var viewModel: FeedbackDetailViewModel
 
     override val layoutId: Int
         get() = R.layout.fragment_feedback_detail
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.vm = viewModel
 
         getArgFeedbackItem()
-        observeEvent()
     }
 
     override fun onAttach(context: Context) {
@@ -48,7 +44,7 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
             })
     }
 
-    private fun observeEvent() {
+    override fun observeEvent() {
         viewModel.startDetailToListEvent.observe(this, Observer { backToList() })
 
         viewModel.startDetailToDialogEvent.observe(this, Observer {
@@ -58,12 +54,6 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
             bundle.putInt("id", viewModel.selectedFeedbackId.value!!)
             dialog.arguments = bundle
             dialog.show(fragmentManager!!, "detail")
-        })
-
-        viewModel.selectedFeedbackItem.observe(this, Observer {
-            Glide.with(feedback_detail_image_imv)
-                .load(it.imageFile.toString())
-                .into(feedback_detail_image_imv)
         })
     }
 
@@ -75,6 +65,5 @@ class FeedbackDetailFragment: DataBindingFragment<FragmentFeedbackDetailBinding>
 
     private fun getArgFeedbackItem() {
         viewModel.selectedFeedbackId.value = arguments!!.getInt("id")
-        viewModel.getFeedbackDetail()
     }
 }

@@ -15,7 +15,7 @@ class PlaceDataMapper: Mapper<PlaceEntity, PlaceData> {
         isLike = from.isLike
     )
 
-    fun mapDtoToEntity(from: PlaceData): PlaceEntity
+    fun mapDataToEntity(from: PlaceData): PlaceEntity
             = PlaceEntity(
         placeName = from.placeName,
         location = from.location,

@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.di.module.signin
 
+import androidx.lifecycle.ViewModelProviders
 import com.mohaeyo.data.datasource.AuthDataSource
 import com.mohaeyo.data.datasource.AuthDataSourceImpl
 import com.mohaeyo.data.local.pref.LocalStorage
@@ -13,6 +14,9 @@ import com.mohaeyo.domain.service.AuthService
 import com.mohaeyo.domain.service.AuthServiceImpl
 import com.mohaeyo.domain.usecase.SignInUseCase
 import com.mohaeyo.mohae.di.scope.FragmentScope
+import com.mohaeyo.mohae.mapper.AuthMapper
+import com.mohaeyo.mohae.ui.fragment.signin.SignInFragment
+import com.mohaeyo.mohae.viewmodel.signin.SignInViewModel
 import com.mohaeyo.mohae.viewmodel.signin.SignInViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -22,8 +26,16 @@ import io.reactivex.disposables.CompositeDisposable
 class SignInModule {
     @FragmentScope
     @Provides
-    fun provideViewModelFactory(signInUseCase: SignInUseCase): SignInViewModelFactory
-            = SignInViewModelFactory(signInUseCase)
+    fun provideViewModel(
+        viewModelFactory: SignInViewModelFactory,
+        fragment: SignInFragment
+    ): SignInViewModel
+            = ViewModelProviders.of(fragment, viewModelFactory).get(SignInViewModel::class.java)
+
+    @FragmentScope
+    @Provides
+    fun provideViewModelFactory(signInUseCase: SignInUseCase, authMapper: AuthMapper): SignInViewModelFactory
+            = SignInViewModelFactory(signInUseCase, authMapper)
 
     @FragmentScope
     @Provides
@@ -54,6 +66,10 @@ class SignInModule {
     @FragmentScope
     @Provides
     fun provideTokenDataMapper(): TokenDataMapper = TokenDataMapper()
+
+    @FragmentScope
+    @Provides
+    fun provideAuthMapper(): AuthMapper = AuthMapper()
 
     @FragmentScope
     @Provides

@@ -64,23 +64,11 @@
             android:id="@+id/QAQuestionDocFragment"
             android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAQuestionDocFragment"
             android:label="QAQuestionDocFragment" >
-        <action
-                app:popUpTo="@id/QAQuestionDocFragment"
-                app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
-                android:id="@+id/action_QAQuestionDocFragment_to_QAQuestionListFragment"
-                app:destination="@id/QAQuestionListFragment" />
     </fragment>
     <fragment
             tools:layout="@layout/fragment_qa_answer_doc"
             android:id="@+id/QAAnswerDocFragment"
             android:name="com.mohaeyo.mohae.ui.fragment.main.qa.QAAnswerDocFragment"
             android:label="QAAnswerDocFragment" >
-        <action
-                app:popUpTo="@id/QAAnswerDocFragment"
-                app:enterAnim="@anim/fadein"
-                app:exitAnim="@anim/fadeout"
-                android:id="@+id/action_QAAnswerDocFragment_to_QAAnswerListFragment"
-                app:destination="@id/QAAnswerListFragment" />
     </fragment>
 </navigation>

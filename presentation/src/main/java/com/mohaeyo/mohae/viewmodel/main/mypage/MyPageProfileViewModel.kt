@@ -1,31 +1,44 @@
 package com.mohaeyo.mohae.viewmodel.main.mypage
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.UserEntity
-import com.mohaeyo.domain.usecase.EditUserProfileUseCase
 import com.mohaeyo.domain.usecase.GetUserProfileUseCase
 import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
-import com.mohaeyo.mohae.mapper.ProfileMapper
-import com.mohaeyo.mohae.model.ProfileModel
+import com.mohaeyo.mohae.mapper.UserMapper
+import com.mohaeyo.mohae.model.UserModel
 import io.reactivex.subscribers.DisposableSubscriber
 
 class MyPageProfileViewModel(
-    val getUserProfileUseCase: GetUserProfileUseCase,
-    val profileMapper: ProfileMapper): BaseViewModel() {
+    private val getUserProfileUseCase: GetUserProfileUseCase,
+    private val userMapper: UserMapper): BaseViewModel() {
+    val userModel = MutableLiveData<UserModel>().apply {
+        value = UserModel()
+    }
 
     val startProfileEditEvent = SingleLiveEvent<Unit>()
     val startLoginEvent = SingleLiveEvent<Unit>()
-    val startProfileData = MutableLiveData<ProfileModel>()
 
-    val mapUserToProfile: (UserEntity) -> ProfileModel
-            = { profileMapper.mapFrom(it) }
+    override fun apply(event: Lifecycle.Event) {
+        when(event) {
+            Lifecycle.Event.ON_START -> getMyPageInfo()
+        }
+    }
 
-    init {
+    fun clickLogout() {
+        startLoginEvent.call()
+    }
+
+    fun clickEdit() {
+        startProfileEditEvent.call()
+    }
+
+    private fun getMyPageInfo() {
         getUserProfileUseCase.execute(Unit, object: DisposableSubscriber<Pair<UserEntity, ErrorHandlerEntity>> () {
             override fun onNext(t: Pair<UserEntity, ErrorHandlerEntity>) {
-                if (t.second.isSuccess) getSuccess(mapUserToProfile(t.first))
+                if (t.second.isSuccess) getSuccess(userMapper.mapEntityToModel(t.first))
                 else getFail(t.second.message)
             }
             override fun onComplete() {
@@ -37,20 +50,11 @@ class MyPageProfileViewModel(
         })
     }
 
-    private fun getSuccess(profile: ProfileModel) {
-        startProfileData.value = profile
+    private fun getSuccess(user: UserModel) {
+        userModel.value = user
     }
 
     private fun getFail(message: String) {
         createToastEvent.value = message
     }
-
-    fun clickLogout() {
-        startLoginEvent.call()
-    }
-
-    fun clickEdit() {
-        startProfileEditEvent.call()
-    }
-
 }

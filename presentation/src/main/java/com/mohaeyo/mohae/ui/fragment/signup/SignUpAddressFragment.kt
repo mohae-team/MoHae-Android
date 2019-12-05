@@ -2,18 +2,14 @@ package com.mohaeyo.mohae.ui.fragment.signup
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Looper
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import com.mohaeyo.mohae.base.BaseLocationFragment
 import com.mohaeyo.mohae.databinding.FragmentSignupAddressBinding
 import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModel
-import com.mohaeyo.mohae.viewmodel.signup.SignUpViewModelFactory
-import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 
@@ -23,9 +19,7 @@ class SignUpAddressFragment: BaseLocationFragment<FragmentSignupAddressBinding>(
         get() = R.layout.fragment_signup_address
 
     @Inject
-    lateinit var factory: SignUpViewModelFactory
-
-    override val viewModel by lazy { ViewModelProviders.of(this, factory).get(SignUpViewModel::class.java) }
+    override lateinit var viewModel: SignUpViewModel
 
     override val mapId: Int
         get() = R.id.signup_address_search_map
@@ -47,10 +41,9 @@ class SignUpAddressFragment: BaseLocationFragment<FragmentSignupAddressBinding>(
 
 
         getArgSignUpData()
-        observeViewModelEvent()
     }
 
-    private fun observeViewModelEvent() {
+    override fun observeEvent() {
         viewModel.startSignInEvent.observe(this, Observer {
             findNavController().navigate(R.id.action_signUpAddressFragment_to_loginFragment)
         })

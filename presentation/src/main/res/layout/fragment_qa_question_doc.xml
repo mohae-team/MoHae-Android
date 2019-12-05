@@ -145,6 +145,7 @@
                                 android:textSize="14sp" />
 
                         <androidx.appcompat.widget.AppCompatImageView
+                                app:setImage="@{vm.questionModel.imageFile}"
                                 android:id="@+id/qa_question_doc_image_imv"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"

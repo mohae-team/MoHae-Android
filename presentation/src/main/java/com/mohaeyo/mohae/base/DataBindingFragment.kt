@@ -23,6 +23,7 @@ abstract class DataBindingFragment<T : ViewDataBinding> : Fragment(), HasSupport
     lateinit var binding: T
 
     abstract val layoutId: Int
+    abstract val viewModel: BaseViewModel
 
     private val lifecycleOwner = LifecycleOwner()
 
@@ -31,8 +32,17 @@ abstract class DataBindingFragment<T : ViewDataBinding> : Fragment(), HasSupport
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         rootView = binding.root
         binding.lifecycleOwner = this
+
         return rootView
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        register(viewModel)
+        observeEvent()
+    }
+
+    abstract fun observeEvent()
 
     override fun onStart() {
         super.onStart()

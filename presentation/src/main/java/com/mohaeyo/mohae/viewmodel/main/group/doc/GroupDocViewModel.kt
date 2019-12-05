@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.group.doc
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import com.mohaeyo.domain.base.ErrorHandlerEntity
@@ -23,6 +24,10 @@ class GroupDocViewModel(
     val startDocToListEvent = SingleLiveEvent<Unit>()
     val errorEvent = SingleLiveEvent<String>()
     val setGroupImageEvent = SingleLiveEvent<Unit>()
+
+    override fun apply(event: Lifecycle.Event) {
+
+    }
 
     override fun updateAddressData(
         location: LatLng,
@@ -67,6 +72,14 @@ class GroupDocViewModel(
         }
     }
 
+    fun clickSetImage() {
+        setGroupImageEvent.call()
+    }
+
+    fun clickDocToList() {
+        startDocToListEvent.call()
+    }
+
     private fun createGroupSuccess() {
         startDocToListEvent.call()
     }
@@ -74,13 +87,5 @@ class GroupDocViewModel(
     private fun createGroupFail(message: String) {
         createToastEvent.value = message
         errorEvent.value = message
-    }
-
-    fun clickSetImage() {
-        setGroupImageEvent.call()
-    }
-
-    fun clickDocToList() {
-        startDocToListEvent.call()
     }
 }

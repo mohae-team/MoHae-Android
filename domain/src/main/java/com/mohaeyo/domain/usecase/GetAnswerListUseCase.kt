@@ -8,7 +8,7 @@ import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 
 class GetAnswerListUseCase(
-    val qaService: QAService,
+    private val qaService: QAService,
     composite: CompositeDisposable
 ): UseCase<Pair<List<AnswerEntity>, ErrorHandlerEntity>, Int>(composite) {
     override fun createFlowable(questionId: Int): Flowable<Pair<List<AnswerEntity>, ErrorHandlerEntity>>

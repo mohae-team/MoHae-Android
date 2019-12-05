@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.signin
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
@@ -8,17 +9,21 @@ import com.mohaeyo.domain.entity.TokenEntity
 import com.mohaeyo.domain.usecase.SignInUseCase
 import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
+import com.mohaeyo.mohae.isNotValueBlank
 import com.mohaeyo.mohae.isValueBlank
+import com.mohaeyo.mohae.mapper.AuthMapper
+import com.mohaeyo.mohae.model.AuthModel
 import io.reactivex.subscribers.DisposableSubscriber
 
-class SignInViewModel(val signInUseCase: SignInUseCase): BaseViewModel() {
+class SignInViewModel(
+    private val signInUseCase: SignInUseCase,
+    private val authMapper: AuthMapper): BaseViewModel() {
 
     val idText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
-
     val btnClickable = MediatorLiveData<Boolean>().apply {
-        addSource(idText) { value = !idText.isValueBlank() && !passwordText.isValueBlank()  }
-        addSource(passwordText) { value = !idText.isValueBlank() && !passwordText.isValueBlank() }
+        addSource(idText) { value = checkFullText() }
+        addSource(passwordText) { value = checkFullText() }
     }
 
     val startMainEvent = SingleLiveEvent<Unit>()
@@ -26,20 +31,14 @@ class SignInViewModel(val signInUseCase: SignInUseCase): BaseViewModel() {
     val idErrorEvent = SingleLiveEvent<String>()
     val passwordErrorEvent = SingleLiveEvent<String>()
 
-    private fun loginSuccess() {
-        createToastEvent.value = "로그인 되었습니다"
-        startMainEvent.call()
-    }
+    override fun apply(event: Lifecycle.Event) {
 
-    private fun loginFail(message: String) {
-        idErrorEvent.value = message
-        passwordErrorEvent.value = message
     }
 
     fun clickLogin() {
-        val auth = AuthEntity(idText.value!!, passwordText.value!!)
+        val auth = AuthModel(idText.value!!, passwordText.value!!)
 
-        signInUseCase.execute(auth, object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
+        signInUseCase.execute(authMapper.mapFrom(auth), object: DisposableSubscriber<Pair<TokenEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<TokenEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) loginSuccess()
                 else loginFail(t.second.message)
@@ -53,5 +52,20 @@ class SignInViewModel(val signInUseCase: SignInUseCase): BaseViewModel() {
         })
     }
 
-    fun clickSignUp() { startSignUpEvent.call() }
+    fun clickSignUp() {
+        startSignUpEvent.call()
+    }
+
+    private fun loginSuccess() {
+        createToastEvent.value = "로그인 되었습니다"
+        startMainEvent.call()
+    }
+
+    private fun loginFail(message: String) {
+        idErrorEvent.value = message
+        passwordErrorEvent.value = message
+    }
+
+    private fun checkFullText(): Boolean
+            = idText.isNotValueBlank() && passwordText.isNotValueBlank()
 }

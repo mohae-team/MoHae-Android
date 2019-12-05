@@ -29,7 +29,7 @@
                     android:id="@+id/signup_place_back_btn"
                     android:onClick="@{() -> vm.clickBackToSignUp()}"
                     android:background="@drawable/ic_arrow_back"
-                    android:backgroundTint="@color/colorGroup"
+                    android:backgroundTint="@color/colorNightGroup"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/signup_address_title_tv"
                     app:layout_constraintStart_toStartOf="@id/signup_address_title_tv"
@@ -71,6 +71,7 @@
                     android:layout_height="0dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginHorizontal="24dp"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:layout_marginTop="16dp"

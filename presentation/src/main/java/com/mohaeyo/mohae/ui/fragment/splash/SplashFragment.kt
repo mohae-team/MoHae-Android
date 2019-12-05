@@ -1,21 +1,15 @@
 package com.mohaeyo.mohae.ui.fragment.splash
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mohaeyo.mohae.R
 import kotlinx.android.synthetic.main.fragment_splash.*
-import org.jetbrains.anko.support.v4.toast
-
-
 
 class SplashFragment: Fragment() {
 

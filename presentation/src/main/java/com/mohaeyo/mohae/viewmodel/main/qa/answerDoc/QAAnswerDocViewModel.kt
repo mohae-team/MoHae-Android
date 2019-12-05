@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.qa.answerDoc
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.AnswerEntity
@@ -18,6 +19,10 @@ class QAAnswerDocViewModel(
 
     val startDocToListEvent = SingleLiveEvent<Unit>()
     val answerErrorEvent = SingleLiveEvent<String>()
+
+    override fun apply(event: Lifecycle.Event) {
+
+    }
 
     fun clickPostAnswer() {
         createAnswerUseCase.execute(answerMapper.mapFrom(answerModel.value!!), object: DisposableSubscriber<Pair<AnswerEntity, ErrorHandlerEntity>>() {

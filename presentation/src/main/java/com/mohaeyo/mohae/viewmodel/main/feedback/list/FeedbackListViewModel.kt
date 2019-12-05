@@ -1,5 +1,7 @@
 package com.mohaeyo.mohae.viewmodel.main.feedback.list
 
+import androidx.lifecycle.Lifecycle
+
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.FeedbackEntity
@@ -20,8 +22,23 @@ class FeedbackListViewModel(
 
     val startListToDetailEvent = SingleLiveEvent<FeedbackModel>()
     val startListToDocEvent = SingleLiveEvent<Unit>()
+    val listAnimationEvent = SingleLiveEvent<Unit>()
 
-    init {
+    override fun apply(event: Lifecycle.Event) {
+        when(event) {
+            Lifecycle.Event.ON_START -> getFeedbackList()
+        }
+    }
+
+    fun clickListToDoc() {
+        startListToDocEvent.call()
+    }
+
+    fun clickFeedbackItem(feedback: FeedbackModel) {
+        startListToDetailEvent.value = feedback
+    }
+
+    private fun getFeedbackList() {
         getFeedbackListUseCase.execute(Unit, object: DisposableSubscriber<Pair<List<FeedbackEntity>, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<List<FeedbackEntity>, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) getListSuccess(t.first.map { feedbackMapper.mapEntityToModel(it) })
@@ -40,18 +57,12 @@ class FeedbackListViewModel(
 
     private fun getListSuccess(feedbackList: List<FeedbackModel>) {
         this.feedbackList.value = ArrayList(feedbackList)
+        listAnimationEvent.call()
     }
 
     private fun getListFail(message: String, feedbackList: List<FeedbackModel>) {
         createToastEvent.value = message
         this.feedbackList.value = ArrayList(feedbackList)
-    }
-
-    fun clickListToDoc() {
-        startListToDocEvent.call()
-    }
-
-    fun clickFeedbackItem(feedback: FeedbackModel) {
-        startListToDetailEvent.value = feedback
+        listAnimationEvent.call()
     }
 }

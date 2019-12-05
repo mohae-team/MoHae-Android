@@ -1,5 +1,6 @@
 package com.mohaeyo.mohae.viewmodel.main.place
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import com.mohaeyo.domain.base.ErrorHandlerEntity
@@ -21,39 +22,43 @@ class PlaceDocViewModel(
     private val postPlaceInfoUseCase: PostPlaceInfoUseCase,
     private val placeMapper: PlaceMapper
 ): BaseLocationViewModel() {
-
-    val placeName = MutableLiveData<String>()
-    val placeDescription = MutableLiveData<String>()
-    val placeLocation = MutableLiveData<String>()
+    val placeModel = MutableLiveData<PlaceModel>().apply {
+        value = PlaceModel()
+    }
 
     val placeNameErrorEvent = SingleLiveEvent<String>()
     val placeDescriptionErrorEvent = SingleLiveEvent<String>()
+    val startDocToListEvent = SingleLiveEvent<Unit>()
 
-    val mapPlaceModelToEntity: (PlaceModel) -> PlaceEntity
-            = { placeMapper.mapModelToEntity(it) }
+    override fun apply(event: Lifecycle.Event) {
 
-    val mapPlaceEntityToModel: (PlaceEntity) -> PlaceModel
-            = { placeMapper.mapFrom(it) }
+    }
 
     override fun updateAddressData(location: LatLng, addressTitle: String, addressSnippet: String, isSuccess: Boolean) {
         if (isSuccess) {
             drawMarkerEvent.value =
                 MapMakerModel(title = addressTitle, snippet = addressSnippet, location = location)
-            placeLocation.value = addressSnippet
+            placeModel.value!!.location = addressSnippet
             getPlaceInfo(addressSnippet)
         } else {
             drawMarkerEvent.value =
                 MapMakerModel(location = location, title = "다른 지역을 선택해주세요.", snippet = "다른 지역을 선택해주세요.")
-            placeLocation.value = "다른 지역을 선택해주세요."
+            placeModel.value!!.location = ""
         }
     }
 
-    val startDocToListEvent = SingleLiveEvent<Unit>()
+    fun clickPostPlace()
+            = checkDocText()
+
+
+    fun clickDocToList() {
+        startDocToListEvent.call()
+    }
 
     private fun getPlaceInfo(location: String)
             = getPlaceInfoUseCase.execute(location, object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
         override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
-            if (t.second.isSuccess) getSuccess(mapPlaceEntityToModel(t.first))
+            if (t.second.isSuccess) getSuccess(placeMapper.mapFrom(t.first))
             else getFail(t.second.message)
         }
 
@@ -67,19 +72,25 @@ class PlaceDocViewModel(
     })
 
     private fun getSuccess(place: PlaceModel) {
-        placeName.value = place.name
+        placeModel.value = PlaceModel(
+            name = place.name,
+            location = place.location
+        )
     }
 
     private fun getFail(message: String) {
-        placeName.value = ""
-        placeDescription.value = ""
+        placeModel.value = PlaceModel(
+            name = "",
+            location = placeModel.value!!.location
+        )
+
         createToastEvent.value = message
     }
 
     private fun postPlaceInfo(place: PlaceModel)
-            = postPlaceInfoUseCase.execute(mapPlaceModelToEntity(place), object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
+            = postPlaceInfoUseCase.execute(placeMapper.mapModelToEntity(place), object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
         override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
-            if (t.second.isSuccess) postSuccess(mapPlaceEntityToModel(t.first))
+            if (t.second.isSuccess) postSuccess(placeMapper.mapFrom(t.first))
             else postFail(t.second.message)
         }
 
@@ -93,8 +104,10 @@ class PlaceDocViewModel(
     })
 
     private fun postSuccess(place: PlaceModel) {
-        placeName.value = place.name
-        placeDescription.value = place.description
+        placeModel.value = PlaceModel(
+            name = place.name,
+            description = place.description
+        )
 
         startDocToListEvent.call()
     }
@@ -103,20 +116,16 @@ class PlaceDocViewModel(
         createToastEvent.value = message
     }
 
-    fun clickPostPlace() =
-        when {
-            placeName.value.isNullOrBlank() -> placeNameErrorEvent.value = "이름을 정해주세요"
-            placeDescription.value.isNullOrBlank() -> placeDescriptionErrorEvent.value = "설명을 적어주세요"
-            else -> postPlaceInfo(PlaceModel(
-                name = placeName.value!!,
-                location = placeLocation.value!!,
-                description = placeDescription.value!!,
-                likeCount = 0,
-                isLike = false
-            ))
+    private fun checkDocText() {
+        with(placeModel.value!!) {
+            when {
+                name.isBlank() ->
+                    placeNameErrorEvent.value = "이름을 정해주세요"
+                description.isBlank() ->
+                    placeDescriptionErrorEvent.value = "설명을 적어주세요"
+                else ->
+                    postPlaceInfo(this)
+            }
         }
-
-    fun clickDocToList() {
-        startDocToListEvent.call()
     }
 }
