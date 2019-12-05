@@ -8,10 +8,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
+import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 abstract class DataBindingFragment<T : ViewDataBinding> : Fragment(), HasSupportFragmentInjector {
@@ -40,6 +42,8 @@ abstract class DataBindingFragment<T : ViewDataBinding> : Fragment(), HasSupport
         super.onViewCreated(view, savedInstanceState)
         register(viewModel)
         observeEvent()
+
+        viewModel.createToastEvent.observe(this, Observer { toast(it) })
     }
 
     abstract fun observeEvent()
