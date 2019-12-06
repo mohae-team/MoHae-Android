@@ -1,6 +1,5 @@
 package com.mohaeyo.mohae.viewmodel.main.group.detail
 
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity

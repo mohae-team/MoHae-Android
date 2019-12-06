@@ -6,12 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.TokenEntity
-import com.mohaeyo.domain.entity.UserEntity
 import com.mohaeyo.domain.usecase.SignUpUseCase
 import com.mohaeyo.mohae.base.BaseLocationViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.isNotValueBlank
-import com.mohaeyo.mohae.isValueBlank
 import com.mohaeyo.mohae.mapper.UserMapper
 import com.mohaeyo.mohae.model.MapMakerModel
 import com.mohaeyo.mohae.model.UserModel

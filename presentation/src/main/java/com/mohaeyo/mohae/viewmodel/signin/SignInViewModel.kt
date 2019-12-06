@@ -4,13 +4,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.mohaeyo.domain.base.ErrorHandlerEntity
-import com.mohaeyo.domain.entity.AuthEntity
 import com.mohaeyo.domain.entity.TokenEntity
 import com.mohaeyo.domain.usecase.SignInUseCase
 import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.isNotValueBlank
-import com.mohaeyo.mohae.isValueBlank
 import com.mohaeyo.mohae.mapper.AuthMapper
 import com.mohaeyo.mohae.model.AuthModel
 import io.reactivex.subscribers.DisposableSubscriber

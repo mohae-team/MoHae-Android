@@ -3,12 +3,14 @@ package com.mohaeyo.mohae.di.module.signin
 import androidx.lifecycle.ViewModelProviders
 import com.mohaeyo.data.datasource.AuthDataSource
 import com.mohaeyo.data.datasource.AuthDataSourceImpl
+import com.mohaeyo.data.handler.AuthErrorHandlerImpl
 import com.mohaeyo.data.local.pref.LocalStorage
 import com.mohaeyo.data.mapper.AuthDataMapper
 import com.mohaeyo.data.mapper.TokenDataMapper
 import com.mohaeyo.data.mapper.UserDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.AuthRepositoryImpl
+import com.mohaeyo.domain.handler.AuthErrorHandler
 import com.mohaeyo.domain.repository.AuthRepository
 import com.mohaeyo.domain.service.AuthService
 import com.mohaeyo.domain.service.AuthServiceImpl
@@ -44,8 +46,13 @@ class SignInModule {
 
     @FragmentScope
     @Provides
-    fun provideAuthService(authRepository: AuthRepository): AuthService
-            = AuthServiceImpl(authRepository)
+    fun provideAuthService(authRepository: AuthRepository, authErrorHandler: AuthErrorHandler): AuthService
+            = AuthServiceImpl(authRepository, authErrorHandler)
+
+    @FragmentScope
+    @Provides
+    fun provideAuthErrorHandler(): AuthErrorHandler
+            = AuthErrorHandlerImpl()
 
     @FragmentScope
     @Provides

@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import com.mohaeyo.data.datasource.UserDataSource
 import com.mohaeyo.data.datasource.UserDataSourceImpl
+import com.mohaeyo.data.handler.UserErrorHandlerImpl
 import com.mohaeyo.data.local.database.UserDatabase
 import com.mohaeyo.data.local.database.dao.UserDao
 import com.mohaeyo.data.mapper.UserDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.UserRepositoryImpl
+import com.mohaeyo.domain.handler.UserErrorHandler
 import com.mohaeyo.domain.repository.UserRepository
 import com.mohaeyo.domain.service.UserService
 import com.mohaeyo.domain.service.UserServiceImpl
@@ -34,8 +36,13 @@ class MyPageStaticModule {
 
     @MainFragmentScope
     @Provides
-    fun provideUserService(userRepository: UserRepository): UserService
-            = UserServiceImpl(userRepository)
+    fun provideUserService(userRepository: UserRepository, userErrorHandler: UserErrorHandler): UserService
+            = UserServiceImpl(userRepository, userErrorHandler)
+
+    @MainFragmentScope
+    @Provides
+    fun provideUserErrorHandler(): UserErrorHandler
+            = UserErrorHandlerImpl()
 
     @MainFragmentScope
     @Provides

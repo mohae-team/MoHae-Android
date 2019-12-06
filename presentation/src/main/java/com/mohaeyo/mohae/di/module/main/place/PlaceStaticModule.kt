@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import com.mohaeyo.data.datasource.PlaceDataSource
 import com.mohaeyo.data.datasource.PlaceDataSourceImpl
+import com.mohaeyo.data.handler.PlaceErrorHandlerImpl
 import com.mohaeyo.data.local.database.PlaceDatabase
 import com.mohaeyo.data.local.database.dao.PlaceDao
 import com.mohaeyo.data.mapper.PlaceDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.PlaceRepositoryImpl
+import com.mohaeyo.domain.handler.PlaceErrorHandler
 import com.mohaeyo.domain.repository.PlaceRepository
 import com.mohaeyo.domain.service.PlaceService
 import com.mohaeyo.domain.service.PlaceServiceImpl
@@ -46,8 +48,13 @@ class PlaceStaticModule {
 
     @MainFragmentScope
     @Provides
-    fun providePlaceService(placeRepository: PlaceRepository): PlaceService
-            = PlaceServiceImpl(placeRepository)
+    fun providePlaceService(placeRepository: PlaceRepository, placeErrorHandler: PlaceErrorHandler): PlaceService
+            = PlaceServiceImpl(placeRepository, placeErrorHandler)
+
+    @MainFragmentScope
+    @Provides
+    fun providePlaceErrorHandler(): PlaceErrorHandler
+            = PlaceErrorHandlerImpl()
 
     @MainFragmentScope
     @Provides

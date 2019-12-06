@@ -9,7 +9,6 @@ import com.mohaeyo.mohae.base.BaseViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.mapper.AnswerMapper
 import com.mohaeyo.mohae.model.AnswerModel
-import com.mohaeyo.mohae.model.QuestionModel
 import io.reactivex.subscribers.DisposableSubscriber
 
 class QAAnswerListViewModel(

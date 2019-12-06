@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import com.mohaeyo.data.datasource.FeedbackDataSource
 import com.mohaeyo.data.datasource.FeedbackDataSourceImpl
+import com.mohaeyo.data.handler.FeedbackErrorHandlerImpl
 import com.mohaeyo.data.local.database.FeedbackDatabase
 import com.mohaeyo.data.local.database.dao.FeedbackDao
 import com.mohaeyo.data.mapper.FeedbackDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.FeedbackRepositoryImpl
+import com.mohaeyo.domain.handler.FeedbackErrorHandler
 import com.mohaeyo.domain.repository.FeedbackRepository
 import com.mohaeyo.domain.service.FeedbackService
 import com.mohaeyo.domain.service.FeedbackServiceImpl
@@ -48,8 +50,13 @@ class FeedbackStaticModule {
 
     @MainFragmentScope
     @Provides
-    fun provideFeedbackService(feedbackRepository: FeedbackRepository): FeedbackService
-            = FeedbackServiceImpl(feedbackRepository)
+    fun provideFeedbackService(feedbackRepository: FeedbackRepository, feedbackErrorHandler: FeedbackErrorHandler): FeedbackService
+            = FeedbackServiceImpl(feedbackRepository, feedbackErrorHandler)
+
+    @MainFragmentScope
+    @Provides
+    fun provideFeedbackErrorHandler(): FeedbackErrorHandler
+            = FeedbackErrorHandlerImpl()
 
     @MainFragmentScope
     @Provides

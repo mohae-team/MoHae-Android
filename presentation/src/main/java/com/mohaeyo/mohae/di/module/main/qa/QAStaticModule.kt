@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.mohaeyo.data.datasource.QADataSource
 import com.mohaeyo.data.datasource.QADataSourceImpl
+import com.mohaeyo.data.handler.QAErrorHandlerImpl
 import com.mohaeyo.data.local.database.AnswerDatabase
 import com.mohaeyo.data.local.database.QuestionDatabase
 import com.mohaeyo.data.local.database.dao.AnswerDao
@@ -12,6 +13,7 @@ import com.mohaeyo.data.mapper.AnswerDataMapper
 import com.mohaeyo.data.mapper.QuestionDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.QARepositoryImpl
+import com.mohaeyo.domain.handler.QAErrorHandler
 import com.mohaeyo.domain.repository.QARepository
 import com.mohaeyo.domain.service.QAService
 import com.mohaeyo.domain.service.QAServiceImpl
@@ -52,8 +54,13 @@ class QAStaticModule {
 
     @MainFragmentScope
     @Provides
-    fun provideQAService(qaRepository: QARepository): QAService
-            = QAServiceImpl(qaRepository)
+    fun provideQAService(qaRepository: QARepository, qaErrorHandler: QAErrorHandler): QAService
+            = QAServiceImpl(qaRepository, qaErrorHandler)
+
+    @MainFragmentScope
+    @Provides
+    fun provideQAErrorHandler(): QAErrorHandler
+            = QAErrorHandlerImpl()
 
     @MainFragmentScope
     @Provides

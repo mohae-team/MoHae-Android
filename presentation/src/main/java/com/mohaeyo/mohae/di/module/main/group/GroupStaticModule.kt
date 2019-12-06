@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import com.mohaeyo.data.datasource.GroupDataSource
 import com.mohaeyo.data.datasource.GroupDataSourceImpl
+import com.mohaeyo.data.handler.GroupErrorHandlerImpl
 import com.mohaeyo.data.local.database.GroupDatabase
 import com.mohaeyo.data.local.database.dao.GroupDao
 import com.mohaeyo.data.mapper.GroupDataMapper
 import com.mohaeyo.data.remote.Api
 import com.mohaeyo.data.repository.GroupRepositoryImpl
+import com.mohaeyo.domain.handler.GroupErrorHandler
 import com.mohaeyo.domain.repository.GroupRepository
 import com.mohaeyo.domain.service.GroupService
 import com.mohaeyo.domain.service.GroupServiceImpl
@@ -48,8 +50,13 @@ class GroupStaticModule {
 
     @MainFragmentScope
     @Provides
-    fun provideGroupService(groupRepository: GroupRepository): GroupService
-            = GroupServiceImpl(groupRepository)
+    fun provideGroupService(groupRepository: GroupRepository, groupErrorHandler: GroupErrorHandler): GroupService
+            = GroupServiceImpl(groupRepository, groupErrorHandler)
+
+    @MainFragmentScope
+    @Provides
+    fun provideGroupErrorHandler(): GroupErrorHandler
+            = GroupErrorHandlerImpl()
 
     @MainFragmentScope
     @Provides

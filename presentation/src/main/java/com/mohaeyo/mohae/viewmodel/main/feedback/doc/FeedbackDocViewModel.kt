@@ -6,7 +6,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.mohaeyo.domain.base.ErrorHandlerEntity
 import com.mohaeyo.domain.entity.FeedbackEntity
 import com.mohaeyo.domain.usecase.CreateFeedbackUseCase
-import com.mohaeyo.domain.usecase.GetFeedbackListUseCase
 import com.mohaeyo.mohae.base.BaseLocationViewModel
 import com.mohaeyo.mohae.base.SingleLiveEvent
 import com.mohaeyo.mohae.mapper.FeedbackMapper
