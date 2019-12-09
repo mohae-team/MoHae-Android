@@ -54,12 +54,12 @@ class SignInViewModel(
         startSignUpEvent.call()
     }
 
-    private fun loginSuccess() {
+    fun loginSuccess() {
         createToastEvent.value = "로그인 되었습니다"
         startMainEvent.call()
     }
 
-    private fun loginFail(message: String) {
+    fun loginFail(message: String) {
         idErrorEvent.value = message
         passwordErrorEvent.value = message
     }

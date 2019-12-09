@@ -34,7 +34,7 @@ class SignUpViewModel(
     }
 
     val completeBtnClickable = MediatorLiveData<Boolean>().apply {
-        addSource(addressText) { value = addressText.value!! != "거주 지역을 선택해주세요" || addressText.value!! != "다른 지역을 선택해주세요" }
+        addSource(addressText) { value = addressText.value!! != "거주 지역을 선택해주세요" && addressText.value!! != "다른 지역을 선택해주세요" }
     }
 
     val startSignInEvent = SingleLiveEvent<Unit>()
@@ -109,12 +109,12 @@ class SignUpViewModel(
         })
     }
 
-    private fun signUpSuccess() {
+    fun signUpSuccess() {
         createToastEvent.value = "회원가입 되었습니다"
         startSignInEvent.call()
     }
 
-    private fun signUpFail(message: String) {
+    fun signUpFail(message: String) {
         createToastEvent.value = message
     }
 
