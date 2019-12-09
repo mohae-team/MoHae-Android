@@ -25,7 +25,7 @@ class PlaceServiceImpl(
             = placeRepository.postRemotePlace(placeEntity).map {
         it to ErrorHandlerEntity(isSuccess = true)
     }.onErrorReturn {
-        placeRepository.getLocalPlace() to placeErrorHandler.postInfoErrorHandle(it)
+        placeEntity to placeErrorHandler.postInfoErrorHandle(it)
     }
 
     override fun postLikePlace(location: String): Flowable<Pair<PlaceEntity, ErrorHandlerEntity>>
