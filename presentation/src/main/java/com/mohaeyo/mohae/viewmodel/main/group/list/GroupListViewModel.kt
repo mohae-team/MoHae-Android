@@ -57,12 +57,12 @@ class GroupListViewModel(
         startListToDetailEvent.value = group
     }
 
-    private fun getListSuccess(groupList: List<GroupModel>) {
+    fun getListSuccess(groupList: List<GroupModel>) {
         this.groupList.value = ArrayList(groupList)
         listAnimationEvent.call()
     }
 
-    private fun getListFail(message: String, groupList: List<GroupModel>) {
+    fun getListFail(message: String, groupList: List<GroupModel>) {
         createToastEvent.value = message
         this.groupList.value = ArrayList(groupList)
         listAnimationEvent.call()
