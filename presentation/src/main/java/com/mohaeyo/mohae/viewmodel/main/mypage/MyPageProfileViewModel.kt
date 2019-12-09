@@ -49,12 +49,11 @@ class MyPageProfileViewModel(
             }
         })
     }
-
-    private fun getSuccess(user: UserModel) {
+    fun getSuccess(user: UserModel) {
         userModel.value = user
     }
 
-    private fun getFail(message: String) {
+    fun getFail(message: String) {
         createToastEvent.value = message
     }
 }

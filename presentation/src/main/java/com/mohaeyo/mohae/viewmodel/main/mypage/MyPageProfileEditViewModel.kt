@@ -89,19 +89,19 @@ class MyPageProfileEditViewModel(
         })
     }
 
-    private fun getSuccess(user: UserModel) {
+    fun getSuccess(user: UserModel) {
         userModel.value = user
     }
 
-    private fun getFail(message: String) {
+    fun getFail(message: String) {
         createToastEvent.value = message
     }
 
-    private fun editSuccess() {
+    fun editSuccess() {
         createToastEvent.value = "수정이 완료되었습니다"
     }
 
-    private fun editFail(message: String) {
+    fun editFail(message: String) {
         createToastEvent.value = message
     }
 
