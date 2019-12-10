@@ -28,7 +28,7 @@ class QAAnswerDocViewModel(
         createAnswerUseCase.execute(answerMapper.mapFrom(answerModel.value!!), object: DisposableSubscriber<Pair<AnswerEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<AnswerEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) createSuccess(answerMapper.mapEntityToModel(t.first))
-                else createFail(t.second.message, answerMapper.mapEntityToModel(t.first))
+                else createFail(t.second.message)
             }
 
             override fun onComplete() {
@@ -41,12 +41,12 @@ class QAAnswerDocViewModel(
         })
     }
 
-    private fun createSuccess(answerModel: AnswerModel) {
+    fun createSuccess(answerModel: AnswerModel) {
         this.answerModel.value = answerModel
         startDocToListEvent.call()
     }
 
-    private fun createFail(message: String, answerModel: AnswerModel) {
+    fun createFail(message: String) {
         createToastEvent.value = message
     }
 
