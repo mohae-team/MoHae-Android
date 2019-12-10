@@ -14,7 +14,7 @@ class FeedbackServiceImpl(
     private val feedbackErrorHandler: FeedbackErrorHandler
 ): FeedbackService {
     override fun getListFeedback(): Flowable<Pair<List<FeedbackEntity>, ErrorHandlerEntity>>
-            = feedbackRepository.getRemoteGroupList().map {
+            = feedbackRepository.getRemoteFeedbackList().map {
         it to ErrorHandlerEntity(isSuccess = true)
     }.doOnNext {
         feedbackRepository.saveLocalFeedbackList(it.first)

@@ -75,12 +75,12 @@ class FeedbackDocViewModel(
         startDocToListEvent.call()
     }
 
-    private fun createSuccess(feedbackModel: FeedbackModel) {
+    fun createSuccess(feedbackModel: FeedbackModel) {
         this.feedbackModel.value = feedbackModel
         startDocToListEvent.call()
     }
 
-    private fun createFail(message: String, feedbackModel: FeedbackModel) {
+    fun createFail(message: String, feedbackModel: FeedbackModel) {
         createToastEvent.value = message
         this.feedbackModel.value = feedbackModel
     }
