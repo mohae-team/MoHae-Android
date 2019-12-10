@@ -95,29 +95,29 @@ class FeedbackDetailViewModel(
         })
     }
 
-    private fun getDetailSuccess(feedbackModel: FeedbackModel) {
+    fun getDetailSuccess(feedbackModel: FeedbackModel) {
         selectedFeedbackItem.value = feedbackModel
     }
 
-    private fun getDetailFail(message: String, feedbackModel: FeedbackModel) {
+    fun getDetailFail(message: String, feedbackModel: FeedbackModel) {
         createToastEvent.value = message
         selectedFeedbackItem.value = feedbackModel
     }
 
-    private fun likeSuccess(feedbackModel: FeedbackModel) {
+    fun likeSuccess(feedbackModel: FeedbackModel) {
         selectedFeedbackItem.value = feedbackModel
     }
 
-    private fun likeFail(message: String, feedbackModel: FeedbackModel) {
+    fun likeFail(message: String, feedbackModel: FeedbackModel) {
         createToastEvent.value = message
         selectedFeedbackItem.value = feedbackModel
     }
 
-    private fun hateSuccess(feedbackModel: FeedbackModel) {
+    fun hateSuccess(feedbackModel: FeedbackModel) {
         selectedFeedbackItem.value = feedbackModel
     }
 
-    private fun hateFail(message: String, feedbackModel: FeedbackModel) {
+    fun hateFail(message: String, feedbackModel: FeedbackModel) {
         createToastEvent.value = message
         selectedFeedbackItem.value = feedbackModel
     }

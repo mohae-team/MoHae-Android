@@ -64,7 +64,7 @@ class PlaceSearchViewModel(
         else likePlaceInfo()
     }
 
-    private fun getPlaceInfo(location: String)
+    fun getPlaceInfo(location: String)
             = getPlaceInfoUseCase.execute(location, object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
         override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
             if (t.second.isSuccess) getSuccess(placeMapper.mapFrom(t.first))
@@ -80,11 +80,11 @@ class PlaceSearchViewModel(
         }
     })
 
-    private fun getSuccess(place: PlaceModel) {
+    fun getSuccess(place: PlaceModel) {
         placeModel.value = place
     }
 
-    private fun getFail(message: String) {
+    fun getFail(message: String) {
         placeModel.value = PlaceModel(
             name = message,
             description = message,
@@ -95,7 +95,7 @@ class PlaceSearchViewModel(
         createToastEvent.value = message
     }
 
-    private fun likePlaceInfo() {
+    fun likePlaceInfo() {
         likePlaceInfoUseCase.execute(placeModel.value!!.location, object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) likeSuccess()
@@ -112,20 +112,22 @@ class PlaceSearchViewModel(
         })
     }
 
-    private fun likeSuccess() {
+    fun likeSuccess() {
         with(placeModel.value!!) {
             this.isLike = !isLike
             this.likeCount = likeCount.plus(1)
 
             placeModel.value = this
         }
+
+        createToastEvent.value = "좋아요가 반영되었습니다"
     }
 
-    private fun likeFail(message: String) {
+    fun likeFail(message: String) {
         createToastEvent.value = message
     }
 
-    private fun disLikePlaceInfo() {
+    fun disLikePlaceInfo() {
         disLikePlaceInfoUseCase.execute(placeModel.value!!.location, object: DisposableSubscriber<Pair<PlaceEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<PlaceEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) disLikeSuccess()
@@ -142,16 +144,18 @@ class PlaceSearchViewModel(
         })
     }
 
-    private fun disLikeSuccess() {
+    fun disLikeSuccess() {
         with(placeModel.value!!) {
             this.isLike = !isLike
             this.likeCount = likeCount.minus(1)
 
             placeModel.value = this
         }
+
+        createToastEvent.value = "좋아요가 취소되었습니다"
     }
 
-    private fun disLikeFail(message: String) {
+    fun disLikeFail(message: String) {
         createToastEvent.value = message
     }
 }

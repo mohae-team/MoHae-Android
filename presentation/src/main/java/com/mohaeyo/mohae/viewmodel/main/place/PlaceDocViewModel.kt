@@ -68,14 +68,14 @@ class PlaceDocViewModel(
         }
     })
 
-    private fun getSuccess(place: PlaceModel) {
+    fun getSuccess(place: PlaceModel) {
         placeModel.value = PlaceModel(
             name = place.name,
             location = place.location
         )
     }
 
-    private fun getFail(message: String) {
+    fun getFail(message: String) {
         placeModel.value = PlaceModel(
             name = "",
             location = placeModel.value!!.location
@@ -100,7 +100,7 @@ class PlaceDocViewModel(
         }
     })
 
-    private fun postSuccess(place: PlaceModel) {
+    fun postSuccess(place: PlaceModel) {
         placeModel.value = PlaceModel(
             name = place.name,
             description = place.description
@@ -109,7 +109,7 @@ class PlaceDocViewModel(
         startDocToListEvent.call()
     }
 
-    private fun postFail(message: String) {
+    fun postFail(message: String) {
         createToastEvent.value = message
     }
 

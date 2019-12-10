@@ -80,11 +80,11 @@ class GroupDocViewModel(
         startDocToListEvent.call()
     }
 
-    private fun createGroupSuccess() {
+    fun createGroupSuccess() {
         startDocToListEvent.call()
     }
 
-    private fun createGroupFail(message: String) {
+    fun createGroupFail(message: String) {
         createToastEvent.value = message
         errorEvent.value = message
     }

@@ -55,12 +55,12 @@ class FeedbackListViewModel(
         })
     }
 
-    private fun getListSuccess(feedbackList: List<FeedbackModel>) {
+    fun getListSuccess(feedbackList: List<FeedbackModel>) {
         this.feedbackList.value = ArrayList(feedbackList)
         listAnimationEvent.call()
     }
 
-    private fun getListFail(message: String, feedbackList: List<FeedbackModel>) {
+    fun getListFail(message: String, feedbackList: List<FeedbackModel>) {
         createToastEvent.value = message
         this.feedbackList.value = ArrayList(feedbackList)
         listAnimationEvent.call()

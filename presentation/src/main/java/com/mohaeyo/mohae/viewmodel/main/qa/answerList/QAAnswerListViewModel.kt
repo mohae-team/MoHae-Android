@@ -55,12 +55,12 @@ class QAAnswerListViewModel(
         })
     }
 
-    private fun getListSuccess(answerList: List<AnswerModel>) {
+    fun getListSuccess(answerList: List<AnswerModel>) {
         this.answerList.value = ArrayList(answerList)
         listAnimationEvent.call()
     }
 
-    private fun getListFail(message: String, answerList: List<AnswerModel>) {
+    fun getListFail(message: String, answerList: List<AnswerModel>) {
         this.answerList.value = ArrayList(answerList)
         createToastEvent.value = message
         listAnimationEvent.call()

@@ -41,7 +41,7 @@ class QAQuestionDocViewModel(
         createQuestionUseCase.execute(questionMapper.mapFrom(questionModel.value!!), object: DisposableSubscriber<Pair<QuestionEntity, ErrorHandlerEntity>>() {
             override fun onNext(t: Pair<QuestionEntity, ErrorHandlerEntity>) {
                 if (t.second.isSuccess) createSuccess(questionMapper.mapEntityToModel(t.first))
-                else createFail(t.second.message, questionMapper.mapEntityToModel(t.first))
+                else createFail(t.second.message)
             }
 
             override fun onComplete() {
@@ -52,14 +52,14 @@ class QAQuestionDocViewModel(
                 createToastEvent.value = "알 수 없는 오류가 발생했습니다"
             }
         })
+    }
+
+    fun createSuccess(question: QuestionModel) {
+        questionModel.value = question
         startDocToListEvent.call()
     }
 
-    private fun createSuccess(question: QuestionModel) {
-        questionModel.value = question
-    }
-
-    private fun createFail(message: String, question: QuestionModel) {
+    fun createFail(message: String) {
         createToastEvent.value = message
     }
 }

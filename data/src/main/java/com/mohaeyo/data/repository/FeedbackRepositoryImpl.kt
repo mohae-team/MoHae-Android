@@ -10,7 +10,7 @@ class FeedbackRepositoryImpl(
     private val datasource: FeedbackDataSource,
     private val feedbackDataMapper: FeedbackDataMapper
 ): FeedbackRepository {
-    override fun getRemoteGroupList(): Flowable<List<FeedbackEntity>>
+    override fun getRemoteFeedbackList(): Flowable<List<FeedbackEntity>>
             = datasource.getRemoteListFeedback().map { list -> list.map { feedbackDataMapper.mapDtoToEntity(it)} }
 
     override fun getRemoteFeedbackDetail(id: Int): Flowable<FeedbackEntity>

@@ -97,29 +97,29 @@ class GroupDetailViewModel(
         closeDialog.call()
     }
 
-    private fun getDetailSuccess(group: GroupModel) {
+    fun getDetailSuccess(group: GroupModel) {
         selectedGroupItem.value = group
     }
 
-    private fun getDetailFail(message: String, group: GroupModel) {
+    fun getDetailFail(message: String, group: GroupModel) {
         createToastEvent.value = message
         selectedGroupItem.value = group
     }
 
-    private fun joinSuccess(group: GroupModel) {
+    fun joinSuccess(group: GroupModel) {
         selectedGroupItem.value = group
     }
 
-    private fun joinFail(message: String, group: GroupModel) {
+    fun joinFail(message: String, group: GroupModel) {
         createToastEvent.value = message
         selectedGroupItem.value = group
     }
 
-    private fun cancelSuccess(group: GroupModel) {
+    fun cancelSuccess(group: GroupModel) {
         selectedGroupItem.value = group
     }
 
-    private fun cancelFail(message: String, group: GroupModel) {
+    fun cancelFail(message: String, group: GroupModel) {
         createToastEvent.value = message
         selectedGroupItem.value = group
     }
