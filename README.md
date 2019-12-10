@@ -64,7 +64,7 @@
 
 5. Dagger2
 
-6. Glide, Retrofit2, Okhttp3, Anko, Lottie, etc..
+6. Glide, Retrofit2, Okhttp3, Anko, etc..
 
 7. Clean Code
 
